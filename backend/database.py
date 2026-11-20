@@ -69,10 +69,22 @@ SEED_DIR = Path(__file__).resolve().parent / "seed"
 
 
 async def seed_jobs() -> int:
-    """Insert the demo job openings only when the collection is empty (never deletes existing jobs)."""
-    if await job_openings_collection.count_documents({}) > 0:
-        return 0
+    """Bring the bundled openings (seed/jobs.json) into the database. Idempotent: an opening is matched on
+    title + location; missing ones are inserted and existing ones only get the fields they don't have yet
+    (salary band, openings, dates). Never deletes jobs and never overwrites a field an HR admin has set.
+    Returns the number of openings inserted or updated."""
     jobs = json.loads((SEED_DIR / "jobs.json").read_text(encoding="utf-8"))
-    await job_openings_collection.insert_many(jobs)
-    logger.info("seeded %d demo job openings", len(jobs))
-    return len(jobs)
+    changed = 0
+    for job in jobs:
+        existing = await job_openings_collection.find_one({"title": job["title"], "location": job["location"]})
+        if existing is None:
+            await job_openings_collection.insert_one(dict(job))
+            changed += 1
+            continue
+        missing = {k: v for k, v in job.items() if k not in existing}
+        if missing:
+            await job_openings_collection.update_one({"_id": existing["_id"]}, {"$set": missing})
+            changed += 1
+    if changed:
+        logger.info("job openings seeded/updated: %d", changed)
+    return changed

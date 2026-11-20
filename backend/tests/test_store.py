@@ -33,7 +33,7 @@ async def test_ingest_and_lexical_search():
     hits = await store.search("How many days of annual leave do employees get?")
     assert hits and hits[0]["section"] == "Leave policy"
     assert hits[0]["vector_score"] is None and hits[0]["score"] > 0.2
-    assert len(hits) <= 4
+    assert len(hits) <= 5
 
 
 async def test_irrelevant_query_returns_nothing():

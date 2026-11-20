@@ -10,7 +10,11 @@
    "Git"
   ],
   "employment_type": "Full-time",
-  "description": "Entry-level backend development."
+  "description": "Build and test backend APIs in Python with the platform team; you will write SQL queries, fix bugs and ship small features under the guidance of a senior engineer.",
+  "budget": "INR 4-6 LPA",
+  "openings": 3,
+  "posted_on": "2026-10-06",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Frontend Intern",
@@ -23,7 +27,11 @@
    "React"
   ],
   "employment_type": "Internship",
-  "description": "Assist in UI/UX development."
+  "description": "Six-month internship with the web team: build React components, fix UI bugs and write unit tests. Final-year students and recent graduates are welcome.",
+  "budget": "INR 20,000-25,000 per month (stipend)",
+  "openings": 1,
+  "posted_on": "2026-10-13",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "QA Tester L1",
@@ -36,7 +44,11 @@
    "Selenium"
   ],
   "employment_type": "Full-time",
-  "description": "Perform manual and automated testing."
+  "description": "Write and run manual test cases for web and mobile releases, log defects in Jira and verify fixes before each release.",
+  "budget": "INR 6-9 LPA",
+  "openings": 2,
+  "posted_on": "2026-10-20",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Data Analyst",
@@ -49,7 +61,11 @@
    "Tableau"
   ],
   "employment_type": "Full-time",
-  "description": "Analyze business data and create dashboards."
+  "description": "Turn product and operations data into dashboards and weekly reports. You will write SQL, build Power BI dashboards and present findings to business teams.",
+  "budget": "INR 6-9 LPA",
+  "openings": 1,
+  "posted_on": "2026-10-27",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Backend Developer",
@@ -62,7 +78,11 @@
    "FastAPI"
   ],
   "employment_type": "Full-time",
-  "description": "Develop and maintain robust APIs."
+  "description": "Design and build REST APIs with Python (Django and FastAPI) and PostgreSQL for our customer-facing products; own features from design to production.",
+  "budget": "INR 6-9 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-03",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "AI/ML Engineer",
@@ -76,7 +96,11 @@
    "LangChain"
   ],
   "employment_type": "Full-time",
-  "description": "Build intelligent AI features and agents."
+  "description": "Build and deploy machine-learning and LLM features, from data preparation and model training to serving models behind APIs. Remote, with quarterly team meet-ups.",
+  "budget": "INR 6-9 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-10",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "DevOps Engineer",
@@ -90,7 +114,11 @@
    "CI/CD"
   ],
   "employment_type": "Full-time",
-  "description": "Manage cloud infrastructure and pipelines."
+  "description": "Run our AWS infrastructure: CI/CD pipelines, Docker and Kubernetes deployments, monitoring and on-call rotation shared with the platform team.",
+  "budget": "INR 10-15 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-17",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Full Stack Developer",
@@ -104,7 +132,11 @@
    "Express"
   ],
   "employment_type": "Full-time",
-  "description": "End-to-end web application development."
+  "description": "Work across React frontends and Node.js or Python backends to deliver complete product features with designers and product managers.",
+  "budget": "INR 10-15 LPA",
+  "openings": 1,
+  "posted_on": "2026-10-06",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Mobile App Developer",
@@ -117,7 +149,11 @@
    "Firebase"
   ],
   "employment_type": "Full-time",
-  "description": "Build cross-platform mobile applications."
+  "description": "Build and maintain our Android and iOS apps in Flutter, integrate REST APIs and publish releases to the app stores.",
+  "budget": "INR 10-15 LPA",
+  "openings": 1,
+  "posted_on": "2026-10-13",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Cloud Security Specialist",
@@ -130,7 +166,11 @@
    "Network Security"
   ],
   "employment_type": "Full-time",
-  "description": "Ensure secure cloud infrastructure and compliance."
+  "description": "Own cloud security reviews, IAM policies, vulnerability scans and incident response for our AWS and Azure workloads.",
+  "budget": "INR 10-15 LPA",
+  "openings": 1,
+  "posted_on": "2026-10-20",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Senior Data Scientist",
@@ -144,7 +184,11 @@
    "PyTorch"
   ],
   "employment_type": "Full-time",
-  "description": "Research and deploy complex predictive models."
+  "description": "Lead modelling work on forecasting and customer analytics, mentor two data scientists and work with product leaders on experiments.",
+  "budget": "INR 18-26 LPA",
+  "openings": 1,
+  "posted_on": "2026-10-27",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Senior Backend Engineer",
@@ -157,7 +201,11 @@
    "Microservices"
   ],
   "employment_type": "Full-time",
-  "description": "Design highly scalable backend architectures."
+  "description": "Design scalable services, review code and mentor engineers on the platform team; strong system-design skills are expected.",
+  "budget": "INR 18-26 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-03",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Lead Frontend Developer",
@@ -171,7 +219,11 @@
    "Redux"
   ],
   "employment_type": "Full-time",
-  "description": "Lead UI development and mentor junior devs."
+  "description": "Lead a team of five frontend engineers, set React architecture and performance standards, and work closely with design.",
+  "budget": "INR 18-26 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-10",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Data Engineering Lead",
@@ -185,7 +237,11 @@
    "Snowflake"
   ],
   "employment_type": "Full-time",
-  "description": "Lead the design of big data pipelines."
+  "description": "Lead the data platform team building pipelines on Spark and Airflow and the company data warehouse.",
+  "budget": "INR 18-26 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-17",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Tech Lead - AI",
@@ -198,7 +254,11 @@
    "Generative AI"
   ],
   "employment_type": "Full-time",
-  "description": "Drive AI initiatives and technical strategy."
+  "description": "Lead a squad building LLM-based products: retrieval pipelines, evaluation, model hosting and the engineering practices around them.",
+  "budget": "INR 28-38 LPA",
+  "openings": 1,
+  "posted_on": "2026-10-06",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Principal Software Engineer",
@@ -211,7 +271,11 @@
    "Distributed Systems"
   ],
   "employment_type": "Full-time",
-  "description": "High-level architecture and cross-team leadership."
+  "description": "Set technical direction across product teams, own the hardest architecture decisions and raise the engineering bar.",
+  "budget": "INR 28-38 LPA",
+  "openings": 1,
+  "posted_on": "2026-10-13",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "VP of Engineering",
@@ -225,7 +289,11 @@
    "Scaling"
   ],
   "employment_type": "Full-time",
-  "description": "Executive leadership for the entire engineering department."
+  "description": "Lead the engineering organisation of 80 people across four locations, own delivery, hiring and engineering culture.",
+  "budget": "INR 40-55 LPA",
+  "openings": 1,
+  "posted_on": "2026-10-20",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Customer Support Executive",
@@ -238,7 +306,11 @@
    "Typing"
   ],
   "employment_type": "Full-time",
-  "description": "Handle inbound customer queries via phone."
+  "description": "Handle customer calls and emails for our software products, resolve first-level queries and log tickets. Rotational shifts.",
+  "budget": "INR 2.4-3.6 LPA",
+  "openings": 12,
+  "posted_on": "2026-10-27",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Chat Support Agent",
@@ -251,7 +323,11 @@
    "Multitasking"
   ],
   "employment_type": "Full-time",
-  "description": "Resolve customer issues via live chat."
+  "description": "Answer customer chats in English, resolve account and billing questions and escalate technical issues. Rotational shifts, remote.",
+  "budget": "INR 2.4-3.6 LPA",
+  "openings": 8,
+  "posted_on": "2026-11-03",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Technical Support L1",
@@ -264,7 +340,11 @@
    "Ticketing System"
   ],
   "employment_type": "Full-time",
-  "description": "Basic IT and product troubleshooting for clients."
+  "description": "Troubleshoot login, installation and configuration issues for customers over phone and chat, and escalate to L2 when needed.",
+  "budget": "INR 3-4.5 LPA",
+  "openings": 6,
+  "posted_on": "2026-11-10",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Quality Analyst - Voice",
@@ -277,7 +357,11 @@
    "Auditing"
   ],
   "employment_type": "Full-time",
-  "description": "Monitor calls and ensure quality metrics are met."
+  "description": "Audit customer calls against quality guidelines, give feedback to agents and report quality trends to team leaders.",
+  "budget": "INR 3-4.5 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-17",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Technical Support L2",
@@ -290,7 +374,11 @@
    "Linux"
   ],
   "employment_type": "Full-time",
-  "description": "Escalation desk for complex technical issues."
+  "description": "Resolve escalated technical issues, reproduce bugs, and work with engineering on fixes for enterprise customers.",
+  "budget": "INR 4.5-6.5 LPA",
+  "openings": 3,
+  "posted_on": "2026-10-06",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Subject Matter Expert (SME)",
@@ -303,7 +391,11 @@
    "Escalation Handling"
   ],
   "employment_type": "Full-time",
-  "description": "Act as the primary knowledge source for the floor."
+  "description": "Be the go-to expert for a support process: handle complex cases, update knowledge articles and coach new agents.",
+  "budget": "INR 4.5-6.5 LPA",
+  "openings": 1,
+  "posted_on": "2026-10-13",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "BPO Team Leader",
@@ -316,7 +408,11 @@
    "Attrition Control"
   ],
   "employment_type": "Full-time",
-  "description": "Manage a team of 15-20 agents and drive performance."
+  "description": "Lead a team of 15-20 support agents: shift planning, coaching, quality and service-level targets.",
+  "budget": "INR 7-10 LPA",
+  "openings": 1,
+  "posted_on": "2026-10-20",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Process Trainer",
@@ -329,7 +425,11 @@
    "Communication"
   ],
   "employment_type": "Full-time",
-  "description": "Train new batches of agents on process and product."
+  "description": "Run new-hire and refresher training for support agents, build training content and track certification results.",
+  "budget": "INR 7-10 LPA",
+  "openings": 1,
+  "posted_on": "2026-10-27",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "WFM Analyst",
@@ -342,7 +442,11 @@
    "Forecasting"
   ],
   "employment_type": "Full-time",
-  "description": "Manage staffing, scheduling, and queue monitoring."
+  "description": "Forecast call volumes, build shift schedules and track real-time adherence for support teams.",
+  "budget": "INR 7-10 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-03",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Quality Manager",
@@ -355,7 +459,11 @@
    "Team Leadership"
   ],
   "employment_type": "Full-time",
-  "description": "Oversee the entire quality department and drive CSAT."
+  "description": "Own the quality framework across support processes, calibration sessions and customer-satisfaction improvement plans.",
+  "budget": "INR 7-10 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-10",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Operations Manager",
@@ -368,7 +476,11 @@
    "Operations Strategy"
   ],
   "employment_type": "Full-time",
-  "description": "Manage multi-process operations and client delivery."
+  "description": "Run a 150-seat support operation: service levels, budgets, client reviews and team-leader development.",
+  "budget": "INR 12-18 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-17",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Director of Customer Success",
@@ -381,7 +493,11 @@
    "Executive Leadership"
   ],
   "employment_type": "Full-time",
-  "description": "Head the global customer success and BPO operations."
+  "description": "Lead customer success and support across regions, own retention and satisfaction targets and client relationships.",
+  "budget": "INR 12-18 LPA",
+  "openings": 1,
+  "posted_on": "2026-10-06",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "HR Intern",
@@ -394,7 +510,11 @@
    "Organization"
   ],
   "employment_type": "Internship",
-  "description": "Assist the HR team with documentation and sourcing."
+  "description": "Six-month internship with the People team supporting recruitment coordination, onboarding and HR reports. Remote.",
+  "budget": "INR 20,000-25,000 per month (stipend)",
+  "openings": 1,
+  "posted_on": "2026-10-13",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Recruitment Coordinator",
@@ -407,7 +527,11 @@
    "ATS Management"
   ],
   "employment_type": "Full-time",
-  "description": "Schedule interviews and manage candidate pipelines."
+  "description": "Schedule interviews, manage candidate communication and keep the applicant tracking system up to date.",
+  "budget": "INR 3.5-5 LPA",
+  "openings": 2,
+  "posted_on": "2026-10-20",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "HR Executive",
@@ -420,7 +544,11 @@
    "Grievance Handling"
   ],
   "employment_type": "Full-time",
-  "description": "Handle day-to-day HR operations and employee queries."
+  "description": "Handle onboarding, employee records, attendance and leave queries, and support engagement activities.",
+  "budget": "INR 5-7 LPA",
+  "openings": 1,
+  "posted_on": "2026-10-27",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "IT Recruiter",
@@ -434,7 +562,11 @@
    "Screening"
   ],
   "employment_type": "Full-time",
-  "description": "Source and hire for technical/engineering roles."
+  "description": "Hire engineers end to end: sourcing on job portals and LinkedIn, screening, interview coordination and offer closing.",
+  "budget": "INR 5-7 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-03",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Payroll Specialist",
@@ -448,7 +580,11 @@
    "Compliance"
   ],
   "employment_type": "Full-time",
-  "description": "Ensure accurate and timely salary disbursements."
+  "description": "Run monthly payroll for 1,200 employees, manage statutory compliance (PF, ESI, TDS) and answer payroll queries.",
+  "budget": "INR 5-7 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-10",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "HR Generalist",
@@ -461,7 +597,11 @@
    "Exit Management"
   ],
   "employment_type": "Full-time",
-  "description": "End-to-end HR management for a specific business unit."
+  "description": "Own HR operations for a business unit: onboarding, policy queries, employee relations and HR analytics.",
+  "budget": "INR 8-12 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-17",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Talent Acquisition Lead",
@@ -474,7 +614,11 @@
    "Recruitment Strategy"
   ],
   "employment_type": "Full-time",
-  "description": "Lead a team of recruiters to meet hiring targets."
+  "description": "Lead a team of six recruiters, own hiring plans with department heads and improve time-to-hire.",
+  "budget": "INR 8-12 LPA",
+  "openings": 1,
+  "posted_on": "2026-10-06",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Employee Relations Manager",
@@ -487,7 +631,11 @@
    "Engagement Strategies"
   ],
   "employment_type": "Full-time",
-  "description": "Maintain a positive work environment and handle disputes."
+  "description": "Handle grievances, investigations and disciplinary processes, and advise managers on people issues.",
+  "budget": "INR 8-12 LPA",
+  "openings": 1,
+  "posted_on": "2026-10-13",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Compensation & Benefits Manager",
@@ -500,7 +648,11 @@
    "Reward Strategy"
   ],
   "employment_type": "Full-time",
-  "description": "Design competitive salary and benefits structures."
+  "description": "Own salary structures, the annual increment cycle, benchmarking and the benefits programme.",
+  "budget": "INR 15-22 LPA",
+  "openings": 1,
+  "posted_on": "2026-10-20",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "HR Business Partner (HRBP)",
@@ -513,7 +665,11 @@
    "Organizational Design"
   ],
   "employment_type": "Full-time",
-  "description": "Align HR strategies with business goals for specific departments."
+  "description": "Partner with engineering leaders on workforce planning, performance reviews, retention and organisation design.",
+  "budget": "INR 15-22 LPA",
+  "openings": 1,
+  "posted_on": "2026-10-27",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Diversity and Inclusion Lead",
@@ -526,7 +682,11 @@
    "Training"
   ],
   "employment_type": "Full-time",
-  "description": "Drive inclusive hiring and workplace culture initiatives."
+  "description": "Build and run diversity hiring, inclusion training and employee resource groups across locations.",
+  "budget": "INR 15-22 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-03",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Director of Talent Acquisition",
@@ -539,7 +699,11 @@
    "Leadership"
   ],
   "employment_type": "Full-time",
-  "description": "Head the global recruitment strategy and employer brand."
+  "description": "Lead company-wide hiring of 400+ roles a year, employer branding and recruitment operations.",
+  "budget": "INR 30-40 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-10",
+  "apply_by": "2026-12-31"
  },
  {
   "title": "Chief Human Resources Officer",
@@ -552,6 +716,469 @@
    "Global HR Strategy"
   ],
   "employment_type": "Full-time",
-  "description": "Top executive overseeing all HR functions and people strategy."
+  "description": "Lead the People function and sit on the leadership team; own culture, talent strategy and HR operations.",
+  "budget": "INR 30-40 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-17",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "Machine Learning Intern",
+  "department": "Tech",
+  "location": "Bengaluru",
+  "experience_required": 0.0,
+  "skills_required": [
+   "Python",
+   "PyTorch",
+   "Pandas",
+   "SQL"
+  ],
+  "employment_type": "Internship",
+  "description": "Six-month internship with the AI team: prepare datasets, train and evaluate models and help ship ML features. Pre-placement offer for strong performers.",
+  "budget": "INR 20,000-25,000 per month (stipend)",
+  "openings": 2,
+  "posted_on": "2026-11-03",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "Generative AI Engineer",
+  "department": "Tech",
+  "location": "Remote",
+  "experience_required": 2.0,
+  "skills_required": [
+   "Python",
+   "LangChain",
+   "RAG",
+   "Vector Databases",
+   "FastAPI"
+  ],
+  "employment_type": "Full-time",
+  "description": "Build retrieval-augmented generation and agent features: document ingestion, embeddings, prompt design, evaluation and deployment behind APIs.",
+  "budget": "INR 6-9 LPA",
+  "openings": 2,
+  "posted_on": "2026-11-10",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "Data Scientist",
+  "department": "Tech",
+  "location": "Hyderabad",
+  "experience_required": 3.0,
+  "skills_required": [
+   "Python",
+   "Machine Learning",
+   "SQL",
+   "Statistics",
+   "A/B Testing"
+  ],
+  "employment_type": "Full-time",
+  "description": "Build forecasting and churn models, design A/B tests and present results to product and operations teams.",
+  "budget": "INR 10-15 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-17",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "Python Developer",
+  "department": "Tech",
+  "location": "Pune",
+  "experience_required": 2.0,
+  "skills_required": [
+   "Python",
+   "FastAPI",
+   "PostgreSQL",
+   "Docker",
+   "REST APIs"
+  ],
+  "employment_type": "Full-time",
+  "description": "Develop and maintain backend services for our HR and payroll products using FastAPI and PostgreSQL.",
+  "budget": "INR 6-9 LPA",
+  "openings": 2,
+  "posted_on": "2026-11-03",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "React Developer",
+  "department": "Tech",
+  "location": "Gurugram",
+  "experience_required": 2.0,
+  "skills_required": [
+   "React",
+   "JavaScript",
+   "TypeScript",
+   "Tailwind CSS",
+   "REST APIs"
+  ],
+  "employment_type": "Full-time",
+  "description": "Build responsive web interfaces in React and TypeScript and work with designers on our customer dashboard.",
+  "budget": "INR 6-9 LPA",
+  "openings": 2,
+  "posted_on": "2026-11-10",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "Java Backend Developer",
+  "department": "Tech",
+  "location": "Hyderabad",
+  "experience_required": 4.0,
+  "skills_required": [
+   "Java",
+   "Spring Boot",
+   "Microservices",
+   "Kafka",
+   "MySQL"
+  ],
+  "employment_type": "Full-time",
+  "description": "Build and scale Spring Boot microservices for our billing platform, with event streaming on Kafka.",
+  "budget": "INR 10-15 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-17",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "Site Reliability Engineer",
+  "department": "Tech",
+  "location": "Bengaluru",
+  "experience_required": 4.0,
+  "skills_required": [
+   "Kubernetes",
+   "AWS",
+   "Terraform",
+   "Prometheus",
+   "Linux"
+  ],
+  "employment_type": "Full-time",
+  "description": "Keep production fast and reliable: SLOs, observability, automation with Terraform and incident reviews.",
+  "budget": "INR 10-15 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-03",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "Automation Test Engineer",
+  "department": "Tech",
+  "location": "Noida",
+  "experience_required": 3.0,
+  "skills_required": [
+   "Selenium",
+   "Java",
+   "TestNG",
+   "API Testing",
+   "CI/CD"
+  ],
+  "employment_type": "Full-time",
+  "description": "Build and maintain automated UI and API test suites and run them in the CI pipeline for every release.",
+  "budget": "INR 10-15 LPA",
+  "openings": 2,
+  "posted_on": "2026-11-10",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "Product Manager",
+  "department": "Product",
+  "location": "Bengaluru",
+  "experience_required": 5.0,
+  "skills_required": [
+   "Product Strategy",
+   "User Research",
+   "Roadmapping",
+   "SQL",
+   "Agile"
+  ],
+  "employment_type": "Full-time",
+  "description": "Own the roadmap for our recruitment product, from customer research to launch metrics, with an engineering squad of eight.",
+  "budget": "INR 18-26 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-17",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "UI/UX Designer",
+  "department": "Design",
+  "location": "Remote",
+  "experience_required": 3.0,
+  "skills_required": [
+   "Figma",
+   "User Research",
+   "Prototyping",
+   "Design Systems"
+  ],
+  "employment_type": "Full-time",
+  "description": "Design web and mobile experiences end to end, run usability tests and maintain our design system.",
+  "budget": "INR 10-15 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-03",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "Business Analyst",
+  "department": "Product",
+  "location": "Gurugram",
+  "experience_required": 2.0,
+  "skills_required": [
+   "Requirements Gathering",
+   "SQL",
+   "Excel",
+   "Jira",
+   "Process Mapping"
+  ],
+  "employment_type": "Full-time",
+  "description": "Gather requirements from clients and internal teams, write user stories and track delivery with engineering.",
+  "budget": "INR 6-9 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-10",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "Customer Support Executive - Hindi",
+  "department": "BPO",
+  "location": "Noida",
+  "experience_required": 0.0,
+  "skills_required": [
+   "Hindi",
+   "English",
+   "Communication",
+   "CRM"
+  ],
+  "employment_type": "Full-time",
+  "description": "Handle inbound customer calls in Hindi and English for a consumer app, resolve account queries and log tickets. Rotational shifts with cab drop for late shifts.",
+  "budget": "INR 2.4-3.6 LPA",
+  "openings": 15,
+  "posted_on": "2026-11-17",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "Email Support Executive",
+  "department": "BPO",
+  "location": "Pune",
+  "experience_required": 1.0,
+  "skills_required": [
+   "Written English",
+   "Email Support",
+   "Zendesk",
+   "Typing 35 WPM"
+  ],
+  "employment_type": "Full-time",
+  "description": "Respond to customer emails within service-level targets, resolve billing and order issues and escalate complex cases.",
+  "budget": "INR 3-4.5 LPA",
+  "openings": 6,
+  "posted_on": "2026-11-03",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "International Voice Process Associate",
+  "department": "BPO",
+  "location": "Gurugram",
+  "experience_required": 1.0,
+  "skills_required": [
+   "Fluent English",
+   "US Shift",
+   "Customer Service",
+   "CRM"
+  ],
+  "employment_type": "Full-time",
+  "description": "Support US customers over phone during night shifts; night-shift allowance and two-way cab included.",
+  "budget": "INR 20,000-25,000 per month (stipend)",
+  "openings": 10,
+  "posted_on": "2026-11-10",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "Collections Executive",
+  "department": "BPO",
+  "location": "Hyderabad",
+  "experience_required": 1.0,
+  "skills_required": [
+   "Telugu",
+   "English",
+   "Negotiation",
+   "Customer Service"
+  ],
+  "employment_type": "Full-time",
+  "description": "Call customers about overdue payments, set up payment plans and keep accurate call records.",
+  "budget": "INR 3-4.5 LPA",
+  "openings": 5,
+  "posted_on": "2026-11-17",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "MIS Executive",
+  "department": "BPO",
+  "location": "Noida",
+  "experience_required": 2.0,
+  "skills_required": [
+   "Advanced Excel",
+   "VLOOKUP",
+   "Pivot Tables",
+   "Power BI"
+  ],
+  "employment_type": "Full-time",
+  "description": "Prepare daily and weekly performance reports for support operations and maintain dashboards for managers.",
+  "budget": "INR 3-4.5 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-03",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "Talent Acquisition Specialist - Non-Tech",
+  "department": "HR",
+  "location": "Hyderabad",
+  "experience_required": 2.0,
+  "skills_required": [
+   "Volume Hiring",
+   "Sourcing",
+   "Naukri",
+   "Stakeholder Management"
+  ],
+  "employment_type": "Full-time",
+  "description": "Run high-volume hiring for customer-support roles: walk-in drives, campus drives and offer management.",
+  "budget": "INR 5-7 LPA",
+  "openings": 2,
+  "posted_on": "2026-11-10",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "HR Operations Executive",
+  "department": "HR",
+  "location": "Pune",
+  "experience_required": 1.0,
+  "skills_required": [
+   "HRMS",
+   "Onboarding",
+   "Excel",
+   "Employee Records"
+  ],
+  "employment_type": "Full-time",
+  "description": "Manage joining formalities, background verification, employee records and exit formalities in the HRMS.",
+  "budget": "INR 3.5-5 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-17",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "Learning and Development Specialist",
+  "department": "HR",
+  "location": "Bengaluru",
+  "experience_required": 4.0,
+  "skills_required": [
+   "Training Needs Analysis",
+   "Facilitation",
+   "LMS",
+   "Content Design"
+  ],
+  "employment_type": "Full-time",
+  "description": "Run the induction programme and leadership training, manage the learning platform and track training impact.",
+  "budget": "INR 8-12 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-03",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "Accounts Executive",
+  "department": "Finance",
+  "location": "Noida",
+  "experience_required": 2.0,
+  "skills_required": [
+   "Tally",
+   "GST",
+   "Accounts Payable",
+   "Excel"
+  ],
+  "employment_type": "Full-time",
+  "description": "Process vendor invoices, reconcile bank statements and support monthly GST filings.",
+  "budget": "INR 5-7 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-10",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "Financial Analyst",
+  "department": "Finance",
+  "location": "Gurugram",
+  "experience_required": 3.0,
+  "skills_required": [
+   "Financial Modelling",
+   "Excel",
+   "Budgeting",
+   "Power BI"
+  ],
+  "employment_type": "Full-time",
+  "description": "Build budgets and forecasts, analyse monthly results against plan and prepare reports for leadership.",
+  "budget": "INR 5-7 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-17",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "Inside Sales Executive",
+  "department": "Sales",
+  "location": "Pune",
+  "experience_required": 1.0,
+  "skills_required": [
+   "B2B Sales",
+   "Cold Calling",
+   "CRM",
+   "Communication"
+  ],
+  "employment_type": "Full-time",
+  "description": "Qualify inbound leads for our HR software, run product walkthroughs over video and hand qualified deals to account executives.",
+  "budget": "INR 3.5-5 LPA",
+  "openings": 4,
+  "posted_on": "2026-11-03",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "Enterprise Account Executive",
+  "department": "Sales",
+  "location": "Bengaluru",
+  "experience_required": 6.0,
+  "skills_required": [
+   "Enterprise Sales",
+   "SaaS",
+   "Negotiation",
+   "Salesforce"
+  ],
+  "employment_type": "Full-time",
+  "description": "Own the full sales cycle for enterprise customers buying our HR and payroll products, with a quarterly revenue target.",
+  "budget": "INR 8-12 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-10",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "Digital Marketing Specialist",
+  "department": "Marketing",
+  "location": "Remote",
+  "experience_required": 3.0,
+  "skills_required": [
+   "SEO",
+   "Google Ads",
+   "LinkedIn Ads",
+   "Google Analytics"
+  ],
+  "employment_type": "Full-time",
+  "description": "Plan and run paid and organic campaigns that bring qualified leads for our products, and report on cost per lead.",
+  "budget": "INR 5-7 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-17",
+  "apply_by": "2026-12-31"
+ },
+ {
+  "title": "Content Writer",
+  "department": "Marketing",
+  "location": "Remote",
+  "experience_required": 1.0,
+  "skills_required": [
+   "Content Writing",
+   "SEO",
+   "B2B SaaS",
+   "Research"
+  ],
+  "employment_type": "Full-time",
+  "description": "Write blogs, product pages and case studies about HR technology, working with the product marketing team.",
+  "budget": "INR 3.5-5 LPA",
+  "openings": 1,
+  "posted_on": "2026-11-03",
+  "apply_by": "2026-12-31"
  }
 ]

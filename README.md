@@ -36,11 +36,11 @@ flowchart LR
 The backend is stateless, so it runs on serverless functions:
 - multi-step form state lives in `chat_sessions`;
 - uploaded resumes are parsed in memory and kept in `resume_files`, with nothing written to disk;
-- demo data is seeded lazily on the first request.
+- job openings and the employee handbook are seeded lazily on the first request (versioned: new seed content reaches an existing database on the next cold start).
 
 ## How RAG works here
 
-1. **Ingest** (`POST /kb/upload`, or the bundled sample handbook on first run):
+1. **Ingest** (`POST /kb/upload`, or the bundled employee handbook on first run):
    - Text is extracted in memory with pypdf, or decoded for TXT/MD.
    - It is split into ~800-character chunks with ~120 characters of sentence overlap.
    - Markdown headings are kept as each chunk's section, for citations.
@@ -82,7 +82,7 @@ cp .env.example .env                              # VITE_API_URL=http://localhos
 npm install && npm run dev
 ```
 
-Seed or refresh demo data at any time: `cd backend && python -m scripts.seed` (add `--force` to re-ingest, or `--file policy.pdf` to add a document).
+Seed or refresh the bundled data at any time: `cd backend && python -m scripts.seed` (add `--force` to re-ingest, or `--file policy.pdf` to add a document).
 
 **Tests:** `cd backend && pytest` (in-memory MongoDB, mocked LLM and embeddings, no keys needed). Frontend: `npm run lint && npm run build`.
 
@@ -106,7 +106,7 @@ Backend (`backend/.env`, or Vercel → Project → Settings → Environment Vari
 | `RAG_HYBRID_ALPHA` | no | `0.6` | Weight of vector vs BM25 score |
 | `RAG_CHUNK_CHARS` / `RAG_CHUNK_OVERLAP` | no | `800` / `120` | Chunking |
 | `ATLAS_VECTOR_INDEX` | no | – | Atlas Vector Search index name on `kb_chunks` |
-| `AUTO_SEED` | no | `true` | Seed demo jobs + sample handbook on first request |
+| `AUTO_SEED` | no | `true` | Seed job openings + the employee handbook on first request |
 | `MAX_UPLOAD_MB` | no | `5` | Upload size limit |
 
 Frontend (`frontend/.env`, or Vercel env): `VITE_API_URL` is the backend URL, with no trailing slash.
@@ -130,7 +130,7 @@ Frontend (`frontend/.env`, or Vercel env): `VITE_API_URL` is the backend URL, wi
 
    Deploy.
 6. **CORS:** set `ALLOWED_ORIGINS=https://<frontend>.vercel.app` in the backend project and redeploy it.
-7. Open the frontend. The first request seeds 42 demo openings and the sample handbook. To seed explicitly, call `POST /admin/bootstrap` with header `X-User-Role: HR Admin`.
+7. Open the frontend. The first request seeds the job openings (seed/jobs.json) and the employee handbook. To seed explicitly, call `POST /admin/bootstrap` with header `X-User-Role: HR Admin`.
 
 ### Optional: Atlas Vector Search index
 
@@ -147,7 +147,7 @@ With embeddings on, create an index (Atlas → *Search* → *Create Index* → *
 
 Without the index, cosine similarity runs in Python, which is fine for HR-sized corpora (hundreds of chunks).
 
-## Demo credentials
+## Pre-filled logins
 
 Roles are chosen in the sidebar. The email and phone are used to find earlier conversations.
 
@@ -157,7 +157,7 @@ Roles are chosen in the sidebar. The email and phone are used to find earlier co
 | Hiring Manager | `hrm@abc.com` | `1111111111` |
 | Candidate | any email | any 10-digit phone |
 
-**Security note:** this is a demo without real authentication. The role is declared by the client, and knowledge-base writes only check the `X-User-Role: HR Admin` header. Put real auth in front of it (for example OAuth or SSO with role claims) before using it with real employee or candidate data.
+**Security note:** the app has no real authentication yet. The role is declared by the client, and knowledge-base writes only check the `X-User-Role: HR Admin` header. Put real auth in front of it (for example OAuth or SSO with role claims) before using it with real employee or candidate data.
 
 ## API overview
 
@@ -178,7 +178,7 @@ Roles are chosen in the sidebar. The email and phone are used to find earlier co
 | DELETE | `/kb/documents/{id}` | Remove a document (HR Admin) |
 | POST | `/kb/search` | Retrieval only: passages + scores |
 | POST | `/kb/reindex-jobs` | Rebuild job passages (HR Admin) |
-| POST | `/admin/bootstrap` | Seed demo data (HR Admin) |
+| POST | `/admin/bootstrap` | Seed jobs + handbook (HR Admin) |
 
 ## Project layout
 
@@ -188,10 +188,24 @@ backend/
   main.py             HTTP API
   bot_logic.py        conversation flows and intent routing
   rag/                chunking, scoring (BM25, cosine, fusion), embeddings, store, grounded answers
-  seed/               demo jobs + fictional sample handbook
+  seed/               job openings + employee handbook
   scripts/seed.py     seeding / ingestion CLI
+  scripts/e2e_eval.py end-to-end answer check against any deployment (scripts/eval_set.json)
+  scripts/retrieval_eval.py  retrieval check via /kb/search (no LLM key needed)
   tests/              pytest suite (no external services)
 frontend/
   src/components/     Sidebar, ChatView, Dashboard, KnowledgeBase, AuthDialog, …
   src/lib/            API client, roles
 ```
+
+## Checking answer quality
+
+```bash
+cd backend
+python scripts/e2e_eval.py https://<your-backend>.vercel.app      # 46 questions + 3 multi-turn flows, graded on facts
+python scripts/retrieval_eval.py https://<your-backend>.vercel.app   # does retrieval find the passage with the fact?
+```
+
+Answers come only from the handbook, uploaded documents and the job openings: policy questions are answered from
+retrieved passages with citations, job searches are filtered from the database (city, team, level, skill), and
+anything not covered gets "I couldn't find that in the HR knowledge base" instead of a guess.

@@ -5,6 +5,7 @@ kb_chunks:    {_id, doc_id, title, source, type, section, chunk_index, text, emb
 """
 import datetime
 import logging
+import re
 
 from bson import ObjectId
 
@@ -35,6 +36,58 @@ async def ingest_text(title: str, text: str, source: str, doc_type: str = "docum
     await kb_chunks_collection.insert_many(rows)
     doc["_id"] = res.inserted_id
     return serialize_doc(doc)
+
+
+async def replace_source(title: str, text: str, source: str) -> dict:
+    """Re-ingest a document that has a stable source key (the bundled handbook): drop the old copy first."""
+    for d in await kb_documents_collection.find({"source": source}).to_list(100):
+        await kb_chunks_collection.delete_many({"doc_id": d["_id"]})
+    await kb_documents_collection.delete_many({"source": source})
+    return await ingest_text(title, text, source)
+
+
+# Everyday words people use for HR topics, mapped to the words the handbook uses. Only the lexical (BM25) query
+# is expanded; a question that already uses the handbook's words is unaffected. Keys are matched as whole words.
+SYNONYMS = {
+    "days off": "annual leave", "day off": "annual leave", "vacation": "annual leave", "vacations": "annual leave",
+    "holiday": "public holidays leave", "holidays": "public holidays", "pto": "annual leave", "leaves": "leave",
+    "time off": "leave", "sick": "sick leave medical", "unwell": "sick leave", "ill": "sick leave",
+    "baby": "maternity paternity leave", "pregnant": "maternity leave", "father": "paternity leave",
+    "quit": "resignation notice period", "resign": "resignation notice period", "resigning": "resignation notice period",
+    "leaving": "resignation notice period exit", "serve": "notice period",
+    "salary": "salary payroll", "pay": "salary payroll", "paid": "salary payroll credited", "payday": "salary credited payroll",
+    "payslip": "payslips payroll", "tax": "income tax payroll", "form 16": "form 16 tax",
+    "insurance": "health insurance", "medical": "health insurance medical", "mediclaim": "health insurance",
+    "hospital": "health insurance hospitals", "benefits": "benefits insurance allowance",
+    "wfh": "work from home", "remote": "work from home remote", "hybrid": "work from home",
+    "training": "learning development budget", "course": "learning budget courses", "courses": "learning budget courses",
+    "certification": "learning certifications budget", "upskill": "learning development",
+    "appraisal": "performance reviews appraisals increments", "increment": "appraisals increments",
+    "hike": "appraisals increments", "promotion": "promotions appraisals", "bonus": "bonus",
+    "refer": "referral bonus", "referring": "referral bonus", "friend": "referral",
+    "expense": "reimbursements expenses", "expenses": "reimbursements", "travel": "travel reimbursements",
+    "hotel": "hotel travel", "dress": "dress code", "clothes": "dress code", "laptop": "laptop equipment IT",
+    "timing": "working hours", "timings": "working hours", "office hours": "working hours", "shift": "shifts working hours",
+    "join": "joining documents", "joining": "joining documents offer", "onboarding": "joining induction",
+    "documents": "documents joining", "transfer": "internal job postings transfer", "internal": "internal job postings",
+    "harassment": "harassment internal committee", "complaint": "complaints harassment ticket", "contact": "contact HR ticket",
+    "ticket": "tickets contact HR portal answered", "tickets": "tickets contact HR portal answered",
+    "query": "contact HR ticket", "queries": "contact HR ticket", "reach hr": "contact HR ticket",
+    "probation": "probation", "confirmation": "probation confirmation", "hiring process": "interview process",
+    "interview": "interview process stages", "selection": "interview process", "offer": "offer letter offers",
+}
+_SYN_RE = re.compile(r"\b(" + "|".join(re.escape(k) for k in sorted(SYNONYMS, key=len, reverse=True)) + r")\b", re.I)
+
+
+def expand_query(query: str) -> str:
+    extra = {SYNONYMS[m.group(1).lower()] for m in _SYN_RE.finditer(query)}
+    return f"{query} {' '.join(sorted(extra))}" if extra else query
+
+
+def _lexical_text(c: dict) -> str:
+    """What BM25 scores: the section heading counts like the text (questions often name the topic)."""
+    sec = c.get("section") or ""
+    return f"{sec}. {sec}. {c['text']}" if sec else c["text"]
 
 
 async def delete_document(doc_id: str) -> bool:
@@ -71,7 +124,11 @@ def job_text(j: dict) -> str:
     if j.get("employment_type"):
         parts.append(f"Employment type: {j['employment_type']}")
     if j.get("budget"):
-        parts.append(f"Budget: {j['budget']}")
+        parts.append(f"Salary: {j['budget']}")
+    if j.get("openings"):
+        parts.append(f"Openings: {j['openings']}")
+    if j.get("apply_by"):
+        parts.append(f"Apply by: {j['apply_by']}")
     if j.get("description"):
         parts.append(f"Description: {j['description']}")
     return ". ".join(parts) + "."
@@ -125,7 +182,7 @@ async def search(query: str, top_k: int | None = None, min_score: float | None =
     if not chunks or not query.strip():
         return []
 
-    bm25 = scoring.BM25([c["text"] for c in chunks]).scores(query)
+    bm25 = scoring.BM25([_lexical_text(c) for c in chunks]).scores(expand_query(query))
 
     vec: dict = {}
     qv = await embeddings.embed([query]) if embeddings.enabled() else None

@@ -10,6 +10,8 @@ from database import (job_openings_collection, candidates_collection, hiring_req
                       chat_history_collection, sessions_collection, resume_files_collection)
 from rag import store as kb
 from rag import answer as kb_answer
+import job_search
+from router import rule_intent
 
 logger = logging.getLogger(__name__)
 
@@ -98,9 +100,24 @@ async def _reindex_jobs_safely():
         logger.warning("job re-index failed: %s", e)
 
 
+GREETINGS = {
+    "Candidate": "Hi! 👋 I can show open roles (try *\"Python jobs in Pune\"* or *\"remote jobs\"*), help you apply, "
+                 "check your application status, and answer questions about our hiring process and policies.",
+    "Hiring Manager": "Hello! I can raise a hiring request for your team and answer HR policy questions "
+                      "(leave, notice period, referral bonus, probation and more).",
+    "HR Admin": "Welcome back. Ask about candidates and hiring requests, generate a job description, manage openings, "
+                "or ask anything covered by the HR knowledge base.",
+}
+
+
 async def answer_from_kb(question: str):
-    """RAG: retrieve from the HR knowledge base and answer with citations (or say it is not covered)."""
-    hits = await kb.search(question)
+    """RAG: retrieve from the HR knowledge base and answer with citations (or say it is not covered).
+    Policy questions search the handbook and uploaded documents first; job postings only if nothing matches."""
+    try:
+        hits = await kb.search(question, doc_type="document") or await kb.search(question)
+    except Exception as e:  # noqa: BLE001
+        logger.warning("KB search failed: %s", e)
+        hits = []
     return kb_answer.answer(question, hits)
 
 # --- GLOBALLY DEFINED BACKGROUND EMAIL FUNCTION ---
@@ -230,31 +247,6 @@ async def _process_message(session_id: str, message: str, user_role: str = "Cand
     # --- DIRECT DATABASE INTERCEPTORS ---
     # ==========================================
     
-    # 1. View Job Openings (with City Filter)
-    if "job opening" in message_lower or "vacancies" in message_lower or "view jobs" in message_lower:
-        query = {}
-        common_cities = ["noida", "gurgaon", "bangalore", "pune", "hyderabad", "delhi", "mumbai", "remote"]
-        for city in common_cities:
-            if city in message_lower:
-                query["location"] = {"$regex": city, "$options": "i"} 
-                break
-                
-        jobs = await job_openings_collection.find(query).to_list(50)
-        
-        if not jobs:
-            return "Currently, there are no job openings matching your criteria. Please check back later!"
-            
-        reply = "**Here are the current Job Openings:**\n\n"
-        for j in jobs:
-            skills = j.get('skills_required', [])
-            skills_str = ", ".join(skills) if isinstance(skills, list) else str(skills)
-            
-            reply += f"🔹 **{j.get('title')}** ({j.get('department')} Dept)\n"
-            reply += f"   • **Location:** {j.get('location', 'Not specified')}\n"
-            reply += f"   • **Experience:** {j.get('experience_required', '0')} yrs\n"
-            reply += f"   • **Skills:** {skills_str}\n\n"
-        return reply
-
     # 2. View Pending Hiring Requests (HR Admin Only)
     if "pending hiring request" in message_lower or "show hiring requests" in message_lower:
         if user_role != "HR Admin":
@@ -299,110 +291,44 @@ async def _process_message(session_id: str, message: str, user_role: str = "Cand
         sessions[session_id] = {"intent": None, "step": None, "data": {}}
         return "🔄 **Chat Reset!**\n\nWhat do you wanna ask?"
 
-    # 3. Interruption Check
+    # 3. Interruption Check: a question asked in the middle of a form is answered from the knowledge base or the
+    #    job data (never a free model answer), then the form continues where it was
     if session["intent"] and not message.startswith("uploads/"):
-        check_prompt = f"Context: User is currently filling out a form field named '{session['step']}'.\nUser Message: '{message}'\nTask: Is the user providing an answer for the field, or are they asking a separate question/interrupting? Reply STRICTLY with 'ANSWER' or 'QUESTION'."
-        try:
-            comp = groq_client.chat.completions.create(
-                model=config.GROQ_MODEL,
-                messages=[{"role": "user", "content": check_prompt}],
-                temperature=0, max_tokens=SHORT_ANSWER_TOKENS
-            )
-            if "QUESTION" in comp.choices[0].message.content.upper():
-                ans_comp = groq_client.chat.completions.create(
+        ri = rule_intent(message, user_role)
+        is_question = ri in ("hr_knowledge", "view_jobs")
+        if ri is None and "?" in message:
+            check_prompt = f"Context: User is currently filling out a form field named '{session['step']}'.\nUser Message: '{message}'\nTask: Is the user providing an answer for the field, or are they asking a separate question/interrupting? Reply STRICTLY with 'ANSWER' or 'QUESTION'."
+            try:
+                comp = groq_client.chat.completions.create(
                     model=config.GROQ_MODEL,
-                    messages=[
-                        {"role": "system", "content": f"You are an HR assistant talking to a {user_role}. Answer their question briefly and professionally in 1-2 sentences."},
-                        {"role": "user", "content": message}
-                    ]
+                    messages=[{"role": "user", "content": check_prompt}],
+                    temperature=0, max_tokens=SHORT_ANSWER_TOKENS
                 )
-                bot_answer = ans_comp.choices[0].message.content
-                step_friendly_name = session['step'].replace('ask_', '').replace('_', ' ').title()
-                return f"💡 {bot_answer}\n\n━━━━━━━━━━━━━━━━━━━━\n⏳ **Now, let's get back to what we were doing!**\nPlease provide your: **{step_friendly_name}**"
-        except Exception as e:
-            print(f"Interruption check skipped: {e}")
+                is_question = "QUESTION" in (comp.choices[0].message.content or "").upper()
+            except Exception as e:  # noqa: BLE001
+                logger.warning("interruption check skipped: %s", e)
+        if is_question:
+            if ri == "view_jobs":
+                bot_answer = await job_search.list_jobs(message, user_role)
+            else:
+                bot_answer = (await job_search.job_detail(message, user_role)) or (await answer_from_kb(message))["text"]
+            step_friendly_name = session['step'].replace('ask_', '').replace('_', ' ').title()
+            return (f"💡 {bot_answer}\n\n━━━━━━━━━━━━━━━━━━━━\n⏳ **Now, let's get back to what we were doing!**\n"
+                    f"Please provide your: **{step_friendly_name}**")
 
     # --- 1. DETERMINE INTENT ---
     if not session["intent"]:
-        intent = get_intent(message, user_role)
+        detail = await job_search.job_detail(message, user_role)
+        if detail:
+            return detail
+        intent = rule_intent(message, user_role) or get_intent(message, user_role)
+
+        if intent == "greeting":
+            return GREETINGS.get(user_role, GREETINGS["Candidate"])
         
         if intent == "view_jobs":
-            explicit_all_phrases = ["view job openings", "show all jobs", "all jobs", "show me all jobs", "list jobs", "show all"]
-            if message_lower in explicit_all_phrases:
-                city_target = "all"
-            else:
-                city_prompt = f"Extract the city name from this text if the user is asking for jobs in a specific city. If they want all jobs, or no city is mentioned, return 'ALL'. Message: '{message}'. Output ONLY the city name or 'ALL'."
-                try:
-                    city_comp = groq_client.chat.completions.create(
-                        model=config.GROQ_MODEL,
-                        messages=[{"role": "user", "content": city_prompt}],
-                        temperature=0, max_tokens=SHORT_ANSWER_TOKENS
-                    )
-                    city_target = (city_comp.choices[0].message.content or "").strip().lower().strip(" .'\"*`")
-                except Exception:
-                    city_target = "all"
-                # a reasoning model can return an empty answer; an empty city would match every location
-                if not city_target or not re.fullmatch(r"[a-z][a-z .\-]{1,40}", city_target):
-                    city_target = "all"
-                if city_target == "all" and re.search(r"\bremote\b", message_lower):
-                    city_target = "remote"          # not a city, but job locations use "Remote"
+            return await job_search.list_jobs(message, user_role)
 
-            jobs_cursor = job_openings_collection.find({})
-            all_jobs = await jobs_cursor.to_list(length=100)
-
-            if city_target != "all" and "all" not in city_target:
-                all_jobs = [j for j in all_jobs if city_target in j.get('location', '').lower()]
-
-            # a role or skill in the question ("AI/ML jobs", "python roles"): rank the openings with the
-            # RAG index of job postings (hybrid BM25 + embeddings) instead of listing every opening
-            if all_jobs and _job_topic_words(message, city_target):
-                try:
-                    hits = await kb.search(message, top_k=15, doc_type="job")
-                    order = {h["source"].split(":", 1)[1]: n for n, h in enumerate(hits)
-                             if str(h.get("source", "")).startswith("job:")}
-                    ranked = sorted((j for j in all_jobs if str(j["_id"]) in order),
-                                    key=lambda j: order[str(j["_id"])])
-                    if ranked:
-                        all_jobs = ranked[:8]
-                except Exception as e:  # noqa: BLE001 - retrieval is an improvement, never a blocker
-                    logger.warning("job retrieval skipped: %s", e)
-
-            if not all_jobs:
-                if city_target != "all" and "all" not in city_target:
-                    return f"There are currently no job openings in **{city_target.title()}**."
-                return "There are currently no job openings."
-            
-            if user_role == "HR Admin":
-                res = "🗂️ **Active Job Requisitions (Internal DB)**\n\n"
-                for j in all_jobs:
-                    ctc = j.get('budget', j.get('ctc', 'Not specified'))
-                    if ctc.lower() != 'not specified' and 'annum' not in ctc.lower():
-                        ctc = f"{ctc} per annum"
-
-                    res += f"🔹 **{j['title']}** ({j['department']})\n"
-                    res += f"   📍 Loc: {j['location']} | 🎓 Exp: {j['experience_required']} yrs\n"
-                    res += f"   💰 Budget: {ctc}\n"
-                    res += f"   🛠️ Skills Req: {', '.join(j['skills_required'])}\n"
-                    res += "   ━━━━━━━━━━━━━━━━━━━━\n"
-                res += "\n💡 *Tip: You can ask me to generate a new job description for any of these roles.*"
-                return res
-            
-            else:
-                res = f"Here are our **Open Roles**{' in ' + city_target.title() if city_target != 'all' and 'all' not in city_target else ''}! 🌟\n\n"
-                for j in all_jobs:
-                    ctc = j.get('budget', j.get('ctc', 'Not disclosed'))
-                    if ctc.lower() != 'not disclosed' and 'annum' not in ctc.lower():
-                        ctc = f"{ctc} per annum"
-                        
-                    res += f"💼 **{j['title']}**\n"
-                    res += f"🏢 *{j.get('department', 'General')}* | 📍 **{j.get('location', 'Any')}**\n"
-                    res += f"🎓 **Exp:** {j.get('experience_required', '0-1 yrs')} | 💰 **CTC:** {ctc}\n"
-                    res += f"🛠️ **Skills:** {', '.join(j.get('skills_required', []))}\n"
-                    res += f"📝 *{j.get('description', 'Join our amazing team!')}*\n"
-                    res += "━━━━━━━━━━━━━━━━━━━━━━\n\n"
-                res += "Ready? Reply with **'I want to apply for a job'** to start your application! 🚀"
-                return res
-                
         elif intent == "apply_job":
             session["intent"] = "apply_job"
             session["step"] = "ask_role"
@@ -529,21 +455,10 @@ async def _process_message(session_id: str, message: str, user_role: str = "Cand
         elif intent == "hr_knowledge":
             return await answer_from_kb(message)
 
-        # --- FALLBACK RESPONSE ---
+        # --- FALLBACK: answered only from the knowledge base (handbook + job openings), never from the model's
+        #     general knowledge, so it cannot invent policies, numbers or roles ---
         else:
-            if intent == "general_faq":
-                try:
-                    hits = await kb.search(message)
-                    if hits:
-                        return kb_answer.answer(message, hits)
-                except Exception as e:
-                    logger.warning("KB lookup for FAQ failed: %s", e)
-            sys_prompt = f"You are an internal HR Assistant. The user asking is logged in as a **{user_role}**. If they are a Candidate, answer FAQs about applying. If they are an HR Admin or Hiring Manager, provide professional internal support and never offer to help them apply for a job. Keep it brief."
-            comp = groq_client.chat.completions.create(
-                model=config.GROQ_MODEL,
-                messages=[{"role": "system", "content": sys_prompt}, {"role": "user", "content": message}]
-            )
-            return comp.choices[0].message.content
+            return await answer_from_kb(message)
 
     # --- 2. CANDIDATE FLOW ---
     if session["intent"] == "apply_job":

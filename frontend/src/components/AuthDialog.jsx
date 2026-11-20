@@ -50,7 +50,7 @@ export default function AuthDialog({ role, email, phone, setEmail, setPhone, onS
             </button>
           ))}
         </div>
-        {role !== 'Candidate' && <p className="mt-3 text-center text-xs text-slate-500">Demo credentials are pre-filled for this role.</p>}
+        {role !== 'Candidate' && <p className="mt-3 text-center text-xs text-slate-500">Your saved details are pre-filled for this role.</p>}
       </div>
     </Modal>
   );

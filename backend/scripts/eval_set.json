@@ -1,0 +1,66 @@
+{
+  "_about": "End-to-end questions for TalentDesk. Each answer must match every regex in 'all', at least one in 'any' (if given), and none in 'none' (case-insensitive). 'refuse': true means the bot must say the answer is not in the HR knowledge base.",
+  "questions": [
+    {"id": "leave-annual", "role": "Candidate", "q": "How many days of paid annual leave do employees get?", "all": ["\\b18\\b"]},
+    {"id": "leave-paraphrase", "role": "Hiring Manager", "q": "How many days off do I get in a year?", "all": ["\\b18\\b"]},
+    {"id": "leave-carry", "role": "Hiring Manager", "q": "Can I carry forward my unused leave to next year?", "all": ["\\b10\\b"]},
+    {"id": "leave-sick", "role": "Candidate", "q": "How many sick leaves do I get?", "all": ["\\b8\\b"]},
+    {"id": "leave-cert", "role": "Hiring Manager", "q": "When do I need a medical certificate for sick leave?", "all": ["(2|two) consecutive"]},
+    {"id": "holidays", "role": "Candidate", "q": "How many public holidays are there in a year?", "all": ["\\b1[0-9]\\b"]},
+    {"id": "maternity", "role": "Candidate", "q": "What is the maternity leave policy?", "all": ["26 weeks"]},
+    {"id": "paternity", "role": "Hiring Manager", "q": "How long is paternity leave?", "all": ["10 working days"]},
+    {"id": "leave-advance", "role": "Hiring Manager", "q": "How early should I apply for leave?", "all": ["5 working days"]},
+    {"id": "leave-approver", "role": "Hiring Manager", "q": "Who approves my leave requests?", "all": ["reporting manager"]},
+    {"id": "wfh", "role": "Candidate", "q": "Is work from home allowed?", "all": ["\\b2 days"]},
+    {"id": "wfh-intern", "role": "Candidate", "q": "Can interns work from home?", "all": ["\\b1 day|one day"]},
+    {"id": "home-office", "role": "Hiring Manager", "q": "Is there any allowance for setting up a home office?", "all": ["10,000"]},
+    {"id": "probation", "role": "Hiring Manager", "q": "How long is probation?", "all": ["6 months|six months"]},
+    {"id": "probation-extend", "role": "Hiring Manager", "q": "Can probation be extended?", "all": ["3 months|three months"]},
+    {"id": "notice-probation", "role": "Candidate", "q": "What is the notice period during probation?", "all": ["15 days"]},
+    {"id": "notice-senior", "role": "HR Admin", "q": "What is the notice period for senior employees?", "all": ["60 days"]},
+    {"id": "notice-others", "role": "HR Admin", "q": "What is the notice period policy?", "all": ["30 days", "60 days"]},
+    {"id": "notice-leave", "role": "Hiring Manager", "q": "If I resign, can I use my leave balance to shorten the notice period?", "all": ["cannot|can't|not"]},
+    {"id": "notice-buyout", "role": "Hiring Manager", "q": "Can I buy out my notice period?", "all": ["department head"]},
+    {"id": "referral-junior", "role": "Hiring Manager", "q": "What is the referral bonus for a role needing 2 years of experience?", "all": ["25,000"]},
+    {"id": "referral-senior", "role": "Hiring Manager", "q": "How much is the referral bonus for senior roles?", "all": ["50,000"]},
+    {"id": "referral-paid", "role": "Hiring Manager", "q": "When is the referral bonus paid out?", "all": ["50%|half|two equal"]},
+    {"id": "referral-intern", "role": "Candidate", "q": "Are interns eligible for the referral bonus?", "all": ["not eligible|no\\b|aren't|are not"]},
+    {"id": "interview-stages", "role": "Candidate", "q": "What is the interview process?", "all": ["HR call|HR"], "any": ["four|4 stages|technical"]},
+    {"id": "interview-wait", "role": "Candidate", "q": "How soon will I hear back after an interview?", "all": ["5 working days"]},
+    {"id": "offer-time", "role": "Candidate", "q": "How quickly are offers released after the final interview?", "all": ["3 working days"]},
+    {"id": "intern-process", "role": "Candidate", "q": "What does the internship hiring process look like?", "all": ["technical"]},
+    {"id": "joining-docs", "role": "Candidate", "q": "What documents do I need for joining?", "all": ["PAN"]},
+    {"id": "internal-move", "role": "Hiring Manager", "q": "Can I apply for an internal job posting?", "all": ["12 months"]},
+    {"id": "hours", "role": "Candidate", "q": "What are the working hours?", "all": ["9:30"]},
+    {"id": "core-hours", "role": "Hiring Manager", "q": "What are the core collaboration hours?", "all": ["11:00", "4:00"]},
+    {"id": "ticket-time", "role": "Hiring Manager", "q": "How long does HR take to answer a ticket?", "all": ["2 working days"]},
+    {"id": "payday", "role": "Hiring Manager", "q": "When is salary credited each month?", "all": ["last working day"], "kb": "new"},
+    {"id": "insurance", "role": "Candidate", "q": "Do employees get health insurance?", "all": ["5,00,000|5 lakh"], "kb": "new"},
+    {"id": "learning", "role": "Hiring Manager", "q": "Is there a learning and certification budget?", "all": ["30,000"], "kb": "new"},
+    {"id": "jobs-remote", "role": "Candidate", "q": "Show me remote jobs", "all": ["Remote"], "none": ["📍 \\*\\*(Noida|Pune|Gurugram|Bengaluru|Hyderabad)"], "kind": "jobs"},
+    {"id": "jobs-pune", "role": "Candidate", "q": "Which jobs are open in Pune?", "all": ["Pune"], "none": ["📍 \\*\\*(Noida|Remote|Gurugram|Bengaluru|Hyderabad)"], "kind": "jobs"},
+    {"id": "jobs-python", "role": "Candidate", "q": "Do you have any Python developer openings?", "all": ["Python"], "none": ["Customer Support|Recruiter|HR Generalist"], "kind": "jobs"},
+    {"id": "jobs-python-noida", "role": "Candidate", "q": "Any job openings for Python in Noida?", "all": ["Python", "Noida"], "none": ["📍 \\*\\*(Pune|Remote|Gurugram|Bengaluru|Hyderabad)", "Customer Support|Recruiter"], "kind": "jobs"},
+    {"id": "jobs-hr", "role": "Candidate", "q": "Are there any HR roles open?", "any": ["Recruit|HR|Talent|People"], "none": ["Python Developer"], "kind": "jobs"},
+    {"id": "jobs-skill-detail", "role": "Candidate", "q": "What skills are required for the Data Analyst role?", "any": ["SQL|Excel|Power BI|Python|Tableau"], "kind": "jobs"},
+    {"id": "refuse-pets", "role": "Candidate", "q": "Can I bring my pet dog to the office?", "refuse": true},
+    {"id": "refuse-ceo-salary", "role": "Hiring Manager", "q": "What is the CEO's salary?", "refuse": true},
+    {"id": "refuse-general", "role": "Candidate", "q": "What is the capital of France?", "refuse": true},
+    {"id": "refuse-stock", "role": "Hiring Manager", "q": "Do employees get stock options?", "refuse": true}
+  ],
+  "flows": [
+    {"id": "apply-start", "role": "Candidate", "steps": [
+      {"say": "I want to apply for a job", "all": ["role"]},
+      {"say": "cancel", "all": ["cancel"]}
+    ]},
+    {"id": "status-unknown", "role": "Candidate", "steps": [
+      {"say": "Check my application status", "all": ["email"]},
+      {"say": "nobody.here@example.com", "all": ["phone|number|no application|couldn't find|not find"]}
+    ]},
+    {"id": "form-interrupt", "role": "Candidate", "steps": [
+      {"say": "I want to apply for a job", "all": ["role"]},
+      {"say": "Wait, how long is probation?", "all": ["6 months|six months"]},
+      {"say": "cancel", "all": ["cancel"]}
+    ]}
+  ]
+}

@@ -1,5 +1,7 @@
 """API smoke tests against the real FastAPI app with in-memory MongoDB and a fake Groq model."""
 import io
+import json
+from pathlib import Path
 
 import httpx
 import pytest
@@ -9,6 +11,7 @@ from database import hiring_requests_collection, kb_documents_collection, resume
 from main import app
 
 ADMIN = {"X-User-Role": "HR Admin"}
+N_JOBS = len(json.loads((Path(__file__).resolve().parents[1] / "seed" / "jobs.json").read_text(encoding="utf-8")))
 
 
 @pytest.fixture
@@ -18,15 +21,15 @@ async def client():
         yield c
 
 
-async def test_root_and_bootstrap_seeds_demo_data(client):
+async def test_root_and_bootstrap_seeds_data(client):
     r = await client.get("/")
     assert r.status_code == 200 and r.json()["rag"]["embeddings"] == "none"
     r = await client.get("/admin/dashboard")          # first real request triggers the lazy bootstrap
     assert r.status_code == 200
-    assert len(r.json()["jobs"]) == 42
+    assert len(r.json()["jobs"]) == N_JOBS
     docs = (await client.get("/kb/documents")).json()["documents"]
     assert [d["source"] for d in docs] == ["seed:handbook.md"]
-    assert await kb_documents_collection.count_documents({"type": "job"}) == 42
+    assert await kb_documents_collection.count_documents({"type": "job"}) == N_JOBS
 
 
 async def test_kb_search_returns_scored_chunks(client):

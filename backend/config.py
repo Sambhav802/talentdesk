@@ -26,8 +26,8 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 
 # --- Database ---
-# Demo only: hardcoded Atlas URI used when MONGO_URI is not set in the environment.
-MONGO_URI = os.getenv("MONGO_URI", 'mongodb+srv://sambhavsharma108_db_user:LyNoycHaUKh3p72E@cluster03.f5zp5ap.mongodb.net/?retryWrites=true&w=majority')
+# Set MONGO_URI in the Vercel project settings (or backend/.env locally). Never commit a connection string.
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
 MONGO_DB = os.getenv("MONGO_DB", "hr_chatbot_db")
 
 # --- HTTP ---
@@ -49,10 +49,10 @@ EMBED_BATCH = _int("EMBED_BATCH", 32)
 EMBED_TIMEOUT_S = _float("EMBED_TIMEOUT_S", 20)
 
 # --- Retrieval ---
-RAG_TOP_K = _int("RAG_TOP_K", 4)
+RAG_TOP_K = _int("RAG_TOP_K", 5)
 RAG_MIN_SCORE = _float("RAG_MIN_SCORE", 0.2)
 RAG_HYBRID_ALPHA = _float("RAG_HYBRID_ALPHA", 0.6)   # weight of the vector score; 1 - alpha goes to BM25
-RAG_RELATIVE_CUTOFF = _float("RAG_RELATIVE_CUTOFF", 0.5)  # drop hits scoring under this share of the best hit
+RAG_RELATIVE_CUTOFF = _float("RAG_RELATIVE_CUTOFF", 0.4)  # drop hits scoring under this share of the best hit
 RAG_CHUNK_CHARS = _int("RAG_CHUNK_CHARS", 800)
 RAG_CHUNK_OVERLAP = _int("RAG_CHUNK_OVERLAP", 120)
 ATLAS_VECTOR_INDEX = os.getenv("ATLAS_VECTOR_INDEX", "").strip()   # set to use Atlas $vectorSearch
