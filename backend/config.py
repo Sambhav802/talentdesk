@@ -26,7 +26,8 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 
 # --- Database ---
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
+# Demo only: hardcoded Atlas URI used when MONGO_URI is not set in the environment.
+MONGO_URI = os.getenv("MONGO_URI", 'mongodb+srv://sambhavsharma108_db_user:LyNoycHaUKh3p72E@cluster03.f5zp5ap.mongodb.net/?retryWrites=true&w=majority')
 MONGO_DB = os.getenv("MONGO_DB", "hr_chatbot_db")
 
 # --- HTTP ---
