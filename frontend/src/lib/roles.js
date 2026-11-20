@@ -5,7 +5,7 @@ export const ROLES = [
     label: 'Candidate',
     blurb: 'Browse roles, apply, track status',
     demo: { email: '', phone: '' },
-    quick: ['View job openings', 'Apply for a job', 'Check application status', 'What is the interview process?'],
+    quick: ['View job openings', 'Remote jobs', 'Jobs for freshers', 'Apply for a job', 'Check application status', 'What is the interview process?', 'What health insurance do we get?'],
     greeting: 'Hi! I can show open roles, help you apply (your resume can autofill the form) and answer questions about our hiring process and policies.',
   },
   {
@@ -13,7 +13,7 @@ export const ROLES = [
     label: 'Hiring Manager',
     blurb: 'Raise hiring requests',
     demo: { email: 'hrm@abc.com', phone: '1111111111' },
-    quick: ['I want to raise a hiring request', 'What is the referral bonus?', 'How long is probation?'],
+    quick: ['I want to raise a hiring request', 'What is the referral bonus?', 'How long is probation?', 'How many leaves do I get?', 'When is salary credited?', 'What is the notice period?'],
     greeting: 'Hello! I can raise a hiring request for your team or answer HR policy questions from the handbook.',
   },
   {
@@ -21,7 +21,7 @@ export const ROLES = [
     label: 'HR Admin',
     blurb: 'Dashboard, pipeline, knowledge base',
     demo: { email: 'hradmin@abc.com', phone: '0000000000' },
-    quick: ['Pending hiring requests', 'Shortlisted candidates', 'Show rejected candidates', 'Generate job description', 'What is the notice period policy?'],
+    quick: ['How many candidates are shortlisted?', 'Pending hiring requests', 'Shortlisted candidates', 'Show rejected candidates', 'Generate job description', 'What is the notice period policy?'],
     greeting: 'Welcome back. Ask about candidates and requests, generate a JD, or ask anything covered by the HR knowledge base.',
   },
 ];

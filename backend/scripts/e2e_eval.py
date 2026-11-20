@@ -24,6 +24,9 @@ REFUSAL = re.compile(r"couldn.?t find that in the HR knowledge base|not (?:in|co
                      re.I)
 
 
+LAST = {}          # citations / structured payload of the last reply (kept for the transcript dump)
+
+
 def chat(base: str, session: str, message: str, role: str, timeout: float = 90) -> str:
     body = json.dumps({"session_id": session, "message": message, "user_role": role}).encode()
     req = urllib.request.Request(base.rstrip("/") + "/chat", data=body, method="POST",
@@ -31,7 +34,10 @@ def chat(base: str, session: str, message: str, role: str, timeout: float = 90) 
     for attempt in range(3):
         try:
             with urllib.request.urlopen(req, timeout=timeout) as r:
-                return json.loads(r.read()).get("response", "")
+                data = json.loads(r.read())
+                LAST.clear()
+                LAST.update({k: v for k, v in data.items() if k != "response"})
+                return data.get("response", "")
         except urllib.error.HTTPError as e:
             text = e.read().decode(errors="replace")
             if e.code in (429, 502, 503, 504) and attempt < 2:
@@ -90,7 +96,8 @@ def main() -> int:
         ans = chat(a.base, f"eval-{run_id}-{q['id']}", q["q"], q.get("role", "Candidate"))
         ok, why = grade(ans, q)
         results.append({"id": q["id"], "kind": q.get("kind", "policy"), "kb": q.get("kb", "existing"), "ok": ok,
-                        "why": why, "secs": round(time.time() - t, 1), "q": q["q"], "answer": ans})
+                        "why": why, "secs": round(time.time() - t, 1), "q": q["q"], "role": q.get("role", "Candidate"),
+                        "answer": ans, "extra": dict(LAST)})
         print(f"{'PASS' if ok else 'FAIL'}  {q['id']:<20} {why}", flush=True)
         time.sleep(a.pause)
 
@@ -99,8 +106,9 @@ def main() -> int:
             continue
         session, ok, why, transcript = f"eval-{run_id}-{f['id']}", True, "", []
         for n, step in enumerate(f["steps"], 1):
+            t = time.time()
             ans = chat(a.base, session, step["say"], f.get("role", "Candidate"))
-            transcript.append({"say": step["say"], "answer": ans})
+            transcript.append({"say": step["say"], "answer": ans, "secs": round(time.time() - t, 1), "extra": dict(LAST)})
             s_ok, s_why = grade(ans, step)
             if not s_ok:
                 ok, why = False, f"step {n}: {s_why}"

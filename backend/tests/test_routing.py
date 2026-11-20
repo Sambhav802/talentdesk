@@ -35,8 +35,12 @@ async def chat(client, msg, role="Candidate", session="s1"):
     ("Check my application status", "Candidate", "check_status"),
     ("I want to raise a hiring request", "Hiring Manager", "raise_hiring_request"),
     ("hello", "Candidate", "greeting"),
-    ("Generate a job description for a Data Analyst", "HR Admin", None),
-    ("Show shortlisted candidates", "HR Admin", None),
+    ("Generate a job description for a Data Analyst", "HR Admin", "hr_generate_jd"),
+    ("Show shortlisted candidates", "HR Admin", "hr_admin_queries"),
+    ("how many leaves do I have left?", "Hiring Manager", "personal_data"),
+    ("mujhe saal me kitni chuttiyan milti hai?", "Hiring Manager", "hr_knowledge"),
+    ("compare the Data Analyst and Data Scientist roles", "Candidate", "compare_jobs"),
+    ("how many candidates applied for my open roles?", "Hiring Manager", "hr_admin_queries"),
 ])
 def test_rule_intent(msg, role, intent):
     assert rule_intent(msg, role) == intent
@@ -48,29 +52,29 @@ async def _seed():
 
 async def test_job_search_filters_city_and_skill():
     await _seed()
-    out = await job_search.list_jobs("Any job openings for Python in Noida?")
+    out = (await job_search.list_jobs("Any job openings for Python in Noida?"))["text"]
     assert "Python" in out and "Customer Support" not in out and "Recruiter" not in out
     assert "📍 **Pune**" not in out and "📍 **Remote**" not in out and "📍 **Noida**" in out
 
 
 async def test_job_search_remote_and_department():
     await _seed()
-    remote = await job_search.list_jobs("Show me remote jobs")
+    remote = (await job_search.list_jobs("Show me remote jobs"))["text"]
     assert "📍 **Remote**" in remote and "📍 **Noida**" not in remote
-    hr = await job_search.list_jobs("Are there any HR roles open?")
+    hr = (await job_search.list_jobs("Are there any HR roles open?"))["text"]
     assert "Recruit" in hr and "Python Developer" not in hr
 
 
 async def test_job_search_no_match_says_so():
     await _seed()
-    out = await job_search.list_jobs("Any Rust developer openings in Pune?")
+    out = (await job_search.list_jobs("Any Rust developer openings in Pune?"))["text"]
     assert out.startswith("I couldn't find any")
 
 
 async def test_job_detail_uses_the_record():
     await _seed()
-    out = await job_search.job_detail("What skills are required for the Data Analyst role?")
-    assert out and "Data Analyst" in out and "SQL" in out and "CTC" in out
+    out = (await job_search.job_detail("What skills are required for the Data Analyst role?"))["text"]
+    assert "Data Analyst" in out and "SQL" in out and "CTC" in out
     assert await job_search.job_detail("What is the leave policy?") is None
 
 

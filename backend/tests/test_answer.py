@@ -36,11 +36,12 @@ def test_answer_appends_sources():
 def test_not_found_and_no_hits():
     assert answer.answer("q", [], complete=lambda *a, **k: "x")["text"] == answer.NOT_IN_KB
     out = answer.answer("q", HITS, complete=lambda *a, **k: "NOT_FOUND")
-    assert out == {"text": answer.NOT_IN_KB, "citations": []}
+    assert out["text"] == answer.NOT_IN_KB and out["type"] == "not_found" and out["citations"] == []
+    assert out["suggestions"] == ["How many leaves do I get?"]          # related to what was retrieved
 
 
 def test_clean_normalises_model_output():
-    assert answer.clean("26 weeks of leave【1】") == "26 weeks of leave[1]"
+    assert answer.clean("26 weeks of leave【1】") == "26 weeks of leave [1]"
     assert answer.clean("Senior‑level [2†L3]") == "Senior-level [2]"
     out = answer.answer("leave?", HITS, complete=lambda *a, **k: "You get 18 days 【1】.")
     assert out["text"].startswith("You get 18 days [1].") and [c["n"] for c in out["citations"]] == [1]

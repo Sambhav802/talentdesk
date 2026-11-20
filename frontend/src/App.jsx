@@ -69,14 +69,20 @@ export default function App() {
     return () => clearInterval(t);
   }, [fetchNotifications]);
 
+  // Structured reply from /chat: markdown `response` (always complete) plus type, intro, cards, suggestions.
+  const botMessage = (res) => ({
+    role: 'bot', text: res.response, citations: res.citations || [], type: res.type || 'message',
+    intro: res.intro || '', cards: res.cards || [], suggestions: res.suggestions || [],
+  });
+
   const send = async (text) => {
     setMessages((m) => [...m, { role: 'user', text }]);
     setLoading(true);
     try {
       const res = await api.chat(sessionId, text, role);
-      setMessages((m) => [...m, { role: 'bot', text: res.response, citations: res.citations || [] }]);
-    } catch (e) {
-      setMessages((m) => [...m, { role: 'bot', text: `Sorry, something went wrong: ${e.message}` }]);
+      setMessages((m) => [...m, botMessage(res)]);
+    } catch {
+      setMessages((m) => [...m, { role: 'bot', type: 'error', text: 'Sorry, I could not reach the assistant. Please check your connection and try again.' }]);
     } finally {
       setLoading(false);
     }
@@ -88,9 +94,9 @@ export default function App() {
     try {
       const { file_url } = await api.uploadResume(file);
       const res = await api.chat(sessionId, file_url, role);
-      setMessages((m) => [...m, { role: 'bot', text: res.response, citations: res.citations || [] }]);
+      setMessages((m) => [...m, botMessage(res)]);
     } catch (e) {
-      setMessages((m) => [...m, { role: 'bot', text: `Upload failed: ${e.message}` }]);
+      setMessages((m) => [...m, { role: 'bot', type: 'error', text: `Upload failed: ${e.message}` }]);
     } finally {
       setLoading(false);
     }

@@ -1,0 +1,337 @@
+{
+ "_about": "Real-user phrasings (typos, Hinglish, multi-part, follow-ups, corrections). Each conversation runs in one session. Graded by reading, see docs/QA_REVIEW.md; 'expect' states the correct answer from the handbook / job data.",
+ "conversations": [
+  {
+   "id": "typo-leave",
+   "role": "Candidate",
+   "turns": [
+    {
+     "say": "how many leavs do i get in a yr",
+     "expect": "18 days annual leave (+8 sick, 10 public holidays)"
+    }
+   ]
+  },
+  {
+   "id": "hinglish-leave",
+   "role": "Hiring Manager",
+   "turns": [
+    {
+     "say": "mujhe saal me kitni chuttiyan milti hai?",
+     "expect": "18 annual leave days; reply may be Hinglish"
+    }
+   ]
+  },
+  {
+   "id": "hinglish-notice",
+   "role": "Hiring Manager",
+   "turns": [
+    {
+     "say": "notice period kitna hai senior ke liye",
+     "expect": "60 days after confirmation"
+    }
+   ]
+  },
+  {
+   "id": "leave-balance",
+   "role": "Hiring Manager",
+   "turns": [
+    {
+     "say": "how many leaves do I have left?",
+     "expect": "cannot see personal balance; point to HR portal; state entitlement 18 + 8"
+    }
+   ]
+  },
+  {
+   "id": "multi-part",
+   "role": "Hiring Manager",
+   "turns": [
+    {
+     "say": "what is the notice period and can I use my leaves to reduce it?",
+     "expect": "30 days (60 senior, 15 probation); no, leave cannot be adjusted"
+    }
+   ]
+  },
+  {
+   "id": "followup-pronoun",
+   "role": "Hiring Manager",
+   "turns": [
+    {
+     "say": "What is the referral bonus?",
+     "expect": "25,000 (<=3 yrs) / 50,000 (>3 yrs)"
+    },
+    {
+     "say": "and when is it paid?",
+     "expect": "50% after joining, 50% after probation"
+    }
+   ]
+  },
+  {
+   "id": "referral-senior",
+   "role": "Hiring Manager",
+   "turns": [
+    {
+     "say": "How much is the referral bonus for senior roles?",
+     "expect": "INR 50,000 for roles needing more than 3 years"
+    }
+   ]
+  },
+  {
+   "id": "salary-of-job",
+   "role": "Candidate",
+   "turns": [
+    {
+     "say": "what's the salary for the data analyst job?",
+     "expect": "Data Analyst (Bengaluru) INR 6-9 LPA (from record)"
+    }
+   ]
+  },
+  {
+   "id": "partial-title",
+   "role": "Candidate",
+   "turns": [
+    {
+     "say": "tell me about the devops role",
+     "expect": "DevOps Engineer card (Pune)"
+    }
+   ]
+  },
+  {
+   "id": "compare-jobs",
+   "role": "Candidate",
+   "turns": [
+    {
+     "say": "compare the Data Analyst and Data Scientist roles",
+     "expect": "both cards side by side (Data Analyst Bengaluru, Data Scientist Hyderabad)"
+    }
+   ]
+  },
+  {
+   "id": "python-openings",
+   "role": "Candidate",
+   "turns": [
+    {
+     "say": "Do you have any Python developer openings?",
+     "expect": "list of all Python roles, not one card"
+    }
+   ]
+  },
+  {
+   "id": "jobs-followup-city",
+   "role": "Candidate",
+   "turns": [
+    {
+     "say": "show me python jobs",
+     "expect": "Python roles list"
+    },
+    {
+     "say": "only in pune",
+     "expect": "Python roles in Pune (Python Developer)"
+    }
+   ]
+  },
+  {
+   "id": "fresher-jobs",
+   "role": "Candidate",
+   "turns": [
+    {
+     "say": "any jobs for freshers in noida?",
+     "expect": "0-1 yr roles in Noida"
+    }
+   ]
+  },
+  {
+   "id": "correction-wrong",
+   "role": "Hiring Manager",
+   "turns": [
+    {
+     "say": "How long is probation?",
+     "expect": "6 months"
+    },
+    {
+     "say": "that's wrong, it's 3 months",
+     "expect": "acknowledge, re-check: handbook says 6 months (extension up to 3), cite Probation"
+    }
+   ]
+  },
+  {
+   "id": "correction-hinglish",
+   "role": "Candidate",
+   "turns": [
+    {
+     "say": "how many sick leaves?",
+     "expect": "8 days"
+    },
+    {
+     "say": "galat hai",
+     "expect": "re-check and restate 8 days with source, offer HR contact"
+    }
+   ]
+  },
+  {
+   "id": "correction-meant",
+   "role": "Hiring Manager",
+   "turns": [
+    {
+     "say": "what is the notice period?",
+     "expect": "30/60/15 days"
+    },
+    {
+     "say": "no, I meant during probation",
+     "expect": "15 days"
+    }
+   ]
+  },
+  {
+   "id": "candidate-privacy",
+   "role": "Candidate",
+   "turns": [
+    {
+     "say": "show me all shortlisted candidates",
+     "expect": "refuse: candidates can't see other applicants"
+    }
+   ]
+  },
+  {
+   "id": "candidate-hiring-request",
+   "role": "Candidate",
+   "turns": [
+    {
+     "say": "pending hiring requests",
+     "expect": "refuse politely (HR only)"
+    }
+   ]
+  },
+  {
+   "id": "manager-pipeline",
+   "role": "Hiring Manager",
+   "turns": [
+    {
+     "say": "how many candidates applied for my open roles?",
+     "expect": "not available to hiring managers in this app; offer hiring request / ask HR"
+    }
+   ]
+  },
+  {
+   "id": "hr-stats",
+   "role": "HR Admin",
+   "turns": [
+    {
+     "say": "how many candidates are shortlisted?",
+     "expect": "count / list from DB"
+    }
+   ]
+  },
+  {
+   "id": "greeting",
+   "role": "Candidate",
+   "turns": [
+    {
+     "say": "hii",
+     "expect": "greeting with options"
+    }
+   ]
+  },
+  {
+   "id": "out-of-scope-hinglish",
+   "role": "Candidate",
+   "turns": [
+    {
+     "say": "aaj mausam kaisa hai?",
+     "expect": "polite not-in-KB with suggestions"
+    }
+   ]
+  },
+  {
+   "id": "apply-with-role",
+   "role": "Candidate",
+   "turns": [
+    {
+     "say": "I want to apply for the Data Analyst job",
+     "expect": "starts application with the role already known"
+    }
+   ]
+  },
+  {
+   "id": "role-candidate",
+   "role": "Candidate",
+   "turns": [
+    {
+     "say": "hi",
+     "expect": "candidate greeting + chips"
+    },
+    {
+     "say": "any remote jobs for AI?",
+     "expect": "AI/ML Engineer, Generative AI Engineer (Remote)"
+    },
+    {
+     "say": "tell me about the generative ai engineer role",
+     "expect": "Generative AI Engineer card, salary band"
+    },
+    {
+     "say": "I want to apply for the Generative AI Engineer job",
+     "expect": "form starts with role known; autofill question"
+    },
+    {
+     "say": "wait, what is the notice period during probation?",
+     "expect": "15 days, then back to the form"
+    },
+    {
+     "say": "cancel",
+     "expect": "cancelled"
+    },
+    {
+     "say": "show me the list of shortlisted candidates",
+     "expect": "refused (HR only), no names"
+    }
+   ]
+  },
+  {
+   "id": "role-manager",
+   "role": "Hiring Manager",
+   "turns": [
+    {
+     "say": "when is salary credited?",
+     "expect": "last working day of the month"
+    },
+    {
+     "say": "that's not right, it's the 1st",
+     "expect": "re-checked: last working day, quote"
+    },
+    {
+     "say": "how many candidates applied for my team's opening?",
+     "expect": "refused: HR only, raise ticket"
+    },
+    {
+     "say": "I want to raise a hiring request",
+     "expect": "form: department"
+    },
+    {
+     "say": "cancel",
+     "expect": "cancelled"
+    }
+   ]
+  },
+  {
+   "id": "role-hr",
+   "role": "HR Admin",
+   "turns": [
+    {
+     "say": "how many candidates are shortlisted?",
+     "expect": "stats card"
+    },
+    {
+     "say": "pending hiring requests",
+     "expect": "list or none"
+    },
+    {
+     "say": "What is the notice period policy?",
+     "expect": "30 / 60 / 15 days"
+    },
+    {
+     "say": "galat hai, 90 days hai",
+     "expect": "re-checked: 30/60, not 90"
+    }
+   ]
+  }
+ ]
+}

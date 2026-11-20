@@ -95,6 +95,8 @@ Backend (`backend/.env`, or Vercel → Project → Settings → Environment Vari
 | `GROQ_API_KEY` | yes | – | Groq API key |
 | `GROQ_MODEL` | no | `openai/gpt-oss-120b` | Chat model for intents, parsing and answers |
 | `MONGO_URI` | yes | `mongodb://localhost:27017` | MongoDB connection string (Atlas `mongodb+srv://…` in production) |
+| `PHRASE_MODEL` | no | `openai/gpt-oss-20b` | Small model that only rewords code-decided replies (job results, form questions); empty turns rewording off |
+| `PHRASE_TIMEOUT_S` | no | `4` | Rewording timeout; on timeout or error the built-in wording is used |
 | `MONGO_DB` | no | `hr_chatbot_db` | Database name |
 | `ALLOWED_ORIGINS` | yes (prod) | `http://localhost:5173` | Comma-separated frontend origins allowed by CORS |
 | `EMBEDDINGS_PROVIDER` | no | `none` | `hf`, `gemini` or `none` (BM25 only) |
@@ -209,3 +211,12 @@ python scripts/retrieval_eval.py https://<your-backend>.vercel.app   # does retr
 Answers come only from the handbook, uploaded documents and the job openings: policy questions are answered from
 retrieved passages with citations, job searches are filtered from the database (city, team, level, skill), and
 anything not covered gets "I couldn't find that in the HR knowledge base" instead of a guess.
+
+## Chat API response
+
+`POST /chat` returns `response` (complete markdown, for any client) plus structured fields the web app renders:
+`type` (`policy`, `correction`, `jobs`, `job_detail`, `compare`, `stats`, `form`, `greeting`, `refusal`,
+`not_found`, `message`), `intro`, `cards` (`job`: title, department, location, remote, experience, salary,
+openings, apply_by, skills; `policy`: title, key, points, sources; `stats`: rows, totals), `suggestions`
+(quick-reply chips) and `usage` (model calls and tokens for the turn). Role rules and every model prompt live in
+`backend/prompts.py`; see `docs/QA_REVIEW.md` for the review behind them.

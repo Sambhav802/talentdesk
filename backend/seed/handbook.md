@@ -38,7 +38,7 @@ New full-time employees serve a probation period of 6 months. The reporting mana
 
 ## Notice period
 
-After confirmation, the notice period is 60 days for all roles at Senior level and above and 30 days for everyone else. Unused annual leave cannot be adjusted against the notice period. Buy-out of the notice period is allowed with approval from the department head and HR.
+After confirmation, the notice period is 60 days for all roles at Senior level and above and 30 days for everyone else. Senior level and above means roles that need 5 or more years of experience (for example Senior, Lead, Manager and Director roles). Unused annual leave cannot be adjusted against the notice period. Buy-out of the notice period is allowed with approval from the department head and HR.
 
 ## Resignation and exit
 

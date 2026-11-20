@@ -1,15 +1,25 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
-// Renders bot markdown safely (no raw HTML). `[n]` markers become clickable citation buttons when
-// `onCite` is given.
-export default function Markdown({ text, onCite }) {
+// Renders bot markdown safely: react-markdown never renders raw HTML (no rehype-raw), links open in a new tab
+// with rel="noreferrer", and only http(s)/mailto links are kept. `[n]` markers become clickable citation buttons
+// when `onCite` is given. `inline` renders a single paragraph without block margins (for card bullet points).
+const SAFE_URL = /^(https?:|mailto:|#cite-)/i;
+
+export default function Markdown({ text, onCite, inline = false }) {
   const source = onCite ? text.replace(/\[(\d{1,2})\](?!\()/g, '[[$1]](#cite-$1)') : text;
+  const Wrap = inline ? 'span' : 'div';
   return (
-    <div className="prose-chat break-words text-sm leading-relaxed">
+    <Wrap className={`prose-chat break-words leading-relaxed ${inline ? '' : 'text-sm'}`}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
+          p({ children }) {
+            return inline ? <>{children}</> : <p>{children}</p>;
+          },
+          table({ children }) {
+            return <div className="my-2 overflow-x-auto"><table className="min-w-full text-xs">{children}</table></div>;
+          },
           a({ href = '', children }) {
             if (onCite && href.startsWith('#cite-')) {
               const n = Number(href.slice(6));
@@ -21,12 +31,13 @@ export default function Markdown({ text, onCite }) {
                 </button>
               );
             }
+            if (!SAFE_URL.test(href)) return <span>{children}</span>;
             return <a href={href} target="_blank" rel="noreferrer">{children}</a>;
           },
         }}
       >
         {source}
       </ReactMarkdown>
-    </div>
+    </Wrap>
   );
 }

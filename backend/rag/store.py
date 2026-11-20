@@ -4,6 +4,7 @@ kb_documents: {_id, title, source, type: "document"|"job", uploaded_at, chunks, 
 kb_chunks:    {_id, doc_id, title, source, type, section, chunk_index, text, embedding?, embed_model?}
 """
 import datetime
+import difflib
 import logging
 import re
 
@@ -73,7 +74,14 @@ SYNONYMS = {
     "harassment": "harassment internal committee", "complaint": "complaints harassment ticket", "contact": "contact HR ticket",
     "ticket": "tickets contact HR portal answered", "tickets": "tickets contact HR portal answered",
     "query": "contact HR ticket", "queries": "contact HR ticket", "reach hr": "contact HR ticket",
-    "probation": "probation", "confirmation": "probation confirmation", "hiring process": "interview process",
+    "probation": "probation", "confirmation": "probation confirmation", "yr": "year", "yrs": "years",
+    # Hinglish (Roman script)
+    "chutti": "leave annual leave", "chhutti": "leave annual leave", "chuttiyan": "leave annual leave",
+    "chuttiyaan": "leave annual leave", "chhuttiyan": "leave annual leave", "chuttiya": "leave annual leave",
+    "tankha": "salary payroll credited", "tankhwah": "salary payroll credited", "vetan": "salary payroll",
+    "bimari": "sick leave", "beemar": "sick leave", "naukri chhodni": "resignation notice period",
+    "chhodna": "resignation notice period", "kab milegi": "credited paid", "kitni": "how many", "kitna": "how much",
+    "senior": "senior level 5 years experience", "seniors": "senior level 5 years experience", "hiring process": "interview process",
     "interview": "interview process stages", "selection": "interview process", "offer": "offer letter offers",
 }
 _SYN_RE = re.compile(r"\b(" + "|".join(re.escape(k) for k in sorted(SYNONYMS, key=len, reverse=True)) + r")\b", re.I)
@@ -82,6 +90,17 @@ _SYN_RE = re.compile(r"\b(" + "|".join(re.escape(k) for k in sorted(SYNONYMS, ke
 def expand_query(query: str) -> str:
     extra = {SYNONYMS[m.group(1).lower()] for m in _SYN_RE.finditer(query)}
     return f"{query} {' '.join(sorted(extra))}" if extra else query
+
+
+def typo_fixes(query: str, vocab: dict) -> str:
+    """Close spellings of words the corpus doesn't contain ("leavs" -> "leave", "probaton" -> "probation")."""
+    out = []
+    for t in scoring.tokenize(query):
+        if len(t) > 3 and t not in vocab and not t.isdigit():
+            m = difflib.get_close_matches(t, vocab.keys(), n=1, cutoff=0.8)
+            if m:
+                out.append(m[0])
+    return (" " + " ".join(out)) if out else ""
 
 
 def _lexical_text(c: dict) -> str:
@@ -182,7 +201,8 @@ async def search(query: str, top_k: int | None = None, min_score: float | None =
     if not chunks or not query.strip():
         return []
 
-    bm25 = scoring.BM25([_lexical_text(c) for c in chunks]).scores(expand_query(query))
+    index = scoring.BM25([_lexical_text(c) for c in chunks])
+    bm25 = index.scores(expand_query(query + typo_fixes(query, index.idf)))
 
     vec: dict = {}
     qv = await embeddings.embed([query]) if embeddings.enabled() else None

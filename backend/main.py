@@ -13,6 +13,7 @@ from fastapi.responses import JSONResponse, Response, StreamingResponse
 from pydantic import BaseModel
 
 import bootstrap
+import llm
 import config
 from bot_logic import process_message
 from database import (candidates_collection, chat_history_collection, hiring_requests_collection,
@@ -99,7 +100,9 @@ async def universal_login(request: LoginRequest):
         last_session_id = past_sessions[0]["session_id"]
         chats = await chat_history_collection.find({"session_id": last_session_id}).sort("timestamp", 1).to_list(length=100)
         for c in chats:
-            history.append({"role": c["role"], "text": c["message"], "citations": c.get("citations", [])})
+            history.append({"role": c["role"], "text": c["message"], "citations": c.get("citations", []),
+                            "type": c.get("type", ""), "intro": c.get("intro", ""), "cards": c.get("cards", []),
+                            "suggestions": c.get("suggestions", [])})
     return {"success": True, "session_id": last_session_id, "history": history}
 
 
@@ -225,20 +228,30 @@ async def chat_endpoint(request: ChatRequest):
             "session_id": request.session_id, "role": "user", "user_role": request.user_role,
             "message": request.message, "timestamp": now,
         })
+        llm.start_turn()
         result = await process_message(request.session_id, request.message, request.user_role)
-        if isinstance(result, dict):
-            text, citations = result.get("text", ""), result.get("citations", [])
-        else:
-            text, citations = str(result), []
+        if not isinstance(result, dict):
+            result = {"text": str(result)}
+        text, citations = result.get("text", ""), result.get("citations", [])
+        usage = llm.turn_usage()
+        extra = {"type": result.get("type", "message"), "intro": result.get("intro", ""),
+                 "cards": result.get("cards", []), "suggestions": result.get("suggestions", [])}
+        tokens = {"calls": len(usage), "prompt_tokens": sum(u["prompt_tokens"] for u in usage),
+                  "completion_tokens": sum(u["completion_tokens"] for u in usage),
+                  "by_model": usage}
         await chat_history_collection.insert_one({
             "session_id": request.session_id, "role": "bot", "user_role": request.user_role,
-            "message": text, "citations": citations,
+            "message": text, "citations": citations, **extra, "usage": tokens,
             "timestamp": datetime.datetime.now(datetime.timezone.utc),
         })
-        return {"response": text, "citations": citations}
+        logging.getLogger("usage").info("turn type=%s calls=%d prompt=%d completion=%d", extra["type"],
+                                        tokens["calls"], tokens["prompt_tokens"], tokens["completion_tokens"])
+        return {"response": text, "citations": citations, **extra, "usage": tokens}
     except Exception as e:
         logging.getLogger(__name__).exception("chat failed")
-        return JSONResponse({"response": f"Chat Error: {e}", "citations": []}, status_code=500)
+        return JSONResponse({"response": "Sorry, something went wrong on my side. Please try again in a moment.",
+                             "citations": [], "type": "error", "cards": [], "suggestions": [],
+                             "error": type(e).__name__}, status_code=500)
 
 
 # --- RESUME UPLOAD (in memory; nothing is written to disk) ---

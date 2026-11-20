@@ -13,7 +13,7 @@ from rag import store
 
 logger = logging.getLogger(__name__)
 
-SEED_VERSION = 2
+SEED_VERSION = 3
 HANDBOOK_SOURCE = "seed:handbook.md"
 HANDBOOK_TITLE = "Northwind Labs Employee Handbook"
 

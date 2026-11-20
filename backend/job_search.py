@@ -1,7 +1,9 @@
-"""Job questions answered from the job_openings collection itself (no LLM, so no invented roles or numbers).
+"""Job questions answered from the job_openings collection itself (no LLM decides content, so no invented roles,
+salaries or numbers). Every result is structured: {"type", "text", "intro", "cards", "suggestions", "facts"}.
 
-list_jobs("python jobs in pune")          -> openings filtered by city, department, level and role/skill words
-job_detail("skills for the data analyst role") -> one opening's card, when the message names an existing title
+list_jobs("python jobs in pune")                 -> openings filtered by city, department, level and role/skill words
+job_detail("salary for the data analyst job")    -> one opening's card when the message names (part of) a title
+compare_jobs("compare data analyst and data scientist") -> two cards side by side
 """
 import re
 
@@ -10,7 +12,7 @@ from database import job_openings_collection
 CITY_ALIASES = {
     "noida": "Noida", "gurugram": "Gurugram", "gurgaon": "Gurugram", "bengaluru": "Bengaluru",
     "bangalore": "Bengaluru", "pune": "Pune", "hyderabad": "Hyderabad", "remote": "Remote",
-    "work from home": "Remote", "wfh": "Remote", "anywhere": "Remote",
+    "work from home": "Remote", "wfh": "Remote", "anywhere": "Remote", "ghar se": "Remote",
 }
 DEPT_WORDS = {
     "HR": ["hr", "human resources", "recruit", "recruiter", "recruitment", "talent", "people team", "payroll"],
@@ -22,12 +24,14 @@ DEPT_WORDS = {
     "Design": ["design", "designer", "ui/ux", "ux"],
     "Product": ["product manager", "product management", "business analyst"],
 }
-# words that only say "a job" and carry no role or skill
+# words that only say "a job" (or are filler in a follow-up) and carry no role or skill
 GENERIC = set("""show me list all any the a an in at for of and or with that are is jobs job openings opening roles
 role positions position vacancies vacancy open available current currently what which do you have there please can
 i see view find get want looking based near work from home remote onsite hybrid city location company your some new
-latest hiring hire for openings? jobs? roles? options opportunities opportunity apply applying career careers
-team department dept level my me we us our need am who here good suitable right now today""".split())
+latest hiring hire options opportunities opportunity apply applying career careers team department dept level my we
+us our need am who here good suitable right now today only just also too aur sirf bhi mein me ke ki ka liye koi hai
+hain kya batao dikhao naukri naukriyan about tell more details detail salary ctc pay package skills required
+requirements require experience how much what's whats it does this those these them other""".split())
 TOPIC_SYNONYMS = {
     "ai": ["ai", "ml", "machine learning", "llm", "generative"], "ml": ["ml", "machine learning", "ai"],
     "ai/ml": ["ai", "ml", "machine learning", "generative"], "genai": ["generative", "llm", "rag"],
@@ -37,16 +41,18 @@ TOPIC_SYNONYMS = {
     "testing": ["test", "qa"], "tester": ["test", "qa"], "devops": ["devops", "kubernetes", "aws", "reliability"],
     "fresher": [], "freshers": [], "intern": ["intern"], "internship": ["intern"], "internships": ["intern"],
 }
-DETAIL_WORDS = re.compile(r"\b(skill|skills|require|requirement|requirements|experience|salary|ctc|pay|package|budget|"
-                          r"location|where|eligib\w*|qualif\w*|details?|describe|description|about|responsibilit\w*|"
-                          r"openings|deadline|last date|apply by|tell me)\b", re.I)
+LIST_CUE = re.compile(r"\b(jobs|openings|vacanc\w*|roles|positions|any|show|list|all|which|kaun|koi)\b", re.I)
+DETAIL_WORDS = re.compile(r"\b(skill|skills|require|requirement|requirements|experience|salary|ctc|pay|package|"
+                          r"budget|location|where|eligib\w*|qualif\w*|details?|describe|description|about|"
+                          r"responsibilit\w*|deadline|last date|apply by|tell me|kitni|kitna|kya hai)\b", re.I)
+COMPARE = re.compile(r"\b(compare|comparison|vs\.?|versus|difference between|better)\b", re.I)
 
 
-def _norm(s: str) -> str:
-    return re.sub(r"\s+", " ", (s or "").lower()).strip()
+def _norm(s) -> str:
+    return re.sub(r"\s+", " ", str(s or "").lower()).strip()
 
 
-def _city(msg: str, known: set[str]) -> str | None:
+def _city(msg: str, known: set) -> str | None:
     m = _norm(msg)
     for alias, city in CITY_ALIASES.items():
         if re.search(rf"\b{re.escape(alias)}\b", m):
@@ -68,12 +74,12 @@ def _dept(msg: str) -> str | None:
 def _level(msg: str):
     m = _norm(msg)
     if re.search(r"\b(fresher|freshers|entry[- ]level|graduate|no experience|0 years?|beginner)\b", m):
-        return lambda e: e <= 1
+        return "fresher", lambda e: e <= 1
     if re.search(r"\b(intern|internship|internships)\b", m):
-        return lambda e: e <= 1
+        return "intern", lambda e: e <= 1
     if re.search(r"\b(senior|lead|leadership|manager|director|head)\b", m):
-        return lambda e: e >= 5
-    return None
+        return "senior", lambda e: e >= 5
+    return None, None
 
 
 def _topic_terms(msg: str, city: str | None, dept: str | None) -> list[list[str]]:
@@ -86,10 +92,9 @@ def _topic_terms(msg: str, city: str | None, dept: str | None) -> list[list[str]
         for w in DEPT_WORDS[dept]:
             m = re.sub(rf"\b{re.escape(w)}\b", " ", m)
     m = re.sub(r"\b(fresher|freshers|entry[- ]level|senior|junior|lead)\b", " ", m)
-    words = [w.strip(".,?!'\"()") for w in re.findall(r"[a-z0-9+#/.\-]+", m)]
     out = []
-    for w in words:
-        if not w or w in GENERIC or len(w) < 2:
+    for w in (x.strip(".,?!'\"()") for x in re.findall(r"[a-z0-9+#/.\-']+", m)):
+        if not w or w in GENERIC or len(w) < 2 or w.isdigit():
             continue
         syn = TOPIC_SYNONYMS.get(w)
         if syn == []:
@@ -123,64 +128,80 @@ def _score(j: dict, terms: list[list[str]]) -> int:
     return total
 
 
-def _ctc(j: dict) -> str:
+def _exp(j: dict) -> float:
+    try:
+        return float(j.get("experience_required") or 0)
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def _exp_label(j: dict) -> str:
+    e = _exp(j)
+    return "Freshers welcome" if e == 0 else f"{e:g}+ yrs"
+
+
+def _salary(j: dict) -> str:
     ctc = str(j.get("budget") or j.get("ctc") or "").strip()
     if not ctc:
         return "Not disclosed"
     return ctc if re.search(r"lpa|annum|month|stipend", ctc, re.I) else f"{ctc} per annum"
 
 
-def _exp(j: dict) -> str:
-    e = j.get("experience_required")
-    try:
-        e = float(e)
-        return "Freshers welcome" if e == 0 else f"{e:g}+ yrs"
-    except (TypeError, ValueError):
-        return str(e or "Not specified")
-
-
-def card(j: dict, admin: bool = False) -> str:
+def to_card(j: dict) -> dict:
+    """The structured job card the frontend renders (and the source for the markdown fallback)."""
     skills = j.get("skills_required") or []
-    skills = ", ".join(skills) if isinstance(skills, list) else str(skills)
-    lines = [f"💼 **{j.get('title')}**",
-             f"🏢 *{j.get('department', 'General')}* | 📍 **{j.get('location', 'Not specified')}** | "
-             f"{j.get('employment_type', 'Full-time')}",
-             f"🎓 **Experience:** {_exp(j)} | 💰 **{'Budget' if admin else 'CTC'}:** {_ctc(j)}",
-             f"🛠️ **Skills:** {skills or 'Not specified'}"]
-    extra = []
-    if j.get("openings"):
-        extra.append(f"**Openings:** {j['openings']}")
-    if j.get("apply_by"):
-        extra.append(f"**Apply by:** {j['apply_by']}")
+    return {"kind": "job", "id": str(j.get("_id", "")), "title": j.get("title", ""),
+            "department": j.get("department", "General"), "location": j.get("location", "Not specified"),
+            "remote": _norm(j.get("location")) == "remote", "employment_type": j.get("employment_type", "Full-time"),
+            "experience": _exp_label(j), "experience_years": _exp(j), "salary": _salary(j),
+            "openings": j.get("openings"), "apply_by": j.get("apply_by"), "posted_on": j.get("posted_on"),
+            "skills": skills if isinstance(skills, list) else [str(skills)],
+            "description": j.get("description", "")}
+
+
+def card_md(c: dict, admin: bool = False) -> str:
+    lines = [f"💼 **{c['title']}**",
+             f"🏢 *{c['department']}* | 📍 **{c['location']}** | {c['employment_type']}",
+             f"🎓 **Experience:** {c['experience']} | 💰 **{'Budget' if admin else 'CTC'}:** {c['salary']}",
+             f"🛠️ **Skills:** {', '.join(c['skills']) or 'Not specified'}"]
+    extra = [f"**Openings:** {c['openings']}"] if c.get("openings") else []
+    if c.get("apply_by"):
+        extra.append(f"**Apply by:** {c['apply_by']}")
     if extra:
         lines.append("📌 " + " | ".join(extra))
-    if j.get("description"):
-        lines.append(f"📝 *{j['description']}*")
+    if c.get("description"):
+        lines.append(f"📝 *{c['description']}*")
     return "\n".join(lines)
 
 
-async def list_jobs(message: str, user_role: str = "Candidate", limit: int = 10) -> str:
-    jobs = await job_openings_collection.find({}).to_list(1000)
+def facts_of(cards: list[dict], limit: int = 5) -> list[dict]:
+    """Compact summary for the phrasing model (never the full cards)."""
+    return [{"title": c["title"], "city": c["location"], "exp": c["experience"], "salary": c["salary"]}
+            for c in cards[:limit]]
+
+
+async def _all_jobs() -> list[dict]:
+    return await job_openings_collection.find({}).to_list(1000)
+
+
+async def list_jobs(message: str, user_role: str = "Candidate", limit: int = 10) -> dict:
+    jobs = await _all_jobs()
+    admin = user_role == "HR Admin"
     if not jobs:
-        return "There are no open positions right now. Please check back soon."
+        text = "There are no open positions right now. Please check back soon."
+        return {"type": "not_found", "text": text, "intro": text, "cards": [], "suggestions": [], "facts": {}}
     city = _city(message, {j.get("location", "") for j in jobs})
     dept = _dept(message)
-    level = _level(message)
+    level_name, level = _level(message)
     terms = _topic_terms(message, city, dept)
 
     pool = jobs
     if city:
         pool = [j for j in pool if _norm(j.get("location")) == city.lower()]
     if level:
-        def exp(j):
-            try:
-                return float(j.get("experience_required") or 0)
-            except (TypeError, ValueError):
-                return 0.0
-        pool = [j for j in pool if level(exp(j))]
+        pool = [j for j in pool if level(_exp(j))]
     if dept and not terms:
         in_dept = [j for j in pool if _norm(j.get("department")) == dept.lower()]
-        # "HR roles": the HR department; "support roles": the BPO department
         pool = in_dept or [j for j in pool if _score(j, [[w] for w in DEPT_WORDS[dept][:1]])]
     elif dept:
         pool = [j for j in pool if _norm(j.get("department")) == dept.lower()] or pool
@@ -189,45 +210,120 @@ async def list_jobs(message: str, user_role: str = "Candidate", limit: int = 10)
         pool = [j for s, j in scored if s > 0]
 
     where = f" in **{city}**" if city and city != "Remote" else (" (**remote**)" if city == "Remote" else "")
+    what = " ".join(t[0] for t in terms) if terms else (level_name or dept or "")
+    facts = {"city": city, "team": dept, "level": level_name, "role_words": what, "count": len(pool)}
     if not pool:
-        what = " ".join(t[0] for t in terms) if terms else (dept or "")
-        what = f"**{what}** " if what else ""
-        return (f"I couldn't find any {what}openings{where} right now. "
+        text = (f"I couldn't find any {('**' + what + '** ') if what else ''}openings{where} right now. "
                 f"Try another city or role, or ask me to **show all job openings**.")
+        sugg = ["Show all job openings"] + ([f"{what.title()} jobs" if what else "Remote jobs"] if city else
+                                            ["Jobs in Bengaluru", "Remote jobs"])
+        return {"type": "not_found", "text": text, "intro": text, "cards": [], "suggestions": sugg[:3], "facts": facts}
 
-    admin = user_role == "HR Admin"
-    shown = pool[:limit]
-    head = (f"🗂️ **Open requisitions{where}** ({len(pool)})" if admin
-            else f"Here {'is' if len(pool) == 1 else 'are'} **{len(pool)} open role{'' if len(pool) == 1 else 's'}**{where}:")
-    body = "\n━━━━━━━━━━━━━━━━━━━━━━\n".join(card(j, admin) for j in shown)
-    more = (f"\n\n…and {len(pool) - limit} more. Narrow it down by city, team or skill (for example "
-            f"*\"Python jobs in Pune\"*)." if len(pool) > limit else "")
+    cards = [to_card(j) for j in pool]
+    shown = cards[:limit]
+    n = len(cards)
+    intro = (f"🗂️ **Open requisitions{where}** ({n})" if admin
+             else f"Here {'is' if n == 1 else 'are'} **{n} open role{'' if n == 1 else 's'}**{where}"
+                  + (f" matching **{what}**" if what else "") + ":")
+    more = (f"\n\n…and {n - limit} more. Narrow it down by city, team or skill (for example *\"Python jobs in "
+            f"Pune\"*)." if n > limit else "")
     tail = ("\n\n💡 *You can ask me to generate a job description for any of these roles.*" if admin
-            else "\n\nReady? Reply **\"I want to apply for a job\"** to start your application.")
-    return f"{head}\n\n{body}{more}{tail}"
+            else "\n\nReady? Tap **Apply** on a role or reply **\"I want to apply for a job\"**.")
+    text = f"{intro}\n\n" + "\n━━━━━━━━━━━━━━━━━━━━━━\n".join(card_md(c, admin) for c in shown) + more + tail
+    sugg = [] if admin else [f"Apply for {shown[0]['title']}"]
+    if not city:
+        sugg.append(f"{(what or 'All').title()} jobs in Bengaluru")
+    if not level:
+        sugg.append("Jobs for freshers")
+    facts["top"] = facts_of(shown)
+    return {"type": "jobs", "text": text, "intro": intro, "cards": shown, "suggestions": sugg[:3], "facts": facts,
+            "total": n}
 
 
-async def find_named_job(message: str) -> dict | None:
-    """The opening whose title the message names (longest title wins), if any."""
+async def find_named_jobs(message: str) -> list[dict]:
+    """Openings whose title the message names, best first: the full title, the title without its bracket/dash
+    part, or (for partial titles like "the devops role") every distinctive word of the title's head."""
     m = _norm(message)
-    best = None
-    for j in await job_openings_collection.find({}).to_list(1000):
+    words = set(re.findall(r"[a-z0-9+#/.\-]+", m))
+    found = []
+    for j in await _all_jobs():
         title = _norm(j.get("title"))
-        core = re.sub(r"\s*\(.*?\)\s*", " ", title).strip()       # "HR Business Partner (HRBP)" -> core title
-        for t in {title, core}:
+        core = re.sub(r"\s*(\(.*|- .*)$", "", title).strip()       # "tech lead - ai" -> "tech lead"
+        score = 0
+        for t, s in ((title, 3), (core, 2)):
             if t and re.search(rf"(?<![a-z0-9]){re.escape(t)}(?![a-z0-9])", m):
-                if not best or len(t) > best[0]:
-                    best = (len(t), j)
-    return best[1] if best else None
+                score = max(score, s * 100 + len(t))
+        if not score:
+            head = [w for w in re.findall(r"[a-z0-9+#/.]+", core) if w not in GENERIC and len(w) > 2]
+            distinctive = [w for w in head if w not in ("engineer", "developer", "executive", "manager", "specialist",
+                                                        "lead", "senior", "junior", "analyst", "associate")]
+            if distinctive and all(w in words for w in distinctive):
+                score = 50 + len(distinctive)
+        if score:
+            found.append((score, j))
+    found.sort(key=lambda x: -x[0])
+    if found and found[0][0] >= 100:                 # an exact title was named: drop weaker partial matches
+        found = [f for f in found if f[0] >= 100]
+    return [j for _, j in found]
 
 
-async def job_detail(message: str, user_role: str = "Candidate") -> str | None:
-    """Card for the named opening when the message asks about it; None when no existing title is named."""
-    if not DETAIL_WORDS.search(message) or re.search(
-            r"\b(generate|create|write|draft|delete|remove|close|approve|apply)\b", message, re.I):
+async def job_detail(message: str, user_role: str = "Candidate") -> dict | None:
+    """One opening's card when the message asks about a named role; None when it is a listing question, a
+    comparison, an action, or no existing title is named."""
+    if re.search(r"\b(generate|create|write|draft|delete|remove|close|approve|apply)\b", message, re.I):
         return None
-    j = await find_named_job(message)
-    if not j:
+    if COMPARE.search(message) or not DETAIL_WORDS.search(message):
         return None
-    return (f"Here are the details for this opening:\n\n{card(j, user_role == 'HR Admin')}\n\n"
-            "Reply **\"I want to apply for a job\"** to apply.")
+    if re.search(r"\b(jobs|openings|vacanc\w*|positions)\b", message, re.I):
+        return None                                  # "any Python developer openings?" is a list question
+    named = await find_named_jobs(message)
+    if not named:
+        return None
+    titles = {_norm(j.get("title")) for j in named}
+    if len(titles) > 1 and not any(re.search(rf"(?<![a-z0-9]){re.escape(t)}(?![a-z0-9])", _norm(message)) for t in titles):
+        cards = [to_card(j) for j in named[:4]]      # a partial title matched several roles: let them pick
+        intro = "I found a few roles that match. Which one do you mean?"
+        return {"type": "jobs", "text": intro + "\n\n" + "\n━━━━━━━━━━━━━━━━━━━━━━\n".join(card_md(c) for c in cards),
+                "intro": intro, "cards": cards, "suggestions": [f"Tell me about the {c['title']} role" for c in cards[:3]],
+                "facts": {"top": facts_of(cards)}}
+    c = to_card(named[0])
+    admin = user_role == "HR Admin"
+    intro = f"Here are the details for **{c['title']}** ({c['location']}):"
+    text = f"{intro}\n\n{card_md(c, admin)}"
+    if user_role == "Candidate":
+        text += f"\n\nTap **Apply** or reply **\"I want to apply for the {c['title']} job\"**."
+    sugg = ([f"Apply for {c['title']}"] if user_role == "Candidate" else []) + \
+           [f"Other jobs in {c['location']}" if not c["remote"] else "Other remote jobs", f"{c['department']} jobs"]
+    return {"type": "job_detail", "text": text, "intro": intro, "cards": [c], "suggestions": sugg[:3],
+            "facts": {"top": facts_of([c])}}
+
+
+async def compare_jobs(message: str) -> dict | None:
+    if not COMPARE.search(message):
+        return None
+    uniq, seen = [], set()
+    for j in await find_named_jobs(message):
+        t = _norm(j.get("title"))
+        if t not in seen:
+            seen.add(t)
+            uniq.append(j)
+    if len(uniq) < 2:
+        return None
+    m = _norm(message)
+
+    def mentioned_at(j):                     # keep the order the user named them in
+        t = _norm(j.get("title"))
+        core = re.sub(r"\s*(\(.*|- .*)$", "", t).strip()
+        pos = [m.find(x) for x in (t, core) if x and m.find(x) >= 0]
+        return min(pos) if pos else len(m)
+    uniq = sorted(uniq[:4], key=mentioned_at)
+    a, b = to_card(uniq[0]), to_card(uniq[1])
+    rows = [("City", a["location"], b["location"]), ("Team", a["department"], b["department"]),
+            ("Experience", a["experience"], b["experience"]), ("Salary", a["salary"], b["salary"]),
+            ("Openings", a.get("openings") or "-", b.get("openings") or "-"),
+            ("Key skills", ", ".join(a["skills"][:4]), ", ".join(b["skills"][:4]))]
+    table = f"| | **{a['title']}** | **{b['title']}** |\n|---|---|---|\n" + \
+            "\n".join(f"| {k} | {x} | {y} |" for k, x, y in rows)
+    intro = f"Here's how **{a['title']}** and **{b['title']}** compare:"
+    return {"type": "compare", "text": f"{intro}\n\n{table}", "intro": intro, "cards": [a, b],
+            "suggestions": [f"Apply for {a['title']}", f"Apply for {b['title']}"], "facts": {"top": facts_of([a, b])}}

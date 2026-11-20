@@ -23,7 +23,13 @@ def _float(name: str, default: float) -> float:
 
 # --- LLM (Groq) ---
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
-GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
+GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")          # grounded policy answers
+# small, fast model that only rewords replies whose facts were decided in code ("" turns rewording off)
+# openai/gpt-oss-20b: $0.075 / $0.30 per 1M input / output tokens on Groq (console.groq.com/docs/models, Nov 2026);
+# llama-3.1-8b-instant is listed as Enterprise-only there.
+PHRASE_MODEL = os.getenv("PHRASE_MODEL", "openai/gpt-oss-20b").strip()
+PHRASE_MAX_TOKENS = int(os.getenv("PHRASE_MAX_TOKENS", "300"))   # reasoning tokens count too (effort "low")
+PHRASE_TIMEOUT_S = float(os.getenv("PHRASE_TIMEOUT_S", "4"))
 
 # --- Database ---
 # Set MONGO_URI in the Vercel project settings (or backend/.env locally). Never commit a connection string.

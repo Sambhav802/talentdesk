@@ -11,28 +11,16 @@ from database import (job_openings_collection, candidates_collection, hiring_req
 from rag import store as kb
 from rag import answer as kb_answer
 import job_search
-from router import rule_intent
+import phrasing
+import prompts
+from router import (POLICY as POLICY_HINT, is_correction, is_follow_up, is_rephrase,
+                    rule_intent)
 
 logger = logging.getLogger(__name__)
 
 # Short classification / extraction calls. GROQ_MODEL may be a reasoning model (default openai/gpt-oss-120b) that
 # spends tokens thinking before it answers: a cap of ~10 tokens returns an EMPTY answer, so keep room for that.
 SHORT_ANSWER_TOKENS = 300
-
-_JOB_GENERIC = {
-    "show", "me", "list", "all", "any", "the", "a", "an", "in", "at", "for", "of", "and", "or", "with", "that",
-    "are", "is", "jobs", "job", "openings", "opening", "roles", "role", "positions", "position", "vacancies",
-    "vacancy", "open", "available", "current", "currently", "what", "which", "do", "you", "have", "there",
-    "please", "can", "i", "see", "view", "find", "get", "want", "looking", "based", "near", "work", "from", "home",
-    "remote", "onsite", "hybrid", "city", "location", "company", "your", "some", "new", "latest", "hiring",
-}
-
-
-def _job_topic_words(message: str, city: str) -> list[str]:
-    """Words of a job question beyond the generic ones and the city: a role or skill to rank openings by."""
-    generic = _JOB_GENERIC | (set(city.split()) if city and city != "all" else set())
-    return [w for w in re.findall(r"[a-z0-9+#/.]+", message.lower()) if w not in generic and len(w) > 1]
-
 
 # In-request cache of the multi-step form state. The source of truth is MongoDB (chat_sessions), so a
 # conversation survives serverless cold starts and requests landing on different instances.
@@ -45,8 +33,8 @@ class _GroqShim:
 
     class _Completions:
         def create(self, **kwargs):
-            kwargs["model"] = config.GROQ_MODEL
-            return llm.client().chat.completions.create(**kwargs)
+            kwargs.pop("model", None)
+            return llm.create(purpose="flow", model=config.GROQ_MODEL, **kwargs)
 
     class _Chat:
         def __init__(self):
@@ -110,7 +98,7 @@ GREETINGS = {
 }
 
 
-async def answer_from_kb(question: str):
+async def answer_from_kb(question: str, user_role: str = "Candidate") -> dict:
     """RAG: retrieve from the HR knowledge base and answer with citations (or say it is not covered).
     Policy questions search the handbook and uploaded documents first; job postings only if nothing matches."""
     try:
@@ -118,7 +106,28 @@ async def answer_from_kb(question: str):
     except Exception as e:  # noqa: BLE001
         logger.warning("KB search failed: %s", e)
         hits = []
-    return kb_answer.answer(question, hits)
+    return kb_answer.answer(question, hits, user_role=user_role)
+
+
+async def _pipeline_counts() -> dict:
+    """HR Admin: candidate counts by screening status, straight from the database."""
+    groups = [("Shortlisted", r"Shortlisted"), ("Awaiting interview", r"interview|Awaiting"),
+              ("Pending review", r"Pending"), ("Not suitable / rejected", r"Not suitable|Missing|Reject")]
+    total = await candidates_collection.count_documents({})
+    rows = []
+    for label, rx in groups:
+        rows.append((label, await candidates_collection.count_documents(
+            {"screening_status": {"$regex": rx, "$options": "i"}})))
+    reqs = await hiring_requests_collection.count_documents({})
+    jobs = await job_openings_collection.count_documents({})
+    table = "| Stage | Candidates |\n|---|---|\n" + "\n".join(f"| {k} | {v} |" for k, v in rows) + \
+            f"\n| **Total** | **{total}** |"
+    text = (f"**{total} candidate{'s' if total != 1 else ''} in the pipeline**, {jobs} open roles and "
+            f"{reqs} pending hiring request{'s' if reqs != 1 else ''}.\n\n{table}")
+    return {"text": text, "type": "stats", "citations": [], "cards": [
+        {"kind": "stats", "title": "Hiring pipeline", "rows": [{"label": k, "value": v} for k, v in rows],
+         "total": total, "open_roles": jobs, "pending_requests": reqs}],
+        "suggestions": ["Shortlisted candidates", "Pending hiring requests", "Show all candidates"], "intro": ""}
 
 # --- GLOBALLY DEFINED BACKGROUND EMAIL FUNCTION ---
 async def send_hr_email_notification(candidate_name, role, current_status):
@@ -128,39 +137,22 @@ async def send_hr_email_notification(candidate_name, role, current_status):
     print(f"Body: A new candidate has applied. Screening status: {current_status}. Please check the admin dashboard.")
     print("="*50 + "\n")
 
-# --- AI INTENT ROUTER ---
-def get_intent(user_message: str, user_role: str) -> str:
-    prompt = f"""
-    You are classifying intents for a user who is currently logged in as: **{user_role}**.
-    Classify their message into EXACTLY ONE of these intents:
-    - apply_job (Candidate wants to apply for a job. HR Admins NEVER do this.)
-    - view_jobs (User wants to see open positions)
-    - raise_hiring_request (Hiring manager requesting new hire)
-    - check_status (Candidate wants to check their own status)
-    - hr_admin_queries (HR Admin asking to show ALL candidates, show shortlisted, rejected, awaiting interview, or pending requests)
-    - hr_find_candidate (HR Admin asking to show candidate details or summary by email/phone)
-    - hr_update_status (HR Admin asking to change, update, or manage a candidate's status)
-    - hr_generate_jd (HR Admin asking to generate a job description)
-    - hr_manage_jobs (HR Admin asking to approve a hiring request, or delete/remove a job opening)
-    - hr_knowledge (Questions about company HR policies or the handbook: leave, holidays, work from home, probation, notice period, referral bonus, joining documents, interview process, internal job postings, or detailed questions about what a specific job opening requires)
-    - general_faq (Asking about hiring process, documents required, response time)
-    
-    Message: "{user_message}"
-    Output ONLY the exact intent name. Do not add any other words.
-    """
-    completion = groq_client.chat.completions.create(
-        model=config.GROQ_MODEL,
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0
-    )
-    raw = (completion.choices[0].message.content or "").strip().lower()
-    known = ["apply_job", "view_jobs", "raise_hiring_request", "check_status", "hr_admin_queries",
-             "hr_find_candidate", "hr_update_status", "hr_generate_jd", "hr_manage_jobs", "hr_knowledge",
-             "general_faq"]
-    for k in known:
-        if k in raw:
-            return k
-    return raw
+# --- HR ADMIN CLASSIFIER (only for HR Admin messages the rule router could not place) ---
+ADMIN_INTENTS = ["hr_admin_queries", "hr_find_candidate", "hr_update_status", "hr_generate_jd", "hr_manage_jobs",
+                 "view_jobs", "hr_knowledge"]
+
+
+def classify_admin(message: str) -> str | None:
+    try:
+        raw = llm.complete([{"role": "user", "content": prompts.CLASSIFIER.format(message=message)}],
+                           purpose="classify", model=config.PHRASE_MODEL or config.GROQ_MODEL,
+                           temperature=0, max_tokens=SHORT_ANSWER_TOKENS)
+    except Exception as e:  # noqa: BLE001
+        logger.warning("classifier skipped: %s", e)
+        return None
+    raw = (raw or "").strip().lower()
+    return next((k for k in ADMIN_INTENTS if k in raw), None)
+
 
 def is_valid_email(email):
     return re.match(r"[^@]+@[^@]+\.[^@]+", email)
@@ -231,120 +223,204 @@ async def evaluate_candidate(data: dict):
     """
     return summary, status
 
-async def process_message(session_id: str, message: str, user_role: str = "Candidate"):
-    """Returns either a markdown string or {"text": ..., "citations": [...]} for knowledge-base answers."""
+def _result(text: str, type_: str = "message", **kw) -> dict:
+    out = {"text": text, "type": type_, "citations": [], "cards": [], "suggestions": [], "intro": ""}
+    out.update(kw)
+    return out
+
+
+async def _previous_turn(session_id: str) -> dict | None:
+    """The last completed exchange of this conversation (the current message is already stored, so skip it)."""
+    try:
+        docs = await chat_history_collection.find({"session_id": session_id}).sort("timestamp", -1).to_list(5)
+    except Exception:  # noqa: BLE001
+        return None
+    older = docs[1:]
+    bot = next((d for d in older if d.get("role") == "bot"), None)
+    user = next((d for d in older if d.get("role") == "user"), None)
+    if not bot or not user:
+        return None
+    return {"user": user.get("message", ""), "bot": bot.get("message", ""), "type": bot.get("type", ""),
+            "history": [d.get("message", "") for d in reversed(older) if d.get("role") == "user"]}
+
+
+async def process_message(session_id: str, message: str, user_role: str = "Candidate") -> dict:
+    """Returns {"text", "type", "citations", "cards", "suggestions", "intro"}; `text` is always a complete markdown
+    reply (older clients show only that), the rest lets the frontend render cards and quick replies."""
     sessions[session_id] = await _load_session(session_id)
     try:
-        return await _process_message(session_id, message, user_role)
+        prev = await _previous_turn(session_id)
+        raw = await _process_message(session_id, message, user_role, prev)
+        in_form = bool((sessions.get(session_id) or {}).get("intent"))
+        res = raw if isinstance(raw, dict) else _result(str(raw), "form" if in_form else "message")
+        res.setdefault("type", "message")
+        for k, v in (("citations", []), ("cards", []), ("suggestions", []), ("intro", "")):
+            res.setdefault(k, v)
+        return await _natural_wording(res, message, user_role, prev)
     finally:
         await _save_session(session_id, sessions.pop(session_id, {"intent": None}))
 
 
-async def _process_message(session_id: str, message: str, user_role: str = "Candidate"):
+async def _natural_wording(res: dict, message: str, user_role: str, prev: dict | None) -> dict:
+    """Let the small model reword code-written replies (never policy answers, never when a model was already
+    called this turn, never long lists). Facts stay in the cards / the draft; failures keep the draft."""
+    facts = res.pop("facts", None)
+    if llm.turn_usage():
+        return res
+    history = (prev or {}).get("history", [])
+    if res["type"] in ("jobs", "job_detail", "compare") and res.get("intro"):
+        new = await phrasing.phrase(res["intro"], user_role, message, facts=facts, history=history)
+        if new != res["intro"]:
+            res["text"] = res["text"].replace(res["intro"], new, 1)
+            res["intro"] = new
+    elif res["type"] in ("form", "message", "greeting", "refusal", "not_found") and len(res["text"]) <= 450 \
+            and "\n- " not in res["text"] and "\n• " not in res["text"] and "|" not in res["text"]:
+        # form answers can hold personal data (email, phone): never cache those rewrites
+        res["text"] = await phrasing.phrase(res["text"], user_role, message, history=history,
+                                            cache=res["type"] != "form")
+    return res
+
+
+async def _recheck(prev: dict, message: str, user_role: str) -> dict:
+    """The user says the last answer was wrong: re-read the sources for the same question; never adopt the claim
+    blindly, never double down without quoting the handbook, and offer a way to reach HR."""
+    if prev.get("type") in ("jobs", "job_detail", "compare") or (
+            prev.get("type") == "not_found" and not POLICY_HINT.search(prev["user"])):
+        return _result("Sorry about that. The roles I show come straight from our current openings. Tell me the "
+                       "role, city or experience level you had in mind and I'll search again.", "message",
+                       suggestions=["Show all job openings", "Remote jobs", "Jobs for freshers"])
+    try:
+        hits = await kb.search(prev["user"], doc_type="document") or await kb.search(prev["user"])
+    except Exception as e:  # noqa: BLE001
+        logger.warning("KB search failed: %s", e)
+        hits = []
+    res = kb_answer.answer(prev["user"], hits, user_role=user_role, correction=message, previous=prev["bot"])
+    if res["type"] == "not_found":
+        res["text"] = ("Thanks for flagging it. I couldn't find this in the HR knowledge base, so I can't confirm "
+                       "either answer. Please raise a ticket in the HR portal and the HR team will confirm.")
+    res["suggestions"] = (res.get("suggestions") or [])[:2] + ["How do I contact HR?"]
+    if res["type"] == "policy":
+        res["type"] = "correction"
+    return res
+
+
+async def _process_message(session_id: str, message: str, user_role: str = "Candidate", prev: dict | None = None):
     message_lower = message.lower().strip()
-
-    # ==========================================
-    # --- DIRECT DATABASE INTERCEPTORS ---
-    # ==========================================
-    
-    # 2. View Pending Hiring Requests (HR Admin Only)
-    if "pending hiring request" in message_lower or "show hiring requests" in message_lower:
-        if user_role != "HR Admin":
-            return "⚠️ You do not have permission to view pending hiring requests."
-            
-        reqs = await hiring_requests_collection.find({}).to_list(50)
-        
-        if not reqs:
-            return "✅ There are no pending hiring requests at the moment."
-            
-        reply = "**📝 Pending Hiring Requests:**\n\n"
-        for r in reqs:
-            skills = r.get('required_skills', [])
-            skills_str = ", ".join(skills) if isinstance(skills, list) else str(skills)
-            
-            reply += f"🔹 **{r.get('role_required')}** (Requested by {r.get('department')} Dept)\n"
-            reply += f"   • **Positions:** {r.get('positions')} | **Urgency:** {r.get('urgency')}\n"
-            reply += f"   • **Location:** {r.get('job_location', 'N/A')} | **Exp:** {r.get('required_experience', '0')} yrs\n"
-            reply += f"   • **Skills:** {skills_str}\n\n"
-        return reply
-
-    # ==========================================
-    # --- EXISTING SESSION & CHAT LOGIC ---
-    # ==========================================
+    role = prompts.role_of(user_role)
 
     if session_id not in sessions:
         sessions[session_id] = {"intent": None, "step": None, "data": {}}
-    
     session = sessions[session_id]
 
     # 1. Check for Cancel/Stop
-    if message_lower in ["cancel", "stop", "exit", "quit", "abort"]:
+    if message_lower in ["cancel", "stop", "exit", "quit", "abort", "ruko", "band karo"]:
         sessions[session_id] = {"intent": None, "step": None, "data": {}}
-        return "🚫 **Process Cancelled.**\n\nI have cleared your current progress. What would you like to do instead?"
+        return _result("🚫 **Process Cancelled.**\n\nI have cleared your current progress. What would you like to do instead?",
+                       "message", suggestions=prompts.DEFAULT_SUGGESTIONS[role][:3])
 
     # 2. Check for Chat Reset
-    reset_phrases = [
-        "start over", "scrap this chat", "lets start", "let's start", 
-        "restart", "start again", "clear chat", "scrap chat"
-    ]
+    reset_phrases = ["start over", "scrap this chat", "lets start", "let's start",
+                     "restart", "start again", "clear chat", "scrap chat"]
     if message_lower in reset_phrases:
         sessions[session_id] = {"intent": None, "step": None, "data": {}}
-        return "🔄 **Chat Reset!**\n\nWhat do you wanna ask?"
+        return _result("🔄 **Chat Reset!**\n\nWhat would you like to ask?", "message",
+                       suggestions=prompts.DEFAULT_SUGGESTIONS[role][:3])
 
-    # 3. Interruption Check: a question asked in the middle of a form is answered from the knowledge base or the
-    #    job data (never a free model answer), then the form continues where it was
+    # 3. A question asked in the middle of a form is answered from the knowledge base or the job data (never a
+    #    free model answer), then the form continues where it was. Decided by rules: no extra model call.
     if session["intent"] and not message.startswith("uploads/"):
         ri = rule_intent(message, user_role)
-        is_question = ri in ("hr_knowledge", "view_jobs")
-        if ri is None and "?" in message:
-            check_prompt = f"Context: User is currently filling out a form field named '{session['step']}'.\nUser Message: '{message}'\nTask: Is the user providing an answer for the field, or are they asking a separate question/interrupting? Reply STRICTLY with 'ANSWER' or 'QUESTION'."
-            try:
-                comp = groq_client.chat.completions.create(
-                    model=config.GROQ_MODEL,
-                    messages=[{"role": "user", "content": check_prompt}],
-                    temperature=0, max_tokens=SHORT_ANSWER_TOKENS
-                )
-                is_question = "QUESTION" in (comp.choices[0].message.content or "").upper()
-            except Exception as e:  # noqa: BLE001
-                logger.warning("interruption check skipped: %s", e)
-        if is_question:
+        if ri in ("hr_knowledge", "view_jobs", "personal_data", "compare_jobs") or (ri is None and "?" in message):
             if ri == "view_jobs":
-                bot_answer = await job_search.list_jobs(message, user_role)
+                inner = await job_search.list_jobs(message, user_role)
             else:
-                bot_answer = (await job_search.job_detail(message, user_role)) or (await answer_from_kb(message))["text"]
+                inner = (await job_search.job_detail(message, user_role)) or (await answer_from_kb(message, user_role))
             step_friendly_name = session['step'].replace('ask_', '').replace('_', ' ').title()
-            return (f"💡 {bot_answer}\n\n━━━━━━━━━━━━━━━━━━━━\n⏳ **Now, let's get back to what we were doing!**\n"
+            back = (f"\n\n━━━━━━━━━━━━━━━━━━━━\n⏳ **Now, let's get back to what we were doing!**\n"
                     f"Please provide your: **{step_friendly_name}**")
+            inner["text"] = f"💡 {inner['text']}{back}"
+            inner["suggestions"] = ["cancel"]
+            return inner
 
     # --- 1. DETERMINE INTENT ---
+    query = message
     if not session["intent"]:
-        detail = await job_search.job_detail(message, user_role)
+        # the user says the previous answer was wrong: re-check it against the sources
+        if prev and is_correction(message) and not is_rephrase(message):
+            return await _recheck(prev, message, user_role)
+        # "no, I meant during probation" / "and when is it paid?" / "only in pune": read with the previous turn
+        if prev and (is_rephrase(message) or is_follow_up(message)) and prev.get("type") not in ("form", "greeting"):
+            query = f"{prev['user']} — {message}"
+            if prev.get("type") in ("jobs", "job_detail", "compare") and not POLICY_HINT.search(message):
+                return await job_search.list_jobs(query, user_role)
+
+        cmp = await job_search.compare_jobs(query)
+        if cmp:
+            return cmp
+        detail = await job_search.job_detail(query, user_role)
         if detail:
             return detail
-        intent = rule_intent(message, user_role) or get_intent(message, user_role)
+        intent = rule_intent(query, user_role)
+        if intent is None and role == "HR Admin":
+            intent = classify_admin(message)
+        intent = intent or "hr_knowledge"     # everything else is answered from the knowledge base or refused
+
+        if not prompts.allowed(intent, user_role):
+            return _result(prompts.not_allowed_reply(intent, user_role), "refusal",
+                           suggestions=prompts.DEFAULT_SUGGESTIONS[role][:3])
 
         if intent == "greeting":
-            return GREETINGS.get(user_role, GREETINGS["Candidate"])
-        
+            return _result(GREETINGS.get(role, GREETINGS["Candidate"]), "greeting",
+                           suggestions=prompts.DEFAULT_SUGGESTIONS[role])
+
+        if intent == "compare_jobs":
+            return await job_search.list_jobs(query, user_role)
+
+        if intent == "personal_data":
+            note = ("I can't see personal records like your leave balance or salary: you'll find them in the "
+                    "**HR portal**. Here's the general policy:")
+            res = await answer_from_kb(query, user_role)
+            if res["type"] == "policy":
+                res["text"] = f"{note}\n\n{res['text']}"
+                res["intro"] = note
+            else:
+                res["text"] = ("I can't see personal records like your leave balance or salary: you'll find them in "
+                               "the **HR portal**. Raise a ticket there if something looks off.")
+            return res
+
         if intent == "view_jobs":
-            return await job_search.list_jobs(message, user_role)
+            return await job_search.list_jobs(query, user_role)
 
         elif intent == "apply_job":
             session["intent"] = "apply_job"
+            named = await job_search.find_named_jobs(message)
+            if named:
+                title = named[0].get("title")
+                session["data"]["preferred_role"] = title
+                session["step"] = "ask_autofill"
+                return _result(f"Great, let's apply for **{title}** ({named[0].get('location', '')}). 📄 "
+                               "**Would you like to autofill your application using your resume?**\n\n"
+                               "Click the 📎 icon below to upload a PDF, or type **'No'** to fill out the form manually.",
+                               "form", suggestions=["No", "cancel"])
             session["step"] = "ask_role"
-            return "Sure. Which role are you interested in?"
-            
+            return _result("Sure. Which role are you interested in?", "form",
+                           suggestions=["Data Analyst", "Python Developer", "Customer Support Executive"])
+
         elif intent == "raise_hiring_request":
             session["intent"] = "raise_hiring_request"
             session["step"] = "ask_dept"
-            return "I can help with that. Please enter the department name."
-            
+            return _result("I can help with that. Please enter the department name.", "form",
+                           suggestions=["Tech", "HR", "BPO", "cancel"])
+
         elif intent == "check_status":
             session["intent"] = "check_status"
             session["step"] = "ask_email"
-            return "I can help you check your application status! 📋 Please enter your registered **Email ID**."
+            return _result("I can help you check your application status! 📋 Please enter your registered **Email ID**.",
+                           "form", suggestions=["cancel"])
 
         elif intent == "hr_admin_queries":
+            if re.search(r"\b(how many|count|number of|stats|summary|pipeline|kitne)\b", message_lower):
+                return await _pipeline_counts()
             if "shortlisted" in message_lower:
                 cands = await candidates_collection.find({"screening_status": "Shortlisted for next step"}).to_list(10)
                 if not cands: return "No shortlisted candidates found."
@@ -401,6 +477,7 @@ async def _process_message(session_id: str, message: str, user_role: str = "Cand
             return "I can help you generate a Job Description. What is the **Job Title**?"
 
         elif intent == "hr_manage_jobs":
+            session["intent"] = "hr_manage_jobs"
             step = session["step"]
             if not step:
                 session["step"] = "ask_manage_action"
@@ -453,12 +530,12 @@ async def _process_message(session_id: str, message: str, user_role: str = "Cand
                         return f"❌ I couldn't find an active job opening for '{target_role}'."
 
         elif intent == "hr_knowledge":
-            return await answer_from_kb(message)
+            return await answer_from_kb(query, user_role)
 
         # --- FALLBACK: answered only from the knowledge base (handbook + job openings), never from the model's
         #     general knowledge, so it cannot invent policies, numbers or roles ---
         else:
-            return await answer_from_kb(message)
+            return await answer_from_kb(query, user_role)
 
     # --- 2. CANDIDATE FLOW ---
     if session["intent"] == "apply_job":

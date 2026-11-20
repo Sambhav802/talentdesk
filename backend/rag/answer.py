@@ -1,24 +1,16 @@
-"""Grounded answers: the LLM sees only retrieved chunks, must cite them as [n], and says NOT_FOUND otherwise."""
+"""Grounded answers: the LLM sees only retrieved chunks, must cite them as [n], and says NOT_FOUND otherwise.
+
+The reply format (see prompts.policy_system) is a bold key-fact line plus up to 3 bullets; it is also returned as a
+structured "policy" card {title, key, points, sources} that the frontend renders as a compact card."""
 import re
 
 import llm
+import prompts
 
-NOT_FOUND = "NOT_FOUND"
+NOT_FOUND = prompts.NOT_FOUND
 NOT_IN_KB = ("I couldn't find that in the HR knowledge base. Please check with the HR team, "
              "or ask me about our policies, hiring process or open roles.")
-
-SYSTEM = f"""You are the HR assistant of Northwind Labs. Answer the employee's or candidate's question using ONLY
-the numbered context passages.
-Rules:
-- Start with the direct answer in the first sentence, including the exact number, amount, duration or date
-  from the passages (for example "18 days", "INR 25,000", "6 months", "last working day of the month").
-- Then add only the conditions or exceptions from the passages that matter for this question.
-- Every sentence that states a fact ends with the citation of the passage it came from, like [1] or [2][3].
-  Use plain square brackets.
-- Do not use outside knowledge and never guess numbers, dates or names.
-- If the passages answer only part of the question, answer that part and say the rest is not covered.
-- If the passages do not contain the answer at all, reply with exactly {NOT_FOUND} and nothing else.
-- Be concise: at most 4 short sentences or 5 bullet points."""
+SYSTEM = prompts.policy_system("Candidate")          # kept for callers/tests that read the default prompt
 
 # characters reasoning models like to emit that break matching and look odd in the chat window
 _CHAR_FIX = str.maketrans({" ": " ", " ": " ", " ": " ", " ": " ", "‑": "-", "‐": "-",
@@ -29,6 +21,7 @@ def clean(text: str) -> str:
     """Normalise model output: plain spaces and hyphens, [n] citations (models sometimes write 【1】 or [1†L3])."""
     text = (text or "").translate(_CHAR_FIX)
     text = re.sub(r"\[(\d+)[^\]\d][^\]]*\]", r"[\1]", text)       # [1†source] -> [1]
+    text = re.sub(r"(\w|\.|\*)\[(\d+)\]", r"\1 [\2]", text)          # "days[1]" -> "days [1]"
     return text.strip()
 
 
@@ -68,17 +61,51 @@ def sources_block(citations: list[dict]) -> str:
     return "\n\n**Sources**\n" + "\n".join(f"[{c['n']}] {c['label']}" for c in citations)
 
 
-def answer(question: str, hits: list[dict], complete=None) -> dict:
-    """Returns {"text": markdown answer incl. Sources, "citations": [...]}. `complete` is injectable for tests."""
+def to_card(reply: str, citations: list[dict]) -> dict:
+    """Split the model's reply into the key fact (first line) and bullet points."""
+    lines = [ln.strip() for ln in reply.splitlines() if ln.strip()]
+    key = lines[0] if lines else reply
+    bullet = re.compile(r"^[-*•]\s+")
+    points = [bullet.sub("", ln) for ln in lines[1:]]       # prose lines stay visible as points too
+    title = next((c["section"] for c in citations if c.get("section")), "") or "HR policy"
+    return {"kind": "policy", "title": title, "key": key, "points": points,
+            "sources": [{"n": c["n"], "label": c["label"]} for c in citations]}
+
+
+def related_questions(hits: list[dict], exclude: str = "", limit: int = 3) -> list[str]:
+    out = []
+    for h in hits:
+        q = prompts.SECTION_QUESTIONS.get(h.get("section", ""))
+        if q and q not in out and h.get("section") != exclude:
+            out.append(q)
+    return out[:limit]
+
+
+def not_found(hits: list[dict], user_role: str) -> dict:
+    sugg = related_questions(hits) or prompts.DEFAULT_SUGGESTIONS[prompts.role_of(user_role)][:3]
+    return {"text": NOT_IN_KB, "citations": [], "type": "not_found", "cards": [], "suggestions": sugg}
+
+
+def answer(question: str, hits: list[dict], complete=None, user_role: str = "Candidate",
+           correction: str | None = None, previous: str | None = None) -> dict:
+    """Returns {"text", "citations", "type", "cards", "suggestions"}. `complete` is injectable for tests.
+    With `correction` (the user's objection) and `previous` (the answer they object to), the model re-checks."""
     if not hits:
-        return {"text": NOT_IN_KB, "citations": []}
+        return not_found(hits, user_role)
     complete = complete or llm.complete
+    if correction:
+        system = prompts.correction_system(user_role)
+        user = (f"Context passages:\n\n{build_context(hits)}\n\nOriginal question: {question}\n"
+                f"Previous answer: {previous or '(not available)'}\nUser's objection: {correction}")
+    else:
+        system = prompts.policy_system(user_role)
+        user = f"Context passages:\n\n{build_context(hits)}\n\nQuestion: {question}"
     # a reasoning model (default openai/gpt-oss-120b) spends tokens thinking before it answers: leave room
-    reply = clean(complete([
-        {"role": "system", "content": SYSTEM},
-        {"role": "user", "content": f"Context passages:\n\n{build_context(hits)}\n\nQuestion: {question}"},
-    ], temperature=0, max_tokens=1500))
+    reply = clean(complete([{"role": "system", "content": system}, {"role": "user", "content": user}],
+                           temperature=0, max_tokens=1500))
     if not reply or NOT_FOUND in reply[:40]:
-        return {"text": NOT_IN_KB, "citations": []}
+        return not_found(hits, user_role)
     cites = make_citations(hits, reply)
-    return {"text": reply + sources_block(cites), "citations": cites}
+    card = to_card(reply, cites)
+    return {"text": reply + sources_block(cites), "citations": cites, "type": "policy", "cards": [card],
+            "suggestions": related_questions(hits, exclude=card["title"])}
