@@ -128,10 +128,14 @@ function Typing() {
 export default function ChatView({ messages, loading, quickReplies, onSend, onUpload, role }) {
   const [input, setInput] = useState('');
   const endRef = useRef(null);
+  const listRef = useRef(null);
   const fileRef = useRef(null);
   const inputRef = useRef(null);
 
-  useEffect(() => { endRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages, loading]);
+  useEffect(() => {
+    const el = listRef.current;
+    if (el) el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
+  }, [messages, loading]);
 
   const submit = (e) => {
     e?.preventDefault();
@@ -143,7 +147,7 @@ export default function ChatView({ messages, loading, quickReplies, onSend, onUp
 
   return (
     <div className="flex h-full min-h-0 flex-col">
-      <div className="min-h-0 flex-1 overflow-y-auto px-4 py-6 sm:px-6" aria-live="polite">
+      <div ref={listRef} className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-6 sm:px-6" aria-live="polite">
         <div className="mx-auto flex max-w-3xl flex-col gap-5">
           {messages.map((m, i) => (
             <Message key={i} msg={m} onSend={onSend} loading={loading} canApply={role === 'Candidate'}

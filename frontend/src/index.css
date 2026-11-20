@@ -4,7 +4,7 @@
 
 @layer base {
   html, body, #root { height: 100%; }
-  body { overflow: hidden; }
+  html, body { overflow: hidden; overscroll-behavior: none; }
   body {
     @apply bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
   }

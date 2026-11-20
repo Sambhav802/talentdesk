@@ -4,7 +4,7 @@ import { X } from 'lucide-react';
 export default function Modal({ title, onClose, children, size = 'md', dismissible = true }) {
   const ref = useRef(null);
   useEffect(() => {
-    ref.current?.focus();
+    ref.current?.focus({ preventScroll: true });
     const onKey = (e) => e.key === 'Escape' && dismissible && onClose?.();
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
