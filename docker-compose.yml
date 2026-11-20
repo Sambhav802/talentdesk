@@ -1,0 +1,38 @@
+# Local development: MongoDB + FastAPI backend + React frontend.
+#   cp backend/.env.example backend/.env   # add GROQ_API_KEY (and optionally HF_TOKEN / GEMINI_API_KEY)
+#   docker compose up --build              # UI on http://localhost:5173, API on http://localhost:8000
+services:
+  mongodb:
+    image: mongo:7
+    container_name: hr_chatbot_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build: ./backend
+    container_name: hr_chatbot_backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017
+      - ALLOWED_ORIGINS=http://localhost:5173
+    depends_on:
+      - mongodb
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        - VITE_API_URL=http://localhost:8000
+    container_name: hr_chatbot_frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:
