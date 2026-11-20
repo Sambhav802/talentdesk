@@ -1,5 +1,8 @@
 // All backend calls go through here. The backend URL comes from VITE_API_URL (set it in Vercel / .env).
-export const API_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/+$/, '');
+// Without it: localhost:8000 when running locally, otherwise the deployed demo backend.
+const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+const DEFAULT_API = isLocal ? 'http://localhost:8000' : 'https://talentdesk-two.vercel.app';
+export const API_BASE = (import.meta.env.VITE_API_URL || DEFAULT_API).replace(/\/+$/, '');
 
 export const apiUrl = (path) => `${API_BASE}/${String(path).replace(/^\/+/, '')}`;
 
