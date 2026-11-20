@@ -42,6 +42,22 @@ python scripts/run_conversations.py https://talentdesk-two.vercel.app --out ../d
 | Job replies carried the full card markdown in the text *and* as cards; the model also listed the jobs in the intro; many emoji | text built for card-less clients | `response` is the short intro when cards are present, `fallback` holds a compact emoji-free list; intro rewrites that become lists are rejected; at most one emoji per prose reply | `test_job_reply_text_is_the_intro_and_cards_carry_the_details`, `test_job_intro_rewrite_that_lists_jobs_is_rejected`, `test_at_most_one_emoji_in_prose` |
 | "how many leaves do I have left?" → "Here's the general policy: Your remaining leave balance can be viewed in the HR portal." | the personal question itself was sent to the model | the question is rewritten to the general rule ("How many days of annual and sick leave…") before retrieval; the HR-portal note appears once | `test_leave_balance_goes_straight_to_the_policy` |
 
+**Live check after round 3** (commits 4217dc8, 602cdfc, b601795; transcripts in `docs/qa/live_*_r3*`), read by the
+reviewer:
+- **Fixed question set:** 49/49.
+- **Hiring request:** asks for the **department** only.
+- **Follow-up** "and when is it paid?": answers only the 50% / 50% timing.
+- **Freshers in Noida:** three 0-year roles.
+- **Leave balance:** goes straight to the policy.
+- **Corrections** ("that's wrong", "galat hai", "90 days hai"): keep the handbook answer and say what it states.
+- **Job replies:** the text is one intro line, and the cards carry the details.
+
+Two more problems found in that run, both fixed:
+1. A privacy refusal was reworded as "the notice period during probation isn't available for your role", an
+   earlier turn leaking in. Rewrites now get only the current message and may add at most 2 new content words.
+2. "What skills are required for the Data Analyst role?" didn't state the skills in the reply text. Job detail
+   intros now answer the asked attribute from the record.
+
 The frontend already rendered job replies from `intro` + `cards` only (no double rendering); the compare table
 stays in the text because it is the comparison itself.
 

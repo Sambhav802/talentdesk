@@ -5,10 +5,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.4,
+  "secs": 2.9,
   "q": "How many days of paid annual leave do employees get?",
   "role": "Candidate",
-  "answer": "**18 days** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
+  "answer": "**18 days of paid annual leave per calendar year** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
   "extra": {
    "citations": [
     {
@@ -30,7 +30,7 @@
     {
      "kind": "policy",
      "title": "Leave policy",
-     "key": "**18 days** [1]",
+     "key": "**18 days of paid annual leave per calendar year** [1]",
      "points": [],
      "sources": [
       {
@@ -45,17 +45,17 @@
     "When are appraisals?",
     "What are the working hours?"
    ],
-   "fallback": "**18 days** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
+   "fallback": "**18 days of paid annual leave per calendar year** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
    "usage": {
     "calls": 1,
     "prompt_tokens": 1176,
-    "completion_tokens": 134,
+    "completion_tokens": 156,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 1176,
-      "completion_tokens": 134
+      "completion_tokens": 156
      }
     ]
    }
@@ -67,10 +67,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 3.5,
+  "secs": 3.0,
   "q": "How many days off do I get in a year?",
   "role": "Hiring Manager",
-  "answer": "**You get 18 days of paid annual leave, 8 days of sick leave, 10 public holidays, and 2 optional holidays each year.** [1][2][3]  \n- Up to 10 unused annual leave days can be carried forward; sick leave does not carry forward. [1]  \n- Optional holidays are chosen from the regional list published each December. [2]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Public holidays\n[3] Northwind Labs Employee Handbook · Leave policy",
+  "answer": "**You get 18 days of annual leave, 8 days of sick leave, 10 public holidays and 2 optional restricted holidays each year** [1][2]  \n- These categories are separate and are not combined into a single total. [1][2]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Public holidays",
   "extra": {
    "citations": [
     {
@@ -96,18 +96,6 @@
      "score": 0.6217,
      "label": "Northwind Labs Employee Handbook · Public holidays",
      "snippet": "There are 10 public holidays per year. The 2026 list: New Year's Day (1 January), Republic Day (26 January), Holi (4 March), Good Friday (3 April), Labour Day (1 May), Independence Day (15 August), Gandhi Jayanti (2 October), Dussehra (20 October), Diwali (8 November) and Christmas (25 December). Employees can also take 2 optional (restricted) holidays per year from the regional list published by HR. The list for the next year is published every December.\n\nEmployees who work on a public holiday because of a business need get a compensatory off, to be taken within 30 days."
-    },
-    {
-     "n": 3,
-     "title": "Northwind Labs Employee Handbook",
-     "section": "Leave policy",
-     "source": "seed:handbook.md",
-     "type": "document",
-     "chunk_index": 3,
-     "doc_id": "6b003c4839b1fed104f31349",
-     "score": 0.5116,
-     "label": "Northwind Labs Employee Handbook · Leave policy",
-     "snippet": "Unused sick leave does not carry forward. Maternity leave is 26 weeks of paid leave and paternity leave is 10 working days, both available after 80 days of service. Adoption leave is 12 weeks for the primary caregiver. Bereavement leave is 5 working days for the loss of an immediate family member. Marriage leave is 3 working days, once during employment.\n\nLeave requests must be raised in the HR portal at least 5 working days in advance, except for sick leave and emergencies. The reporting manager approves leave; HR only steps in for disputes. Interns get 1 day of paid leave per month of …"
     }
    ],
    "type": "policy",
@@ -116,10 +104,9 @@
     {
      "kind": "policy",
      "title": "Leave policy",
-     "key": "**You get 18 days of paid annual leave, 8 days of sick leave, 10 public holidays, and 2 optional holidays each year.** [1][2][3]",
+     "key": "**You get 18 days of annual leave, 8 days of sick leave, 10 public holidays and 2 optional restricted holidays each year** [1][2]",
      "points": [
-      "Up to 10 unused annual leave days can be carried forward; sick leave does not carry forward. [1]",
-      "Optional holidays are chosen from the regional list published each December. [2]"
+      "These categories are separate and are not combined into a single total. [1][2]"
      ],
      "sources": [
       {
@@ -129,10 +116,6 @@
       {
        "n": 2,
        "label": "Northwind Labs Employee Handbook · Public holidays"
-      },
-      {
-       "n": 3,
-       "label": "Northwind Labs Employee Handbook · Leave policy"
       }
      ]
     }
@@ -142,17 +125,17 @@
     "What are the working hours?",
     "When are appraisals?"
    ],
-   "fallback": "**You get 18 days of paid annual leave, 8 days of sick leave, 10 public holidays, and 2 optional holidays each year.** [1][2][3]  \n- Up to 10 unused annual leave days can be carried forward; sick leave does not carry forward. [1]  \n- Optional holidays are chosen from the regional list published each December. [2]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Public holidays\n[3] Northwind Labs Employee Handbook · Leave policy",
+   "fallback": "**You get 18 days of annual leave, 8 days of sick leave, 10 public holidays and 2 optional restricted holidays each year** [1][2]  \n- These categories are separate and are not combined into a single total. [1][2]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Public holidays",
    "usage": {
     "calls": 1,
     "prompt_tokens": 1220,
-    "completion_tokens": 598,
+    "completion_tokens": 461,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 1220,
-      "completion_tokens": 598
+      "completion_tokens": 461
      }
     ]
    }
@@ -164,7 +147,7 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.7,
+  "secs": 2.5,
   "q": "Can I carry forward my unused leave to next year?",
   "role": "Hiring Manager",
   "answer": "**Yes, you can carry forward up to 10 unused annual leave days to the next year** [1]  \n- Unused sick leave does not carry forward [1][2]  \n- Any annual leave beyond 10 days lapses on 31 December [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Leave policy",
@@ -227,13 +210,13 @@
    "usage": {
     "calls": 1,
     "prompt_tokens": 1137,
-    "completion_tokens": 231,
+    "completion_tokens": 229,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 1137,
-      "completion_tokens": 231
+      "completion_tokens": 229
      }
     ]
    }
@@ -245,10 +228,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.4,
+  "secs": 2.7,
   "q": "How many sick leaves do I get?",
   "role": "Candidate",
-  "answer": "**8 days of sick leave per year** [1]  \n- Unused sick leave does not carry forward [2]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Leave policy",
+  "answer": "**8 days of sick leave per year** [1][2]  \n- Unused sick leave does not carry forward. [1][2]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Leave policy",
   "extra": {
    "citations": [
     {
@@ -282,9 +265,9 @@
     {
      "kind": "policy",
      "title": "Leave policy",
-     "key": "**8 days of sick leave per year** [1]",
+     "key": "**8 days of sick leave per year** [1][2]",
      "points": [
-      "Unused sick leave does not carry forward [2]"
+      "Unused sick leave does not carry forward. [1][2]"
      ],
      "sources": [
       {
@@ -303,17 +286,17 @@
     "How does the exit process work?",
     "What is the notice period?"
    ],
-   "fallback": "**8 days of sick leave per year** [1]  \n- Unused sick leave does not carry forward [2]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Leave policy",
+   "fallback": "**8 days of sick leave per year** [1][2]  \n- Unused sick leave does not carry forward. [1][2]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Leave policy",
    "usage": {
     "calls": 1,
     "prompt_tokens": 1143,
-    "completion_tokens": 164,
+    "completion_tokens": 153,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 1143,
-      "completion_tokens": 164
+      "completion_tokens": 153
      }
     ]
    }
@@ -325,10 +308,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.5,
+  "secs": 2.7,
   "q": "When do I need a medical certificate for sick leave?",
   "role": "Hiring Manager",
-  "answer": "**Medical certificate is required for sick leave of more than 2 consecutive days** [1]  \n- Must be uploaded to the HR portal [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
+  "answer": "**A medical certificate is required for sick leave that exceeds 2 consecutive days.** [1]  \n- The certificate must be uploaded to the HR portal. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
   "extra": {
    "citations": [
     {
@@ -350,9 +333,9 @@
     {
      "kind": "policy",
      "title": "Leave policy",
-     "key": "**Medical certificate is required for sick leave of more than 2 consecutive days** [1]",
+     "key": "**A medical certificate is required for sick leave that exceeds 2 consecutive days.** [1]",
      "points": [
-      "Must be uploaded to the HR portal [1]"
+      "The certificate must be uploaded to the HR portal. [1]"
      ],
      "sources": [
       {
@@ -366,17 +349,17 @@
     "What health insurance do we get?",
     "What is the notice period?"
    ],
-   "fallback": "**Medical certificate is required for sick leave of more than 2 consecutive days** [1]  \n- Must be uploaded to the HR portal [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
+   "fallback": "**A medical certificate is required for sick leave that exceeds 2 consecutive days.** [1]  \n- The certificate must be uploaded to the HR portal. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
    "usage": {
     "calls": 1,
     "prompt_tokens": 1092,
-    "completion_tokens": 292,
+    "completion_tokens": 192,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 1092,
-      "completion_tokens": 292
+      "completion_tokens": 192
      }
     ]
    }
@@ -388,10 +371,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.1,
+  "secs": 3.0,
   "q": "How many public holidays are there in a year?",
   "role": "Candidate",
-  "answer": "**10** [1]  \n- Optional (restricted) holidays are additional and not counted in the 10 public holidays. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Public holidays",
+  "answer": "**10** [1]\n- Optional (restricted) holidays are separate from the public holiday count [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Public holidays",
   "extra": {
    "citations": [
     {
@@ -415,7 +398,7 @@
      "title": "Public holidays",
      "key": "**10** [1]",
      "points": [
-      "Optional (restricted) holidays are additional and not counted in the 10 public holidays. [1]"
+      "Optional (restricted) holidays are separate from the public holiday count [1]"
      ],
      "sources": [
       {
@@ -426,17 +409,17 @@
     }
    ],
    "suggestions": [],
-   "fallback": "**10** [1]  \n- Optional (restricted) holidays are additional and not counted in the 10 public holidays. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Public holidays",
+   "fallback": "**10** [1]\n- Optional (restricted) holidays are separate from the public holiday count [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Public holidays",
    "usage": {
     "calls": 1,
     "prompt_tokens": 640,
-    "completion_tokens": 136,
+    "completion_tokens": 121,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 640,
-      "completion_tokens": 136
+      "completion_tokens": 121
      }
     ]
    }
@@ -448,7 +431,7 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 3.2,
+  "secs": 2.4,
   "q": "What is the maternity leave policy?",
   "role": "Candidate",
   "answer": "**26 weeks of paid maternity leave, available after 80 days of service** [1]\n- Applies to eligible employees after completing 80 days of service [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
@@ -490,13 +473,13 @@
    "usage": {
     "calls": 1,
     "prompt_tokens": 850,
-    "completion_tokens": 194,
+    "completion_tokens": 195,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 850,
-      "completion_tokens": 194
+      "completion_tokens": 195
      }
     ]
    }
@@ -508,7 +491,7 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 3.7,
+  "secs": 2.3,
   "q": "How long is paternity leave?",
   "role": "Hiring Manager",
   "answer": "**10 working days** [1]  \n- Available after 80 days of service. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
@@ -572,10 +555,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.3,
+  "secs": 2.4,
   "q": "How early should I apply for leave?",
   "role": "Hiring Manager",
-  "answer": "**Leave requests must be raised in the HR portal at least 5 working days in advance** [1]  \n- Exception: sick leave and emergencies may be submitted later [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
+  "answer": "**Leave requests must be raised at least 5 working days in advance** [1]\n- Exceptions: sick leave and emergencies may be submitted later [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
   "extra": {
    "citations": [
     {
@@ -597,9 +580,9 @@
     {
      "kind": "policy",
      "title": "Leave policy",
-     "key": "**Leave requests must be raised in the HR portal at least 5 working days in advance** [1]",
+     "key": "**Leave requests must be raised at least 5 working days in advance** [1]",
      "points": [
-      "Exception: sick leave and emergencies may be submitted later [1]"
+      "Exceptions: sick leave and emergencies may be submitted later [1]"
      ],
      "sources": [
       {
@@ -613,17 +596,17 @@
     "Can I apply for an internal job posting?",
     "What is the interview process?"
    ],
-   "fallback": "**Leave requests must be raised in the HR portal at least 5 working days in advance** [1]  \n- Exception: sick leave and emergencies may be submitted later [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
+   "fallback": "**Leave requests must be raised at least 5 working days in advance** [1]\n- Exceptions: sick leave and emergencies may be submitted later [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
    "usage": {
     "calls": 1,
     "prompt_tokens": 1058,
-    "completion_tokens": 183,
+    "completion_tokens": 175,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 1058,
-      "completion_tokens": 183
+      "completion_tokens": 175
      }
     ]
    }
@@ -635,10 +618,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.5,
+  "secs": 3.0,
   "q": "Who approves my leave requests?",
   "role": "Hiring Manager",
-  "answer": "**The reporting manager approves leave requests.** [1]  \n- Leave requests must be raised in the HR portal at least 5 working days in advance, except for sick leave and emergencies. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
+  "answer": "**The reporting manager approves leave requests** [1]  \n- Leave requests must be raised in the HR portal at least 5 working days in advance, except for sick leave and emergencies. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
   "extra": {
    "citations": [
     {
@@ -660,7 +643,7 @@
     {
      "kind": "policy",
      "title": "Leave policy",
-     "key": "**The reporting manager approves leave requests.** [1]",
+     "key": "**The reporting manager approves leave requests** [1]",
      "points": [
       "Leave requests must be raised in the HR portal at least 5 working days in advance, except for sick leave and emergencies. [1]"
      ],
@@ -673,17 +656,17 @@
     }
    ],
    "suggestions": [],
-   "fallback": "**The reporting manager approves leave requests.** [1]  \n- Leave requests must be raised in the HR portal at least 5 working days in advance, except for sick leave and emergencies. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
+   "fallback": "**The reporting manager approves leave requests** [1]  \n- Leave requests must be raised in the HR portal at least 5 working days in advance, except for sick leave and emergencies. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
    "usage": {
     "calls": 1,
     "prompt_tokens": 780,
-    "completion_tokens": 204,
+    "completion_tokens": 189,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 780,
-      "completion_tokens": 204
+      "completion_tokens": 189
      }
     ]
    }
@@ -698,7 +681,7 @@
   "secs": 2.7,
   "q": "Is work from home allowed?",
   "role": "Candidate",
-  "answer": "**Yes, employees may work from home up to 2 days per week after completing probation** [1]  \n- Interns may work from home 1 day per week with mentor approval; roles advertised as “Remote” are fully remote and follow standard working hours [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Work from home",
+  "answer": "**Yes, employees may work from home up to 2 days per week after completing probation** [1]  \n- More than 2 days per week requires written approval from the department head; interns may work from home 1 day per week with mentor approval; roles advertised as “Remote” are fully remote. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Work from home",
   "extra": {
    "citations": [
     {
@@ -722,7 +705,7 @@
      "title": "Work from home",
      "key": "**Yes, employees may work from home up to 2 days per week after completing probation** [1]",
      "points": [
-      "Interns may work from home 1 day per week with mentor approval; roles advertised as “Remote” are fully remote and follow standard working hours [1]"
+      "More than 2 days per week requires written approval from the department head; interns may work from home 1 day per week with mentor approval; roles advertised as “Remote” are fully remote. [1]"
      ],
      "sources": [
       {
@@ -735,17 +718,17 @@
    "suggestions": [
     "What is the notice period?"
    ],
-   "fallback": "**Yes, employees may work from home up to 2 days per week after completing probation** [1]  \n- Interns may work from home 1 day per week with mentor approval; roles advertised as “Remote” are fully remote and follow standard working hours [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Work from home",
+   "fallback": "**Yes, employees may work from home up to 2 days per week after completing probation** [1]  \n- More than 2 days per week requires written approval from the department head; interns may work from home 1 day per week with mentor approval; roles advertised as “Remote” are fully remote. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Work from home",
    "usage": {
     "calls": 1,
     "prompt_tokens": 701,
-    "completion_tokens": 251,
+    "completion_tokens": 233,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 701,
-      "completion_tokens": 251
+      "completion_tokens": 233
      }
     ]
    }
@@ -757,10 +740,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 3.3,
+  "secs": 2.4,
   "q": "Can interns work from home?",
   "role": "Candidate",
-  "answer": "**Yes, interns can work from home 1 day per week with their mentor's approval.** [1]  \n- Requires mentor's approval [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Work from home",
+  "answer": "**Yes, interns can work from home 1 day per week with mentor approval** [1]\n- Interns are limited to 1 day per week and require mentor approval [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Work from home",
   "extra": {
    "citations": [
     {
@@ -782,9 +765,9 @@
     {
      "kind": "policy",
      "title": "Work from home",
-     "key": "**Yes, interns can work from home 1 day per week with their mentor's approval.** [1]",
+     "key": "**Yes, interns can work from home 1 day per week with mentor approval** [1]",
      "points": [
-      "Requires mentor's approval [1]"
+      "Interns are limited to 1 day per week and require mentor approval [1]"
      ],
      "sources": [
       {
@@ -795,17 +778,17 @@
     }
    ],
    "suggestions": [],
-   "fallback": "**Yes, interns can work from home 1 day per week with their mentor's approval.** [1]  \n- Requires mentor's approval [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Work from home",
+   "fallback": "**Yes, interns can work from home 1 day per week with mentor approval** [1]\n- Interns are limited to 1 day per week and require mentor approval [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Work from home",
    "usage": {
     "calls": 1,
     "prompt_tokens": 688,
-    "completion_tokens": 223,
+    "completion_tokens": 173,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 688,
-      "completion_tokens": 223
+      "completion_tokens": 173
      }
     ]
    }
@@ -817,10 +800,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.3,
+  "secs": 3.1,
   "q": "Is there any allowance for setting up a home office?",
   "role": "Hiring Manager",
-  "answer": "**A one-time home office allowance of INR 10,000 is reimbursed against bills for employees who have completed probation.** [1]  \n- Applies only to employees who have completed probation. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Work from home",
+  "answer": "**A one-time home office allowance of INR 10,000 is reimbursed against bills for employees who have completed probation.** [1]  \n- Only employees who have completed probation are eligible. [1]  \n- The allowance is a one-time reimbursement, not a recurring benefit. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Work from home",
   "extra": {
    "citations": [
     {
@@ -844,7 +827,8 @@
      "title": "Work from home",
      "key": "**A one-time home office allowance of INR 10,000 is reimbursed against bills for employees who have completed probation.** [1]",
      "points": [
-      "Applies only to employees who have completed probation. [1]"
+      "Only employees who have completed probation are eligible. [1]",
+      "The allowance is a one-time reimbursement, not a recurring benefit. [1]"
      ],
      "sources": [
       {
@@ -859,17 +843,17 @@
     "How do I claim expenses?",
     "What is the dress code?"
    ],
-   "fallback": "**A one-time home office allowance of INR 10,000 is reimbursed against bills for employees who have completed probation.** [1]  \n- Applies only to employees who have completed probation. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Work from home",
+   "fallback": "**A one-time home office allowance of INR 10,000 is reimbursed against bills for employees who have completed probation.** [1]  \n- Only employees who have completed probation are eligible. [1]  \n- The allowance is a one-time reimbursement, not a recurring benefit. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Work from home",
    "usage": {
     "calls": 1,
     "prompt_tokens": 1145,
-    "completion_tokens": 185,
+    "completion_tokens": 200,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 1145,
-      "completion_tokens": 185
+      "completion_tokens": 200
      }
     ]
    }
@@ -881,7 +865,7 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.5,
+  "secs": 2.4,
   "q": "How long is probation?",
   "role": "Hiring Manager",
   "answer": "**6 months** [1]  \n- Probation may be extended once by up to 3 months if the 5th-month review is unsatisfactory. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Probation",
@@ -945,10 +929,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.3,
+  "secs": 2.9,
   "q": "Can probation be extended?",
   "role": "Hiring Manager",
-  "answer": "**Yes, probation can be extended once, by up to 3 months, if the review is not satisfactory** [1]\n- The extension is limited to a single occurrence [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Probation",
+  "answer": "**Yes, probation can be extended once, by up to 3 months if the review is not satisfactory** [1]\n- Extension is limited to a single occurrence [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Probation",
   "extra": {
    "citations": [
     {
@@ -970,9 +954,9 @@
     {
      "kind": "policy",
      "title": "Probation",
-     "key": "**Yes, probation can be extended once, by up to 3 months, if the review is not satisfactory** [1]",
+     "key": "**Yes, probation can be extended once, by up to 3 months if the review is not satisfactory** [1]",
      "points": [
-      "The extension is limited to a single occurrence [1]"
+      "Extension is limited to a single occurrence [1]"
      ],
      "sources": [
       {
@@ -986,17 +970,17 @@
     "Is work from home allowed?",
     "What is the referral bonus?"
    ],
-   "fallback": "**Yes, probation can be extended once, by up to 3 months, if the review is not satisfactory** [1]\n- The extension is limited to a single occurrence [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Probation",
+   "fallback": "**Yes, probation can be extended once, by up to 3 months if the review is not satisfactory** [1]\n- Extension is limited to a single occurrence [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Probation",
    "usage": {
     "calls": 1,
     "prompt_tokens": 821,
-    "completion_tokens": 162,
+    "completion_tokens": 209,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 821,
-      "completion_tokens": 162
+      "completion_tokens": 209
      }
     ]
    }
@@ -1008,10 +992,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.5,
+  "secs": 2.3,
   "q": "What is the notice period during probation?",
   "role": "Candidate",
-  "answer": "**15 days** [1]\n- Applies only while the employee is on probation [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Probation",
+  "answer": "**15 days** [1]\n- Applies only during the probation period [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Probation",
   "extra": {
    "citations": [
     {
@@ -1035,7 +1019,7 @@
      "title": "Probation",
      "key": "**15 days** [1]",
      "points": [
-      "Applies only while the employee is on probation [1]"
+      "Applies only during the probation period [1]"
      ],
      "sources": [
       {
@@ -1050,17 +1034,17 @@
     "Is work from home allowed?",
     "How long is an offer valid?"
    ],
-   "fallback": "**15 days** [1]\n- Applies only while the employee is on probation [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Probation",
+   "fallback": "**15 days** [1]\n- Applies only during the probation period [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Probation",
    "usage": {
     "calls": 1,
     "prompt_tokens": 971,
-    "completion_tokens": 106,
+    "completion_tokens": 103,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 971,
-      "completion_tokens": 106
+      "completion_tokens": 103
      }
     ]
    }
@@ -1072,7 +1056,7 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.2,
+  "secs": 2.3,
   "q": "What is the notice period for senior employees?",
   "role": "HR Admin",
   "answer": "**60 days** [1]  \n- After confirmation, applies to Senior level and above (roles needing 5 or more years of experience) [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Notice period",
@@ -1136,10 +1120,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 3.7,
+  "secs": 2.7,
   "q": "What is the notice period policy?",
   "role": "HR Admin",
-  "answer": "**After confirmation, notice period is 60 days for Senior level and above (roles requiring ≥5 years experience) and 30 days for all other employees; during probation the notice period is 15 days.** [1][2]  \n- Buy-out of the notice period is allowed only with approval from the department head and HR. [1]  \n- Unused annual leave cannot be adjusted against the notice period. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Notice period\n[2] Northwind Labs Employee Handbook · Probation",
+  "answer": "**After confirmation, the notice period is 60 days for Senior level and above and 30 days for everyone else; during probation it is 15 days, and a buy-out is allowed with department-head and HR approval.** [1][2]  \n- Senior level and above are roles requiring 5 or more years of experience (e.g., Senior, Lead, Manager, Director). [1]  \n- Unused annual leave cannot be adjusted against the notice period. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Notice period\n[2] Northwind Labs Employee Handbook · Probation",
   "extra": {
    "citations": [
     {
@@ -1173,9 +1157,9 @@
     {
      "kind": "policy",
      "title": "Notice period",
-     "key": "**After confirmation, notice period is 60 days for Senior level and above (roles requiring ≥5 years experience) and 30 days for all other employees; during probation the notice period is 15 days.** [1][2]",
+     "key": "**After confirmation, the notice period is 60 days for Senior level and above and 30 days for everyone else; during probation it is 15 days, and a buy-out is allowed with department-head and HR approval.** [1][2]",
      "points": [
-      "Buy-out of the notice period is allowed only with approval from the department head and HR. [1]",
+      "Senior level and above are roles requiring 5 or more years of experience (e.g., Senior, Lead, Manager, Director). [1]",
       "Unused annual leave cannot be adjusted against the notice period. [1]"
      ],
      "sources": [
@@ -1195,17 +1179,17 @@
     "How long is an offer valid?",
     "How many leaves do I get?"
    ],
-   "fallback": "**After confirmation, notice period is 60 days for Senior level and above (roles requiring ≥5 years experience) and 30 days for all other employees; during probation the notice period is 15 days.** [1][2]  \n- Buy-out of the notice period is allowed only with approval from the department head and HR. [1]  \n- Unused annual leave cannot be adjusted against the notice period. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Notice period\n[2] Northwind Labs Employee Handbook · Probation",
+   "fallback": "**After confirmation, the notice period is 60 days for Senior level and above and 30 days for everyone else; during probation it is 15 days, and a buy-out is allowed with department-head and HR approval.** [1][2]  \n- Senior level and above are roles requiring 5 or more years of experience (e.g., Senior, Lead, Manager, Director). [1]  \n- Unused annual leave cannot be adjusted against the notice period. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Notice period\n[2] Northwind Labs Employee Handbook · Probation",
    "usage": {
     "calls": 1,
     "prompt_tokens": 1003,
-    "completion_tokens": 350,
+    "completion_tokens": 325,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 1003,
-      "completion_tokens": 350
+      "completion_tokens": 325
      }
     ]
    }
@@ -1220,7 +1204,7 @@
   "secs": 3.1,
   "q": "If I resign, can I use my leave balance to shorten the notice period?",
   "role": "Hiring Manager",
-  "answer": "I can't see your personal records: your leave balance is in the **HR portal**. The policy:\n\n**18 days of annual leave and 8 days of sick leave; up to 10 unused annual leave days can be carried forward, while sick leave does not carry forward** [1][2]\n- Annual leave is credited at 1.5 days per month [1]\n- Unused sick leave cannot be carried forward [1][2]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Leave policy",
+  "answer": "I can't see your personal records: your leave balance is in the **HR portal**. The policy:\n\n**Full-time employees get 18 days of annual leave and 8 days of sick leave per year; up to 10 unused annual leave days can be carried forward, while sick leave does not carry forward** [1][2]  \n- Applies to full-time staff; interns receive 1 day of paid leave per month with no carry-forward [1]  \n- Any annual leave beyond the 10-day carry-forward limit lapses on 31 December [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Leave policy",
   "extra": {
    "citations": [
     {
@@ -1254,10 +1238,10 @@
     {
      "kind": "policy",
      "title": "Leave policy",
-     "key": "**18 days of annual leave and 8 days of sick leave; up to 10 unused annual leave days can be carried forward, while sick leave does not carry forward** [1][2]",
+     "key": "**Full-time employees get 18 days of annual leave and 8 days of sick leave per year; up to 10 unused annual leave days can be carried forward, while sick leave does not carry forward** [1][2]",
      "points": [
-      "Annual leave is credited at 1.5 days per month [1]",
-      "Unused sick leave cannot be carried forward [1][2]"
+      "Applies to full-time staff; interns receive 1 day of paid leave per month with no carry-forward [1]",
+      "Any annual leave beyond the 10-day carry-forward limit lapses on 31 December [1]"
      ],
      "sources": [
       {
@@ -1276,17 +1260,17 @@
     "What is the notice period?",
     "What are the public holidays?"
    ],
-   "fallback": "I can't see your personal records: your leave balance is in the **HR portal**. The policy:\n\n**18 days of annual leave and 8 days of sick leave; up to 10 unused annual leave days can be carried forward, while sick leave does not carry forward** [1][2]\n- Annual leave is credited at 1.5 days per month [1]\n- Unused sick leave cannot be carried forward [1][2]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Leave policy",
+   "fallback": "I can't see your personal records: your leave balance is in the **HR portal**. The policy:\n\n**Full-time employees get 18 days of annual leave and 8 days of sick leave per year; up to 10 unused annual leave days can be carried forward, while sick leave does not carry forward** [1][2]  \n- Applies to full-time staff; interns receive 1 day of paid leave per month with no carry-forward [1]  \n- Any annual leave beyond the 10-day carry-forward limit lapses on 31 December [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Leave policy",
    "usage": {
     "calls": 1,
     "prompt_tokens": 1213,
-    "completion_tokens": 487,
+    "completion_tokens": 516,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 1213,
-      "completion_tokens": 487
+      "completion_tokens": 516
      }
     ]
    }
@@ -1298,7 +1282,7 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.6,
+  "secs": 2.8,
   "q": "Can I buy out my notice period?",
   "role": "Hiring Manager",
   "answer": "**Yes, you can buy out your notice period with approval from the department head and HR.** [1]\n- Requires approval from the department head and HR. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Notice period",
@@ -1361,10 +1345,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 3.2,
+  "secs": 2.7,
   "q": "What is the referral bonus for a role needing 2 years of experience?",
   "role": "Hiring Manager",
-  "answer": "**INR 25,000** [1]  \n- Paid in two equal parts: 50 % after the new hire joins and 50 % after they complete probation. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Employee referral bonus",
+  "answer": "**INR 25,000** [1]  \n- Paid in two equal installments: 50 % after the new hire joins and 50 % after they complete probation. [1]  \n- Interns, HR team members and the hiring manager for the role are not eligible for the bonus. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Employee referral bonus",
   "extra": {
    "citations": [
     {
@@ -1388,7 +1372,8 @@
      "title": "Employee referral bonus",
      "key": "**INR 25,000** [1]",
      "points": [
-      "Paid in two equal parts: 50 % after the new hire joins and 50 % after they complete probation. [1]"
+      "Paid in two equal installments: 50 % after the new hire joins and 50 % after they complete probation. [1]",
+      "Interns, HR team members and the hiring manager for the role are not eligible for the bonus. [1]"
      ],
      "sources": [
       {
@@ -1403,17 +1388,17 @@
     "What is the notice period?",
     "How does the exit process work?"
    ],
-   "fallback": "**INR 25,000** [1]  \n- Paid in two equal parts: 50 % after the new hire joins and 50 % after they complete probation. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Employee referral bonus",
+   "fallback": "**INR 25,000** [1]  \n- Paid in two equal installments: 50 % after the new hire joins and 50 % after they complete probation. [1]  \n- Interns, HR team members and the hiring manager for the role are not eligible for the bonus. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Employee referral bonus",
    "usage": {
     "calls": 1,
     "prompt_tokens": 945,
-    "completion_tokens": 231,
+    "completion_tokens": 208,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 945,
-      "completion_tokens": 231
+      "completion_tokens": 208
      }
     ]
    }
@@ -1425,10 +1410,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.7,
+  "secs": 2.5,
   "q": "How much is the referral bonus for senior roles?",
   "role": "Hiring Manager",
-  "answer": "**INR 50,000** [2]  \n- Only if the referrer is not the hiring manager, an intern, or an HR team member for that role [2]\n\n**Sources**\n[2] Northwind Labs Employee Handbook · Employee referral bonus",
+  "answer": "**INR 50,000** [2]  \n- Senior roles need more than 3 years of experience, thus the higher referral bonus applies. [2]\n\n**Sources**\n[2] Northwind Labs Employee Handbook · Employee referral bonus",
   "extra": {
    "citations": [
     {
@@ -1452,7 +1437,7 @@
      "title": "Employee referral bonus",
      "key": "**INR 50,000** [2]",
      "points": [
-      "Only if the referrer is not the hiring manager, an intern, or an HR team member for that role [2]"
+      "Senior roles need more than 3 years of experience, thus the higher referral bonus applies. [2]"
      ],
      "sources": [
       {
@@ -1467,17 +1452,17 @@
     "When are appraisals?",
     "What is the interview process?"
    ],
-   "fallback": "**INR 50,000** [2]  \n- Only if the referrer is not the hiring manager, an intern, or an HR team member for that role [2]\n\n**Sources**\n[2] Northwind Labs Employee Handbook · Employee referral bonus",
+   "fallback": "**INR 50,000** [2]  \n- Senior roles need more than 3 years of experience, thus the higher referral bonus applies. [2]\n\n**Sources**\n[2] Northwind Labs Employee Handbook · Employee referral bonus",
    "usage": {
     "calls": 1,
     "prompt_tokens": 971,
-    "completion_tokens": 224,
+    "completion_tokens": 200,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 971,
-      "completion_tokens": 224
+      "completion_tokens": 200
      }
     ]
    }
@@ -1553,10 +1538,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.3,
+  "secs": 2.4,
   "q": "Are interns eligible for the referral bonus?",
   "role": "Candidate",
-  "answer": "**No, interns are not eligible for the referral bonus.** [1]\n- Interns are explicitly excluded from eligibility. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Employee referral bonus",
+  "answer": "**No, interns are not eligible for the referral bonus.** [1]\n- Interns are explicitly excluded from eligibility per the employee handbook. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Employee referral bonus",
   "extra": {
    "citations": [
     {
@@ -1580,7 +1565,7 @@
      "title": "Employee referral bonus",
      "key": "**No, interns are not eligible for the referral bonus.** [1]",
      "points": [
-      "Interns are explicitly excluded from eligibility. [1]"
+      "Interns are explicitly excluded from eligibility per the employee handbook. [1]"
      ],
      "sources": [
       {
@@ -1593,17 +1578,17 @@
    "suggestions": [
     "When are appraisals?"
    ],
-   "fallback": "**No, interns are not eligible for the referral bonus.** [1]\n- Interns are explicitly excluded from eligibility. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Employee referral bonus",
+   "fallback": "**No, interns are not eligible for the referral bonus.** [1]\n- Interns are explicitly excluded from eligibility per the employee handbook. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Employee referral bonus",
    "usage": {
     "calls": 1,
     "prompt_tokens": 729,
-    "completion_tokens": 123,
+    "completion_tokens": 147,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 729,
-      "completion_tokens": 123
+      "completion_tokens": 147
      }
     ]
    }
@@ -1615,10 +1600,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.5,
+  "secs": 2.6,
   "q": "What is the interview process?",
   "role": "Candidate",
-  "answer": "**Most roles have four interview stages: an application screening by the HR assistant, a 30-minute HR call, one or two technical or functional interviews with the hiring team, and a final interview with the department head; candidates typically hear back within 5 working days after each stage and offers are made within 3 working days of the final interview** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Interview process",
+  "answer": "**Most roles follow four stages: an application screening by the HR assistant, a 30-minute HR call, one or two technical or functional interviews with the hiring team, and a final interview with the department head** [1]\n- Internships have a shorter process (screening, one technical interview, and an HR call) [1]\n- Customer-support roles replace the technical interview with a voice and communication assessment [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Interview process",
   "extra": {
    "citations": [
     {
@@ -1640,8 +1625,11 @@
     {
      "kind": "policy",
      "title": "Interview process",
-     "key": "**Most roles have four interview stages: an application screening by the HR assistant, a 30-minute HR call, one or two technical or functional interviews with the hiring team, and a final interview with the department head; candidates typically hear back within 5 working days after each stage and offers are made within 3 working days of the final interview** [1]",
-     "points": [],
+     "key": "**Most roles follow four stages: an application screening by the HR assistant, a 30-minute HR call, one or two technical or functional interviews with the hiring team, and a final interview with the department head** [1]",
+     "points": [
+      "Internships have a shorter process (screening, one technical interview, and an HR call) [1]",
+      "Customer-support roles replace the technical interview with a voice and communication assessment [1]"
+     ],
      "sources": [
       {
        "n": 1,
@@ -1653,17 +1641,17 @@
    "suggestions": [
     "Can I apply for an internal job posting?"
    ],
-   "fallback": "**Most roles have four interview stages: an application screening by the HR assistant, a 30-minute HR call, one or two technical or functional interviews with the hiring team, and a final interview with the department head; candidates typically hear back within 5 working days after each stage and offers are made within 3 working days of the final interview** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Interview process",
+   "fallback": "**Most roles follow four stages: an application screening by the HR assistant, a 30-minute HR call, one or two technical or functional interviews with the hiring team, and a final interview with the department head** [1]\n- Internships have a shorter process (screening, one technical interview, and an HR call) [1]\n- Customer-support roles replace the technical interview with a voice and communication assessment [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Interview process",
    "usage": {
     "calls": 1,
     "prompt_tokens": 681,
-    "completion_tokens": 220,
+    "completion_tokens": 344,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 681,
-      "completion_tokens": 220
+      "completion_tokens": 344
      }
     ]
    }
@@ -1675,7 +1663,7 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.2,
+  "secs": 2.0,
   "q": "How soon will I hear back after an interview?",
   "role": "Candidate",
   "answer": "**You will hear back within 5 working days after an interview.** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Interview process",
@@ -1717,13 +1705,13 @@
    "usage": {
     "calls": 1,
     "prompt_tokens": 685,
-    "completion_tokens": 90,
+    "completion_tokens": 89,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 685,
-      "completion_tokens": 90
+      "completion_tokens": 89
      }
     ]
    }
@@ -1735,7 +1723,7 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.8,
+  "secs": 2.7,
   "q": "How quickly are offers released after the final interview?",
   "role": "Candidate",
   "answer": "**Offers are rolled out within 3 working days of the final interview.** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Interview process",
@@ -1779,13 +1767,13 @@
    "usage": {
     "calls": 1,
     "prompt_tokens": 813,
-    "completion_tokens": 134,
+    "completion_tokens": 138,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 813,
-      "completion_tokens": 134
+      "completion_tokens": 138
      }
     ]
    }
@@ -1797,10 +1785,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.6,
+  "secs": 2.5,
   "q": "What does the internship hiring process look like?",
   "role": "Candidate",
-  "answer": "**The internship hiring process consists of a screening, one technical interview, and an HR call.** [1]\n- It is shorter than the standard four-stage process for most roles. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Interview process",
+  "answer": "**The internship hiring process includes a screening, one technical interview, and an HR call.** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Interview process",
   "extra": {
    "citations": [
     {
@@ -1822,10 +1810,8 @@
     {
      "kind": "policy",
      "title": "Interview process",
-     "key": "**The internship hiring process consists of a screening, one technical interview, and an HR call.** [1]",
-     "points": [
-      "It is shorter than the standard four-stage process for most roles. [1]"
-     ],
+     "key": "**The internship hiring process includes a screening, one technical interview, and an HR call.** [1]",
+     "points": [],
      "sources": [
       {
        "n": 1,
@@ -1838,17 +1824,17 @@
     "Can I apply for an internal job posting?",
     "How many leaves do I get?"
    ],
-   "fallback": "**The internship hiring process consists of a screening, one technical interview, and an HR call.** [1]\n- It is shorter than the standard four-stage process for most roles. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Interview process",
+   "fallback": "**The internship hiring process includes a screening, one technical interview, and an HR call.** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Interview process",
    "usage": {
     "calls": 1,
     "prompt_tokens": 831,
-    "completion_tokens": 220,
+    "completion_tokens": 191,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 831,
-      "completion_tokens": 220
+      "completion_tokens": 191
      }
     ]
    }
@@ -1860,10 +1846,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 3.2,
+  "secs": 3.3,
   "q": "What documents do I need for joining?",
   "role": "Candidate",
-  "answer": "**New joiners must submit a government photo ID, PAN card, address proof, educational certificates and mark sheets, relieving letters from previous employers, the last three salary slips, and two passport-size photographs.** [1]  \n- Documents must be uploaded to the HR portal before the joining date. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Documents required for joining",
+  "answer": "**You need to submit a government photo ID, PAN card, address proof, educational certificates and mark sheets, relieving letters from previous employers, the last three salary slips, and two passport-size photographs.** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Documents required for joining",
   "extra": {
    "citations": [
     {
@@ -1885,10 +1871,8 @@
     {
      "kind": "policy",
      "title": "Documents required for joining",
-     "key": "**New joiners must submit a government photo ID, PAN card, address proof, educational certificates and mark sheets, relieving letters from previous employers, the last three salary slips, and two passport-size photographs.** [1]",
-     "points": [
-      "Documents must be uploaded to the HR portal before the joining date. [1]"
-     ],
+     "key": "**You need to submit a government photo ID, PAN card, address proof, educational certificates and mark sheets, relieving letters from previous employers, the last three salary slips, and two passport-size photographs.** [1]",
+     "points": [],
      "sources": [
       {
        "n": 1,
@@ -1901,17 +1885,17 @@
     "How long is an offer valid?",
     "What health insurance do we get?"
    ],
-   "fallback": "**New joiners must submit a government photo ID, PAN card, address proof, educational certificates and mark sheets, relieving letters from previous employers, the last three salary slips, and two passport-size photographs.** [1]  \n- Documents must be uploaded to the HR portal before the joining date. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Documents required for joining",
+   "fallback": "**You need to submit a government photo ID, PAN card, address proof, educational certificates and mark sheets, relieving letters from previous employers, the last three salary slips, and two passport-size photographs.** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Documents required for joining",
    "usage": {
     "calls": 1,
-    "prompt_tokens": 771,
-    "completion_tokens": 244,
+    "prompt_tokens": 1539,
+    "completion_tokens": 267,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
-      "prompt_tokens": 771,
-      "completion_tokens": 244
+      "prompt_tokens": 1539,
+      "completion_tokens": 267
      }
     ]
    }
@@ -1923,10 +1907,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 3.1,
+  "secs": 2.3,
   "q": "Can I apply for an internal job posting?",
   "role": "Hiring Manager",
-  "answer": "**Yes, you can apply for an internal job posting if you have been in your current role for at least 12 months and you inform your reporting manager before applying.** [1]  \n- Must have 12 months tenure in current role and notify manager prior to applying. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Internal job postings",
+  "answer": "**Yes, if you have been in your current role for at least 12 months and you inform your reporting manager before applying.** [1]\n- Must notify your manager prior to submitting an internal application. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Internal job postings",
   "extra": {
    "citations": [
     {
@@ -1948,9 +1932,9 @@
     {
      "kind": "policy",
      "title": "Internal job postings",
-     "key": "**Yes, you can apply for an internal job posting if you have been in your current role for at least 12 months and you inform your reporting manager before applying.** [1]",
+     "key": "**Yes, if you have been in your current role for at least 12 months and you inform your reporting manager before applying.** [1]",
      "points": [
-      "Must have 12 months tenure in current role and notify manager prior to applying. [1]"
+      "Must notify your manager prior to submitting an internal application. [1]"
      ],
      "sources": [
       {
@@ -1963,17 +1947,17 @@
    "suggestions": [
     "What is the dress code?"
    ],
-   "fallback": "**Yes, you can apply for an internal job posting if you have been in your current role for at least 12 months and you inform your reporting manager before applying.** [1]  \n- Must have 12 months tenure in current role and notify manager prior to applying. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Internal job postings",
+   "fallback": "**Yes, if you have been in your current role for at least 12 months and you inform your reporting manager before applying.** [1]\n- Must notify your manager prior to submitting an internal application. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Internal job postings",
    "usage": {
     "calls": 1,
     "prompt_tokens": 677,
-    "completion_tokens": 286,
+    "completion_tokens": 193,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 677,
-      "completion_tokens": 286
+      "completion_tokens": 193
      }
     ]
    }
@@ -1985,10 +1969,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.4,
+  "secs": 2.6,
   "q": "What are the working hours?",
   "role": "Candidate",
-  "answer": "**Standard working hours are 9:30 AM to 6:30 PM, Monday to Friday, with a one-hour lunch break; teams may start flexibly between 8:00 AM and 11:00 AM as long as core collaboration hours of 11:00 AM to 4:00 PM are covered** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Working hours",
+  "answer": "**Standard working hours are 9:30 AM to 6:30 PM, Monday to Friday, with a one-hour lunch break; teams may start flexibly between 8:00 AM and 11:00 AM provided core collaboration hours of 11:00 AM to 4:00 PM are covered** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Working hours",
   "extra": {
    "citations": [
     {
@@ -2010,7 +1994,7 @@
     {
      "kind": "policy",
      "title": "Working hours",
-     "key": "**Standard working hours are 9:30 AM to 6:30 PM, Monday to Friday, with a one-hour lunch break; teams may start flexibly between 8:00 AM and 11:00 AM as long as core collaboration hours of 11:00 AM to 4:00 PM are covered** [1]",
+     "key": "**Standard working hours are 9:30 AM to 6:30 PM, Monday to Friday, with a one-hour lunch break; teams may start flexibly between 8:00 AM and 11:00 AM provided core collaboration hours of 11:00 AM to 4:00 PM are covered** [1]",
      "points": [],
      "sources": [
       {
@@ -2025,17 +2009,17 @@
     "Do I get a laptop?",
     "How does the exit process work?"
    ],
-   "fallback": "**Standard working hours are 9:30 AM to 6:30 PM, Monday to Friday, with a one-hour lunch break; teams may start flexibly between 8:00 AM and 11:00 AM as long as core collaboration hours of 11:00 AM to 4:00 PM are covered** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Working hours",
+   "fallback": "**Standard working hours are 9:30 AM to 6:30 PM, Monday to Friday, with a one-hour lunch break; teams may start flexibly between 8:00 AM and 11:00 AM provided core collaboration hours of 11:00 AM to 4:00 PM are covered** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Working hours",
    "usage": {
     "calls": 1,
     "prompt_tokens": 1015,
-    "completion_tokens": 204,
+    "completion_tokens": 202,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 1015,
-      "completion_tokens": 204
+      "completion_tokens": 202
      }
     ]
    }
@@ -2047,7 +2031,7 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.1,
+  "secs": 2.4,
   "q": "What are the core collaboration hours?",
   "role": "Hiring Manager",
   "answer": "**Core collaboration hours are 11:00 AM to 4:00 PM** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Working hours",
@@ -2108,10 +2092,10 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.2,
+  "secs": 3.5,
   "q": "How long does HR take to answer a ticket?",
   "role": "Hiring Manager",
-  "answer": "**HR tickets are answered within 2 working days** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Contact",
+  "answer": "**Tickets are answered within 2 working days** [1]  \n- Urgent payroll issues raised in the last week of the month are answered within 1 working day. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Contact",
   "extra": {
    "citations": [
     {
@@ -2133,8 +2117,10 @@
     {
      "kind": "policy",
      "title": "Contact",
-     "key": "**HR tickets are answered within 2 working days** [1]",
-     "points": [],
+     "key": "**Tickets are answered within 2 working days** [1]",
+     "points": [
+      "Urgent payroll issues raised in the last week of the month are answered within 1 working day. [1]"
+     ],
      "sources": [
       {
        "n": 1,
@@ -2148,17 +2134,17 @@
     "What are the working hours?",
     "What are the public holidays?"
    ],
-   "fallback": "**HR tickets are answered within 2 working days** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Contact",
+   "fallback": "**Tickets are answered within 2 working days** [1]  \n- Urgent payroll issues raised in the last week of the month are answered within 1 working day. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Contact",
    "usage": {
     "calls": 1,
     "prompt_tokens": 1127,
-    "completion_tokens": 109,
+    "completion_tokens": 237,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 1127,
-      "completion_tokens": 109
+      "completion_tokens": 237
      }
     ]
    }
@@ -2170,7 +2156,7 @@
   "kb": "new",
   "ok": true,
   "why": "",
-  "secs": 2.6,
+  "secs": 2.8,
   "q": "When is salary credited each month?",
   "role": "Hiring Manager",
   "answer": "**Salary is credited on the last working day of each month** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Payroll and payslips",
@@ -2232,10 +2218,10 @@
   "kb": "new",
   "ok": true,
   "why": "",
-  "secs": 2.8,
+  "secs": 3.2,
   "q": "Do employees get health insurance?",
   "role": "Candidate",
-  "answer": "**Yes, full-time employees receive group health insurance of INR 5,00,000 per year on a family-floater basis** [1]  \n- Coverage applies only to full-time employees from their date of joining [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Health insurance and benefits",
+  "answer": "**Yes, every full-time employee receives group health insurance covering INR 5,00,000 per year on a family-floater basis** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Health insurance and benefits",
   "extra": {
    "citations": [
     {
@@ -2257,10 +2243,8 @@
     {
      "kind": "policy",
      "title": "Health insurance and benefits",
-     "key": "**Yes, full-time employees receive group health insurance of INR 5,00,000 per year on a family-floater basis** [1]",
-     "points": [
-      "Coverage applies only to full-time employees from their date of joining [1]"
-     ],
+     "key": "**Yes, every full-time employee receives group health insurance covering INR 5,00,000 per year on a family-floater basis** [1]",
+     "points": [],
      "sources": [
       {
        "n": 1,
@@ -2273,17 +2257,17 @@
     "How many leaves do I get?",
     "What are the public holidays?"
    ],
-   "fallback": "**Yes, full-time employees receive group health insurance of INR 5,00,000 per year on a family-floater basis** [1]  \n- Coverage applies only to full-time employees from their date of joining [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Health insurance and benefits",
+   "fallback": "**Yes, every full-time employee receives group health insurance covering INR 5,00,000 per year on a family-floater basis** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Health insurance and benefits",
    "usage": {
     "calls": 1,
     "prompt_tokens": 981,
-    "completion_tokens": 239,
+    "completion_tokens": 227,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 981,
-      "completion_tokens": 239
+      "completion_tokens": 227
      }
     ]
    }
@@ -2295,10 +2279,10 @@
   "kb": "new",
   "ok": true,
   "why": "",
-  "secs": 2.8,
+  "secs": 3.5,
   "q": "Is there a learning and certification budget?",
   "role": "Hiring Manager",
-  "answer": "**Yes, each full-time employee has a learning budget of INR 30,000 per financial year for courses, certifications and conference tickets.** [1]  \n- Certification exam fees are reimbursed after the employee passes the exam. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Learning and development",
+  "answer": "**Yes, each full-time employee receives a learning budget of INR 30,000 per financial year for courses, certifications and conference tickets.** [1]  \n- Budget requires approval by the reporting manager. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Learning and development",
   "extra": {
    "citations": [
     {
@@ -2320,9 +2304,9 @@
     {
      "kind": "policy",
      "title": "Learning and development",
-     "key": "**Yes, each full-time employee has a learning budget of INR 30,000 per financial year for courses, certifications and conference tickets.** [1]",
+     "key": "**Yes, each full-time employee receives a learning budget of INR 30,000 per financial year for courses, certifications and conference tickets.** [1]",
      "points": [
-      "Certification exam fees are reimbursed after the employee passes the exam. [1]"
+      "Budget requires approval by the reporting manager. [1]"
      ],
      "sources": [
       {
@@ -2333,17 +2317,17 @@
     }
    ],
    "suggestions": [],
-   "fallback": "**Yes, each full-time employee has a learning budget of INR 30,000 per financial year for courses, certifications and conference tickets.** [1]  \n- Certification exam fees are reimbursed after the employee passes the exam. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Learning and development",
+   "fallback": "**Yes, each full-time employee receives a learning budget of INR 30,000 per financial year for courses, certifications and conference tickets.** [1]  \n- Budget requires approval by the reporting manager. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Learning and development",
    "usage": {
     "calls": 1,
     "prompt_tokens": 621,
-    "completion_tokens": 238,
+    "completion_tokens": 248,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 621,
-      "completion_tokens": 238
+      "completion_tokens": 248
      }
     ]
    }
@@ -2355,7 +2339,7 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 1.9,
+  "secs": 2.5,
   "q": "Show me remote jobs",
   "role": "Candidate",
   "answer": "Here are **13 open roles** (**remote**) (showing the first 10; narrow it down by city, team or skill). 😊",
@@ -2583,17 +2567,17 @@
     "Apply for Frontend Intern",
     "Jobs for freshers"
    ],
-   "fallback": "Here are **13 open roles** (**remote**) (showing the first 10; narrow it down by city, team or skill).\n\n- **Frontend Intern** · Tech · Remote · Freshers welcome · CTC INR 20,000-25,000 per month (stipend) · 1 opening, apply by 2026-12-31\n- **AI/ML Engineer** · Tech · Remote · 2.5+ yrs · CTC INR 6-9 LPA · 1 opening, apply by 2026-12-31\n- **Cloud Security Specialist** · Tech · Remote · 4.5+ yrs · CTC INR 10-15 LPA · 1 opening, apply by 2026-12-31\n- **Lead Frontend Developer** · Tech · Remote · 6+ yrs · CTC INR 18-26 LPA · 1 opening, apply by 2026-12-31\n- **Chat Support Agent** · BPO · Remote · Freshers welcome · CTC INR 2.4-3.6 LPA · 8 openings, apply by 2026-12-31\n- **Director of Customer Success** · BPO · Remote · 10+ yrs · CTC INR 12-18 LPA · 1 opening, apply by 2026-12-31\n- **HR Intern** · HR · Remote · Freshers welcome · CTC INR 20,000-25,000 per month (stipend) · 1 opening, apply by 2026-12-31\n- **Talent Acquisition Lead** · HR · Remote · 5+ yrs · CTC INR 8-12 LPA · 1 opening, apply by 2026-12-31\n- **Diversity and Inclusion Lead** · HR · Remote · 8.5+ yrs · CTC INR 15-22 LPA · 1 opening, apply by 2026-12-31\n- **Generative AI Engineer** · Tech · Remote · 2+ yrs · CTC INR 6-9 LPA · 2 openings, apply by 2026-12-31\n\nTap **Apply** on a role, or reply \"I want to apply for the <role> job\".",
+   "fallback": "Here are **13 open roles** (**remote**) (showing the first 10; narrow it down by city, team or skill).\n\n- **Frontend Intern** · Tech · Remote · Freshers welcome · CTC INR 20,000-25,000 per month (stipend) · 1 opening, apply by 2026-12-31, skills: HTML, CSS, React\n- **AI/ML Engineer** · Tech · Remote · 2.5+ yrs · CTC INR 6-9 LPA · 1 opening, apply by 2026-12-31, skills: Python, Machine Learning, LLM, LangChain\n- **Cloud Security Specialist** · Tech · Remote · 4.5+ yrs · CTC INR 10-15 LPA · 1 opening, apply by 2026-12-31, skills: Cybersecurity, AWS, Network Security\n- **Lead Frontend Developer** · Tech · Remote · 6+ yrs · CTC INR 18-26 LPA · 1 opening, apply by 2026-12-31, skills: React, Next.js, TypeScript, Redux\n- **Chat Support Agent** · BPO · Remote · Freshers welcome · CTC INR 2.4-3.6 LPA · 8 openings, apply by 2026-12-31, skills: Typing, Customer Service, Multitasking\n- **Director of Customer Success** · BPO · Remote · 10+ yrs · CTC INR 12-18 LPA · 1 opening, apply by 2026-12-31, skills: Strategic Planning, Client Retention, Executive Leadership\n- **HR Intern** · HR · Remote · Freshers welcome · CTC INR 20,000-25,000 per month (stipend) · 1 opening, apply by 2026-12-31, skills: Communication, MS Office, Organization\n- **Talent Acquisition Lead** · HR · Remote · 5+ yrs · CTC INR 8-12 LPA · 1 opening, apply by 2026-12-31, skills: Team Management, Stakeholder Management, Recruitment Strategy\n- **Diversity and Inclusion Lead** · HR · Remote · 8.5+ yrs · CTC INR 15-22 LPA · 1 opening, apply by 2026-12-31, skills: D&I Strategy, Cultural Change, Training\n- **Generative AI Engineer** · Tech · Remote · 2+ yrs · CTC INR 6-9 LPA · 2 openings, apply by 2026-12-31, skills: Python, LangChain, RAG, Vector Databases, FastAPI\n\nTap **Apply** on a role, or reply \"I want to apply for the <role> job\".",
    "usage": {
     "calls": 1,
-    "prompt_tokens": 560,
-    "completion_tokens": 43,
+    "prompt_tokens": 559,
+    "completion_tokens": 42,
     "by_model": [
      {
       "model": "openai/gpt-oss-20b",
       "purpose": "phrase",
-      "prompt_tokens": 560,
-      "completion_tokens": 43
+      "prompt_tokens": 559,
+      "completion_tokens": 42
      }
     ]
    }
@@ -2605,7 +2589,7 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 1.9,
+  "secs": 2.0,
   "q": "Which jobs are open in Pune?",
   "role": "Candidate",
   "answer": "Here are **10 open roles** in **Pune**.",
@@ -2836,17 +2820,17 @@
     "Apply for DevOps Engineer",
     "Jobs for freshers"
    ],
-   "fallback": "Here are **10 open roles** in **Pune**.\n\n- **DevOps Engineer** · Tech · Pune · 3+ yrs · CTC INR 10-15 LPA · 1 opening, apply by 2026-12-31\n- **Data Engineering Lead** · Tech · Pune · 6.5+ yrs · CTC INR 18-26 LPA · 1 opening, apply by 2026-12-31\n- **Technical Support L1** · BPO · Pune · 1+ yrs · CTC INR 3-4.5 LPA · 6 openings, apply by 2026-12-31\n- **Process Trainer** · BPO · Pune · 5.5+ yrs · CTC INR 7-10 LPA · 1 opening, apply by 2026-12-31\n- **HR Executive** · HR · Pune · 2+ yrs · CTC INR 5-7 LPA · 1 opening, apply by 2026-12-31\n- **HR Business Partner (HRBP)** · HR · Pune · 8+ yrs · CTC INR 15-22 LPA · 1 opening, apply by 2026-12-31\n- **Python Developer** · Tech · Pune · 2+ yrs · CTC INR 6-9 LPA · 2 openings, apply by 2026-12-31\n- **Email Support Executive** · BPO · Pune · 1+ yrs · CTC INR 3-4.5 LPA · 6 openings, apply by 2026-12-31\n- **HR Operations Executive** · HR · Pune · 1+ yrs · CTC INR 3.5-5 LPA · 1 opening, apply by 2026-12-31\n- **Inside Sales Executive** · Sales · Pune · 1+ yrs · CTC INR 3.5-5 LPA · 4 openings, apply by 2026-12-31\n\nTap **Apply** on a role, or reply \"I want to apply for the <role> job\".",
+   "fallback": "Here are **10 open roles** in **Pune**.\n\n- **DevOps Engineer** · Tech · Pune · 3+ yrs · CTC INR 10-15 LPA · 1 opening, apply by 2026-12-31, skills: AWS, Docker, Kubernetes, CI/CD\n- **Data Engineering Lead** · Tech · Pune · 6.5+ yrs · CTC INR 18-26 LPA · 1 opening, apply by 2026-12-31, skills: Spark, Hadoop, Python, Snowflake\n- **Technical Support L1** · BPO · Pune · 1+ yrs · CTC INR 3-4.5 LPA · 6 openings, apply by 2026-12-31, skills: Troubleshooting, Windows, Ticketing System\n- **Process Trainer** · BPO · Pune · 5.5+ yrs · CTC INR 7-10 LPA · 1 opening, apply by 2026-12-31, skills: Training Delivery, Content Creation, Communication\n- **HR Executive** · HR · Pune · 2+ yrs · CTC INR 5-7 LPA · 1 opening, apply by 2026-12-31, skills: Onboarding, Employee Engagement, Grievance Handling\n- **HR Business Partner (HRBP)** · HR · Pune · 8+ yrs · CTC INR 15-22 LPA · 1 opening, apply by 2026-12-31, skills: Strategic HR, Coaching, Organizational Design\n- **Python Developer** · Tech · Pune · 2+ yrs · CTC INR 6-9 LPA · 2 openings, apply by 2026-12-31, skills: Python, FastAPI, PostgreSQL, Docker, REST APIs\n- **Email Support Executive** · BPO · Pune · 1+ yrs · CTC INR 3-4.5 LPA · 6 openings, apply by 2026-12-31, skills: Written English, Email Support, Zendesk, Typing 35 WPM\n- **HR Operations Executive** · HR · Pune · 1+ yrs · CTC INR 3.5-5 LPA · 1 opening, apply by 2026-12-31, skills: HRMS, Onboarding, Excel, Employee Records\n- **Inside Sales Executive** · Sales · Pune · 1+ yrs · CTC INR 3.5-5 LPA · 4 openings, apply by 2026-12-31, skills: B2B Sales, Cold Calling, CRM, Communication\n\nTap **Apply** on a role, or reply \"I want to apply for the <role> job\".",
    "usage": {
     "calls": 1,
-    "prompt_tokens": 541,
-    "completion_tokens": 40,
+    "prompt_tokens": 540,
+    "completion_tokens": 34,
     "by_model": [
      {
       "model": "openai/gpt-oss-20b",
       "purpose": "phrase",
-      "prompt_tokens": 541,
-      "completion_tokens": 40
+      "prompt_tokens": 540,
+      "completion_tokens": 34
      }
     ]
    }
@@ -3093,17 +3077,17 @@
     "Python jobs in Bengaluru",
     "Jobs for freshers"
    ],
-   "fallback": "Here are **10 open roles** matching **python**.\n\n- **Junior Python Developer** · Tech · Noida · Freshers welcome · CTC INR 4-6 LPA · 3 openings, apply by 2026-12-31\n- **Python Developer** · Tech · Pune · 2+ yrs · CTC INR 6-9 LPA · 2 openings, apply by 2026-12-31\n- **Backend Developer** · Tech · Noida · 2+ yrs · CTC INR 6-9 LPA · 1 opening, apply by 2026-12-31\n- **AI/ML Engineer** · Tech · Remote · 2.5+ yrs · CTC INR 6-9 LPA · 1 opening, apply by 2026-12-31\n- **Senior Data Scientist** · Tech · Gurugram · 5+ yrs · CTC INR 18-26 LPA · 1 opening, apply by 2026-12-31\n- **Data Engineering Lead** · Tech · Pune · 6.5+ yrs · CTC INR 18-26 LPA · 1 opening, apply by 2026-12-31\n- **Tech Lead - AI** · Tech · Noida · 7+ yrs · CTC INR 28-38 LPA · 1 opening, apply by 2026-12-31\n- **Machine Learning Intern** · Tech · Bengaluru · Freshers welcome · CTC INR 20,000-25,000 per month (stipend) · 2 openings, apply by 2026-12-31\n- **Generative AI Engineer** · Tech · Remote · 2+ yrs · CTC INR 6-9 LPA · 2 openings, apply by 2026-12-31\n- **Data Scientist** · Tech · Hyderabad · 3+ yrs · CTC INR 10-15 LPA · 1 opening, apply by 2026-12-31\n\nTap **Apply** on a role, or reply \"I want to apply for the <role> job\".",
+   "fallback": "Here are **10 open roles** matching **python**.\n\n- **Junior Python Developer** · Tech · Noida · Freshers welcome · CTC INR 4-6 LPA · 3 openings, apply by 2026-12-31, skills: Python, SQL, Git\n- **Python Developer** · Tech · Pune · 2+ yrs · CTC INR 6-9 LPA · 2 openings, apply by 2026-12-31, skills: Python, FastAPI, PostgreSQL, Docker, REST APIs\n- **Backend Developer** · Tech · Noida · 2+ yrs · CTC INR 6-9 LPA · 1 opening, apply by 2026-12-31, skills: Python, Django, FastAPI\n- **AI/ML Engineer** · Tech · Remote · 2.5+ yrs · CTC INR 6-9 LPA · 1 opening, apply by 2026-12-31, skills: Python, Machine Learning, LLM, LangChain\n- **Senior Data Scientist** · Tech · Gurugram · 5+ yrs · CTC INR 18-26 LPA · 1 opening, apply by 2026-12-31, skills: Python, Deep Learning, TensorFlow, PyTorch\n- **Data Engineering Lead** · Tech · Pune · 6.5+ yrs · CTC INR 18-26 LPA · 1 opening, apply by 2026-12-31, skills: Spark, Hadoop, Python, Snowflake\n- **Tech Lead - AI** · Tech · Noida · 7+ yrs · CTC INR 28-38 LPA · 1 opening, apply by 2026-12-31, skills: Python, System Design, Generative AI\n- **Machine Learning Intern** · Tech · Bengaluru · Freshers welcome · CTC INR 20,000-25,000 per month (stipend) · 2 openings, apply by 2026-12-31, skills: Python, PyTorch, Pandas, SQL\n- **Generative AI Engineer** · Tech · Remote · 2+ yrs · CTC INR 6-9 LPA · 2 openings, apply by 2026-12-31, skills: Python, LangChain, RAG, Vector Databases, FastAPI\n- **Data Scientist** · Tech · Hyderabad · 3+ yrs · CTC INR 10-15 LPA · 1 opening, apply by 2026-12-31, skills: Python, Machine Learning, SQL, Statistics, A/B Testing\n\nTap **Apply** on a role, or reply \"I want to apply for the <role> job\".",
    "usage": {
     "calls": 1,
-    "prompt_tokens": 539,
-    "completion_tokens": 300,
+    "prompt_tokens": 538,
+    "completion_tokens": 137,
     "by_model": [
      {
       "model": "openai/gpt-oss-20b",
       "purpose": "phrase",
-      "prompt_tokens": 539,
-      "completion_tokens": 300
+      "prompt_tokens": 538,
+      "completion_tokens": 137
      }
     ]
    }
@@ -3115,7 +3099,7 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.1,
+  "secs": 2.2,
   "q": "Any job openings for Python in Noida?",
   "role": "Candidate",
   "answer": "Here are **3 open roles** in **Noida** matching **python**.",
@@ -3192,17 +3176,17 @@
     "Apply for Junior Python Developer",
     "Jobs for freshers"
    ],
-   "fallback": "Here are **3 open roles** in **Noida** matching **python**.\n\n- **Junior Python Developer** · Tech · Noida · Freshers welcome · CTC INR 4-6 LPA · 3 openings, apply by 2026-12-31\n- **Backend Developer** · Tech · Noida · 2+ yrs · CTC INR 6-9 LPA · 1 opening, apply by 2026-12-31\n- **Tech Lead - AI** · Tech · Noida · 7+ yrs · CTC INR 28-38 LPA · 1 opening, apply by 2026-12-31\n\nTap **Apply** on a role, or reply \"I want to apply for the <role> job\".",
+   "fallback": "Here are **3 open roles** in **Noida** matching **python**.\n\n- **Junior Python Developer** · Tech · Noida · Freshers welcome · CTC INR 4-6 LPA · 3 openings, apply by 2026-12-31, skills: Python, SQL, Git\n- **Backend Developer** · Tech · Noida · 2+ yrs · CTC INR 6-9 LPA · 1 opening, apply by 2026-12-31, skills: Python, Django, FastAPI\n- **Tech Lead - AI** · Tech · Noida · 7+ yrs · CTC INR 28-38 LPA · 1 opening, apply by 2026-12-31, skills: Python, System Design, Generative AI\n\nTap **Apply** on a role, or reply \"I want to apply for the <role> job\".",
    "usage": {
     "calls": 1,
-    "prompt_tokens": 472,
-    "completion_tokens": 40,
+    "prompt_tokens": 471,
+    "completion_tokens": 93,
     "by_model": [
      {
       "model": "openai/gpt-oss-20b",
       "purpose": "phrase",
-      "prompt_tokens": 472,
-      "completion_tokens": 40
+      "prompt_tokens": 471,
+      "completion_tokens": 93
      }
     ]
    }
@@ -3214,14 +3198,14 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.0,
+  "secs": 2.3,
   "q": "Are there any HR roles open?",
   "role": "Candidate",
-  "answer": "Here are **16 open roles** matching **HR** (showing the first 10; narrow it down by city, team or skill).",
+  "answer": "Here are **16 open roles** matching **HR** (showing the first 10; narrow it down by city, team or skill). 😊",
   "extra": {
    "citations": [],
    "type": "jobs",
-   "intro": "Here are **16 open roles** matching **HR** (showing the first 10; narrow it down by city, team or skill).",
+   "intro": "Here are **16 open roles** matching **HR** (showing the first 10; narrow it down by city, team or skill). 😊",
    "cards": [
     {
      "kind": "job",
@@ -3441,17 +3425,17 @@
     "Hr jobs in Bengaluru",
     "Jobs for freshers"
    ],
-   "fallback": "Here are **16 open roles** matching **HR** (showing the first 10; narrow it down by city, team or skill).\n\n- **HR Intern** · HR · Remote · Freshers welcome · CTC INR 20,000-25,000 per month (stipend) · 1 opening, apply by 2026-12-31\n- **Recruitment Coordinator** · HR · Noida · 1+ yrs · CTC INR 3.5-5 LPA · 2 openings, apply by 2026-12-31\n- **HR Executive** · HR · Pune · 2+ yrs · CTC INR 5-7 LPA · 1 opening, apply by 2026-12-31\n- **IT Recruiter** · HR · Bengaluru · 2.5+ yrs · CTC INR 5-7 LPA · 1 opening, apply by 2026-12-31\n- **Payroll Specialist** · HR · Noida · 3+ yrs · CTC INR 5-7 LPA · 1 opening, apply by 2026-12-31\n- **HR Generalist** · HR · Gurugram · 4+ yrs · CTC INR 8-12 LPA · 1 opening, apply by 2026-12-31\n- **Talent Acquisition Lead** · HR · Remote · 5+ yrs · CTC INR 8-12 LPA · 1 opening, apply by 2026-12-31\n- **Employee Relations Manager** · HR · Noida · 6+ yrs · CTC INR 8-12 LPA · 1 opening, apply by 2026-12-31\n- **Compensation & Benefits Manager** · HR · Bengaluru · 7+ yrs · CTC INR 15-22 LPA · 1 opening, apply by 2026-12-31\n- **HR Business Partner (HRBP)** · HR · Pune · 8+ yrs · CTC INR 15-22 LPA · 1 opening, apply by 2026-12-31\n\nTap **Apply** on a role, or reply \"I want to apply for the <role> job\".",
+   "fallback": "Here are **16 open roles** matching **HR** (showing the first 10; narrow it down by city, team or skill).\n\n- **HR Intern** · HR · Remote · Freshers welcome · CTC INR 20,000-25,000 per month (stipend) · 1 opening, apply by 2026-12-31, skills: Communication, MS Office, Organization\n- **Recruitment Coordinator** · HR · Noida · 1+ yrs · CTC INR 3.5-5 LPA · 2 openings, apply by 2026-12-31, skills: Scheduling, Email Etiquette, ATS Management\n- **HR Executive** · HR · Pune · 2+ yrs · CTC INR 5-7 LPA · 1 opening, apply by 2026-12-31, skills: Onboarding, Employee Engagement, Grievance Handling\n- **IT Recruiter** · HR · Bengaluru · 2.5+ yrs · CTC INR 5-7 LPA · 1 opening, apply by 2026-12-31, skills: Tech Sourcing, Naukri, LinkedIn Recruiter, Screening\n- **Payroll Specialist** · HR · Noida · 3+ yrs · CTC INR 5-7 LPA · 1 opening, apply by 2026-12-31, skills: Payroll Processing, Taxation, Excel, Compliance\n- **HR Generalist** · HR · Gurugram · 4+ yrs · CTC INR 8-12 LPA · 1 opening, apply by 2026-12-31, skills: Performance Management, Policy Implementation, Exit Management\n- **Talent Acquisition Lead** · HR · Remote · 5+ yrs · CTC INR 8-12 LPA · 1 opening, apply by 2026-12-31, skills: Team Management, Stakeholder Management, Recruitment Strategy\n- **Employee Relations Manager** · HR · Noida · 6+ yrs · CTC INR 8-12 LPA · 1 opening, apply by 2026-12-31, skills: Conflict Resolution, Labor Laws, Engagement Strategies\n- **Compensation & Benefits Manager** · HR · Bengaluru · 7+ yrs · CTC INR 15-22 LPA · 1 opening, apply by 2026-12-31, skills: Market Benchmarking, Data Analysis, Reward Strategy\n- **HR Business Partner (HRBP)** · HR · Pune · 8+ yrs · CTC INR 15-22 LPA · 1 opening, apply by 2026-12-31, skills: Strategic HR, Coaching, Organizational Design\n\nTap **Apply** on a role, or reply \"I want to apply for the <role> job\".",
    "usage": {
     "calls": 1,
-    "prompt_tokens": 563,
-    "completion_tokens": 62,
+    "prompt_tokens": 562,
+    "completion_tokens": 44,
     "by_model": [
      {
       "model": "openai/gpt-oss-20b",
       "purpose": "phrase",
-      "prompt_tokens": 563,
-      "completion_tokens": 62
+      "prompt_tokens": 562,
+      "completion_tokens": 44
      }
     ]
    }
@@ -3461,16 +3445,16 @@
   "id": "jobs-skill-detail",
   "kind": "jobs",
   "kb": "existing",
-  "ok": false,
-  "why": "none of /SQL|Excel|Power BI|Python|Tableau/",
-  "secs": 2.0,
+  "ok": true,
+  "why": "",
+  "secs": 2.4,
   "q": "What skills are required for the Data Analyst role?",
   "role": "Candidate",
-  "answer": "Here is the job card for **Data Analyst** (Bengaluru).",
+  "answer": "**Data Analyst** (Bengaluru) needs: **Excel, SQL, Tableau**.",
   "extra": {
    "citations": [],
    "type": "job_detail",
-   "intro": "Here is the job card for **Data Analyst** (Bengaluru).",
+   "intro": "**Data Analyst** (Bengaluru) needs: **Excel, SQL, Tableau**.",
    "cards": [
     {
      "kind": "job",
@@ -3499,17 +3483,17 @@
     "Other jobs in Bengaluru",
     "Tech jobs"
    ],
-   "fallback": "Here are the details for **Data Analyst** (Bengaluru):\n\n- **Data Analyst** · Tech · Bengaluru · 1.5+ yrs · CTC INR 6-9 LPA · 1 opening, apply by 2026-12-31\n\nTap **Apply** or reply \"I want to apply for the Data Analyst job\".",
+   "fallback": "**Data Analyst** (Bengaluru) needs: **Excel, SQL, Tableau**.\n\n- **Data Analyst** · Tech · Bengaluru · 1.5+ yrs · CTC INR 6-9 LPA · 1 opening, apply by 2026-12-31, skills: Excel, SQL, Tableau\n\nTap **Apply** or reply \"I want to apply for the Data Analyst job\".",
    "usage": {
     "calls": 1,
-    "prompt_tokens": 370,
-    "completion_tokens": 93,
+    "prompt_tokens": 374,
+    "completion_tokens": 115,
     "by_model": [
      {
       "model": "openai/gpt-oss-20b",
       "purpose": "phrase",
-      "prompt_tokens": 370,
-      "completion_tokens": 93
+      "prompt_tokens": 374,
+      "completion_tokens": 115
      }
     ]
    }
@@ -3537,13 +3521,13 @@
    "usage": {
     "calls": 1,
     "prompt_tokens": 610,
-    "completion_tokens": 54,
+    "completion_tokens": 47,
     "by_model": [
      {
       "model": "openai/gpt-oss-120b",
       "purpose": "answer",
       "prompt_tokens": 610,
-      "completion_tokens": 54
+      "completion_tokens": 47
      }
     ]
    }
@@ -3555,7 +3539,7 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.4,
+  "secs": 2.2,
   "q": "What is the CEO's salary?",
   "role": "Hiring Manager",
   "answer": "I couldn't find that in the HR knowledge base. Please check with the HR team, or ask me about our policies, hiring process or open roles.",
@@ -3591,7 +3575,7 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.4,
+  "secs": 2.5,
   "q": "What is the capital of France?",
   "role": "Candidate",
   "answer": "I couldn't find that in the HR knowledge base. Please check with the HR team, or ask me about our policies, hiring process or open roles.",
@@ -3608,14 +3592,14 @@
    "fallback": "I couldn't find that in the HR knowledge base. Please check with the HR team, or ask me about our policies, hiring process or open roles.",
    "usage": {
     "calls": 1,
-    "prompt_tokens": 335,
-    "completion_tokens": 89,
+    "prompt_tokens": 334,
+    "completion_tokens": 152,
     "by_model": [
      {
       "model": "openai/gpt-oss-20b",
       "purpose": "phrase",
-      "prompt_tokens": 335,
-      "completion_tokens": 89
+      "prompt_tokens": 334,
+      "completion_tokens": 152
      }
     ]
    }
@@ -3627,7 +3611,7 @@
   "kb": "existing",
   "ok": true,
   "why": "",
-  "secs": 2.4,
+  "secs": 2.3,
   "q": "Do employees get stock options?",
   "role": "Hiring Manager",
   "answer": "I couldn't find that in the HR knowledge base. Please check with the HR team, or ask me about our policies, hiring process or open roles.",
@@ -3665,8 +3649,8 @@
   "transcript": [
    {
     "say": "I want to apply for a job",
-    "answer": "Sure 😊 Which role are you interested in?",
-    "secs": 1.9,
+    "answer": "Sure! Which **role** are you interested in? 😊",
+    "secs": 2.1,
     "extra": {
      "citations": [],
      "type": "form",
@@ -3677,17 +3661,17 @@
       "Python Developer",
       "Customer Support Executive"
      ],
-     "fallback": "Sure 😊 Which role are you interested in?",
+     "fallback": "Sure! Which **role** are you interested in? 😊",
      "usage": {
       "calls": 1,
-      "prompt_tokens": 317,
-      "completion_tokens": 29,
+      "prompt_tokens": 316,
+      "completion_tokens": 46,
       "by_model": [
        {
         "model": "openai/gpt-oss-20b",
         "purpose": "phrase",
-        "prompt_tokens": 317,
-        "completion_tokens": 29
+        "prompt_tokens": 316,
+        "completion_tokens": 46
        }
       ]
      }
@@ -3696,7 +3680,7 @@
    {
     "say": "cancel",
     "answer": "🚫 **Process Cancelled.** I have cleared your current progress. What would you like to do instead?",
-    "secs": 2.6,
+    "secs": 1.8,
     "extra": {
      "citations": [],
      "type": "message",
@@ -3710,13 +3694,13 @@
      "fallback": "🚫 **Process Cancelled.** I have cleared your current progress. What would you like to do instead?",
      "usage": {
       "calls": 1,
-      "prompt_tokens": 325,
+      "prompt_tokens": 315,
       "completion_tokens": 60,
       "by_model": [
        {
         "model": "openai/gpt-oss-20b",
         "purpose": "phrase",
-        "prompt_tokens": 325,
+        "prompt_tokens": 315,
         "completion_tokens": 60
        }
       ]
@@ -3734,8 +3718,8 @@
   "transcript": [
    {
     "say": "Check my application status",
-    "answer": "Sure, I can help you check your application status! 📋 Please enter your registered **Email ID**.",
-    "secs": 1.8,
+    "answer": "Sure thing! 📋 Could you please share the **Email ID** you used to apply?",
+    "secs": 1.5,
     "extra": {
      "citations": [],
      "type": "form",
@@ -3744,17 +3728,17 @@
      "suggestions": [
       "cancel"
      ],
-     "fallback": "Sure, I can help you check your application status! 📋 Please enter your registered **Email ID**.",
+     "fallback": "Sure thing! 📋 Could you please share the **Email ID** you used to apply?",
      "usage": {
       "calls": 1,
-      "prompt_tokens": 324,
-      "completion_tokens": 64,
+      "prompt_tokens": 323,
+      "completion_tokens": 57,
       "by_model": [
        {
         "model": "openai/gpt-oss-20b",
         "purpose": "phrase",
-        "prompt_tokens": 324,
-        "completion_tokens": 64
+        "prompt_tokens": 323,
+        "completion_tokens": 57
        }
       ]
      }
@@ -3763,7 +3747,7 @@
    {
     "say": "nobody.here@example.com",
     "answer": "Got it. Now, please enter your registered **Phone Number** to verify your identity. 😊",
-    "secs": 1.6,
+    "secs": 1.5,
     "extra": {
      "citations": [],
      "type": "form",
@@ -3773,14 +3757,14 @@
      "fallback": "Got it. Now, please enter your registered **Phone Number** to verify your identity. 😊",
      "usage": {
       "calls": 1,
-      "prompt_tokens": 329,
-      "completion_tokens": 40,
+      "prompt_tokens": 322,
+      "completion_tokens": 42,
       "by_model": [
        {
         "model": "openai/gpt-oss-20b",
         "purpose": "phrase",
-        "prompt_tokens": 329,
-        "completion_tokens": 40
+        "prompt_tokens": 322,
+        "completion_tokens": 42
        }
       ]
      }
@@ -3798,7 +3782,7 @@
    {
     "say": "I want to apply for a job",
     "answer": "Sure! Which **role** are you interested in? 😊",
-    "secs": 2.0,
+    "secs": 1.9,
     "extra": {
      "citations": [],
      "type": "form",
@@ -3812,14 +3796,14 @@
      "fallback": "Sure! Which **role** are you interested in? 😊",
      "usage": {
       "calls": 1,
-      "prompt_tokens": 317,
-      "completion_tokens": 46,
+      "prompt_tokens": 316,
+      "completion_tokens": 28,
       "by_model": [
        {
         "model": "openai/gpt-oss-20b",
         "purpose": "phrase",
-        "prompt_tokens": 317,
-        "completion_tokens": 46
+        "prompt_tokens": 316,
+        "completion_tokens": 28
        }
       ]
      }
@@ -3828,7 +3812,7 @@
    {
     "say": "Wait, how long is probation?",
     "answer": "**6 months** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Probation\n\n---\n**Now, back to your form.** Please provide your: **Role**",
-    "secs": 2.4,
+    "secs": 2.9,
     "extra": {
      "citations": [
       {
@@ -3867,13 +3851,13 @@
      "usage": {
       "calls": 1,
       "prompt_tokens": 988,
-      "completion_tokens": 123,
+      "completion_tokens": 161,
       "by_model": [
        {
         "model": "openai/gpt-oss-120b",
         "purpose": "answer",
         "prompt_tokens": 988,
-        "completion_tokens": 123
+        "completion_tokens": 161
        }
       ]
      }
@@ -3882,7 +3866,7 @@
    {
     "say": "cancel",
     "answer": "🚫 **Process Cancelled.** I have cleared your current progress. What would you like to do instead?",
-    "secs": 1.4,
+    "secs": 1.7,
     "extra": {
      "citations": [],
      "type": "message",
