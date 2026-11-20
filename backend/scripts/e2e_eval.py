@@ -94,7 +94,9 @@ def main() -> int:
             continue
         t = time.time()
         ans = chat(a.base, f"eval-{run_id}-{q['id']}", q["q"], q.get("role", "Candidate"))
-        ok, why = grade(ans, q)
+        # card replies keep their details in `cards` / `fallback`: grade what a user actually sees
+        seen = ans + ("\n" + LAST["fallback"] if LAST.get("cards") and LAST.get("fallback") else "")
+        ok, why = grade(seen, q)
         results.append({"id": q["id"], "kind": q.get("kind", "policy"), "kb": q.get("kb", "existing"), "ok": ok,
                         "why": why, "secs": round(time.time() - t, 1), "q": q["q"], "role": q.get("role", "Candidate"),
                         "answer": ans, "extra": dict(LAST)})

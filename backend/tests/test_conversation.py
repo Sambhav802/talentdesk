@@ -347,3 +347,28 @@ async def test_job_intro_rewrite_that_names_the_jobs_is_rejected(monkeypatch, ph
     draft = "Here are **3 open roles** in **Noida**."
     facts = {"top": [{"title": "Junior Python Developer"}, {"title": "Customer Support Executive"}]}
     assert await phrasing.phrase(draft, "Candidate", facts=facts, purpose=prompts.REPLY_PURPOSE["jobs"]) == draft
+
+
+async def test_job_detail_answers_the_asked_attribute_first(client):
+    out = await ask(client, "What skills are required for the Data Analyst role?")
+    card = out["cards"][0]
+    assert out["text"].startswith("**Data Analyst** (Bengaluru) needs:") and all(k in out["text"] for k in card["skills"])
+    assert "skills:" in out["fallback"]
+    out = await ask(client, "what's the salary for the data analyst job?", session="sal")
+    assert f"**{out['cards'][0]['salary']}**" in out["text"]
+
+
+async def test_refusal_rewrite_cannot_borrow_an_old_topic(monkeypatch, phrasing_on):
+    bad = ("I'm sorry, but the notice period during probation isn't available for your role. However, I can show "
+           "you the open roles or check your own application status.")
+    monkeypatch.setattr(llm, "complete", lambda *a, **k: bad)
+    draft = prompts.not_allowed_reply("hr_admin_queries", "Candidate")
+    assert await phrasing.phrase(draft, "Candidate", "show me the list of shortlisted candidates",
+                                 purpose=prompts.REPLY_PURPOSE["refusal"]) == draft
+
+
+async def test_rewording_prompt_carries_no_earlier_turns(phrasing_on):
+    await phrasing.phrase("Please enter the department name.", "Hiring Manager", "I want to raise a hiring request",
+                          history=["what is the notice period during probation?"], purpose="ask for the department",
+                          must_keep=["department"])
+    assert "notice period" not in phrasing_on[-1]["messages"][-1]["content"]

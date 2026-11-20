@@ -169,6 +169,8 @@ def card_md(c: dict, admin: bool = False) -> str:
         extra.append(f"apply by {c['apply_by']}")
     line = (f"- **{c['title']}** · {c['department']} · {c['location']} · {c['experience']} · "
             f"{'Budget' if admin else 'CTC'} {c['salary']}")
+    if c.get("skills"):
+        extra.append(f"skills: {', '.join(c['skills'])}")
     return line + (f" · {', '.join(extra)}" if extra else "")
 
 
@@ -288,7 +290,7 @@ async def job_detail(message: str, user_role: str = "Candidate") -> dict | None:
                 "facts": {"top": facts_of(cards)}}
     c = to_card(named[0])
     admin = user_role == "HR Admin"
-    intro = f"Here are the details for **{c['title']}** ({c['location']}):"
+    intro = _asked_attribute(message, c) or f"Here are the details for **{c['title']}** ({c['location']}):"
     text = intro
     tail = f"Tap **Apply** or reply \"I want to apply for the {c['title']} job\"." if user_role == "Candidate" else ""
     sugg = ([f"Apply for {c['title']}"] if user_role == "Candidate" else []) + \
@@ -296,6 +298,23 @@ async def job_detail(message: str, user_role: str = "Candidate") -> dict | None:
     return {"type": "job_detail", "text": text, "fallback": fallback_text(intro, [c], admin, tail), "intro": intro,
             "cards": [c], "suggestions": sugg[:3],
             "facts": {"top": facts_of([c])}}
+
+
+def _asked_attribute(message: str, c: dict) -> str | None:
+    """Answer the attribute the user asked about in the first sentence, straight from the record."""
+    m = message.lower()
+    name = f"**{c['title']}** ({c['location']})"
+    if re.search(r"skills?|require|requirement|qualif", m):
+        return f"{name} needs: **{', '.join(c['skills']) or 'not specified'}**."
+    if re.search(r"salary|ctc|pay|package|budget|kitni|kitna", m):
+        return f"The salary band for {name} is **{c['salary']}**."
+    if re.search(r"experience", m):
+        return f"{name} needs **{c['experience']}** of experience."
+    if re.search(r"deadline|last date|apply by", m) and c.get("apply_by"):
+        return f"Applications for {name} close on **{c['apply_by']}**."
+    if re.search(r"openings|how many (positions|people|vacanc)", m) and c.get("openings"):
+        return f"{name} has **{c['openings']}** opening{'s' if c['openings'] != 1 else ''}."
+    return None
 
 
 async def compare_jobs(message: str) -> dict | None:

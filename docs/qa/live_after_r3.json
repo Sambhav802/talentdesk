@@ -1,0 +1,3907 @@
+[
+ {
+  "id": "leave-annual",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.4,
+  "q": "How many days of paid annual leave do employees get?",
+  "role": "Candidate",
+  "answer": "**18 days** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Leave policy",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 2,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.6972,
+     "label": "Northwind Labs Employee Handbook · Leave policy",
+     "snippet": "Full-time employees receive 18 days of paid annual leave per calendar year, credited at 1.5 days per month. Up to 10 unused annual leave days can be carried forward to the next year; anything above that lapses on 31 December. Annual leave is not encashed except at exit, when up to 10 days of balance are paid out in the full and final settlement.\n\nEmployees also get 8 days of sick leave per year. Sick leave of more than 2 consecutive days needs a medical certificate uploaded to the HR portal. Unused sick leave does not carry forward."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Leave policy",
+     "key": "**18 days** [1]",
+     "points": [],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Leave policy"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "When is salary credited?",
+    "When are appraisals?",
+    "What are the working hours?"
+   ],
+   "fallback": "**18 days** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 1176,
+    "completion_tokens": 134,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 1176,
+      "completion_tokens": 134
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "leave-paraphrase",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 3.5,
+  "q": "How many days off do I get in a year?",
+  "role": "Hiring Manager",
+  "answer": "**You get 18 days of paid annual leave, 8 days of sick leave, 10 public holidays, and 2 optional holidays each year.** [1][2][3]  \n- Up to 10 unused annual leave days can be carried forward; sick leave does not carry forward. [1]  \n- Optional holidays are chosen from the regional list published each December. [2]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Public holidays\n[3] Northwind Labs Employee Handbook · Leave policy",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Leave policy",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 2,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.6542,
+     "label": "Northwind Labs Employee Handbook · Leave policy",
+     "snippet": "Full-time employees receive 18 days of paid annual leave per calendar year, credited at 1.5 days per month. Up to 10 unused annual leave days can be carried forward to the next year; anything above that lapses on 31 December. Annual leave is not encashed except at exit, when up to 10 days of balance are paid out in the full and final settlement.\n\nEmployees also get 8 days of sick leave per year. Sick leave of more than 2 consecutive days needs a medical certificate uploaded to the HR portal. Unused sick leave does not carry forward."
+    },
+    {
+     "n": 2,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Public holidays",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 4,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.6217,
+     "label": "Northwind Labs Employee Handbook · Public holidays",
+     "snippet": "There are 10 public holidays per year. The 2026 list: New Year's Day (1 January), Republic Day (26 January), Holi (4 March), Good Friday (3 April), Labour Day (1 May), Independence Day (15 August), Gandhi Jayanti (2 October), Dussehra (20 October), Diwali (8 November) and Christmas (25 December). Employees can also take 2 optional (restricted) holidays per year from the regional list published by HR. The list for the next year is published every December.\n\nEmployees who work on a public holiday because of a business need get a compensatory off, to be taken within 30 days."
+    },
+    {
+     "n": 3,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Leave policy",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 3,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.5116,
+     "label": "Northwind Labs Employee Handbook · Leave policy",
+     "snippet": "Unused sick leave does not carry forward. Maternity leave is 26 weeks of paid leave and paternity leave is 10 working days, both available after 80 days of service. Adoption leave is 12 weeks for the primary caregiver. Bereavement leave is 5 working days for the loss of an immediate family member. Marriage leave is 3 working days, once during employment.\n\nLeave requests must be raised in the HR portal at least 5 working days in advance, except for sick leave and emergencies. The reporting manager approves leave; HR only steps in for disputes. Interns get 1 day of paid leave per month of …"
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Leave policy",
+     "key": "**You get 18 days of paid annual leave, 8 days of sick leave, 10 public holidays, and 2 optional holidays each year.** [1][2][3]",
+     "points": [
+      "Up to 10 unused annual leave days can be carried forward; sick leave does not carry forward. [1]",
+      "Optional holidays are chosen from the regional list published each December. [2]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Leave policy"
+      },
+      {
+       "n": 2,
+       "label": "Northwind Labs Employee Handbook · Public holidays"
+      },
+      {
+       "n": 3,
+       "label": "Northwind Labs Employee Handbook · Leave policy"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "What are the public holidays?",
+    "What are the working hours?",
+    "When are appraisals?"
+   ],
+   "fallback": "**You get 18 days of paid annual leave, 8 days of sick leave, 10 public holidays, and 2 optional holidays each year.** [1][2][3]  \n- Up to 10 unused annual leave days can be carried forward; sick leave does not carry forward. [1]  \n- Optional holidays are chosen from the regional list published each December. [2]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Public holidays\n[3] Northwind Labs Employee Handbook · Leave policy",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 1220,
+    "completion_tokens": 598,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 1220,
+      "completion_tokens": 598
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "leave-carry",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.7,
+  "q": "Can I carry forward my unused leave to next year?",
+  "role": "Hiring Manager",
+  "answer": "**Yes, you can carry forward up to 10 unused annual leave days to the next year** [1]  \n- Unused sick leave does not carry forward [1][2]  \n- Any annual leave beyond 10 days lapses on 31 December [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Leave policy",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Leave policy",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 2,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.7303,
+     "label": "Northwind Labs Employee Handbook · Leave policy",
+     "snippet": "Full-time employees receive 18 days of paid annual leave per calendar year, credited at 1.5 days per month. Up to 10 unused annual leave days can be carried forward to the next year; anything above that lapses on 31 December. Annual leave is not encashed except at exit, when up to 10 days of balance are paid out in the full and final settlement.\n\nEmployees also get 8 days of sick leave per year. Sick leave of more than 2 consecutive days needs a medical certificate uploaded to the HR portal. Unused sick leave does not carry forward."
+    },
+    {
+     "n": 2,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Leave policy",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 3,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.6699,
+     "label": "Northwind Labs Employee Handbook · Leave policy",
+     "snippet": "Unused sick leave does not carry forward. Maternity leave is 26 weeks of paid leave and paternity leave is 10 working days, both available after 80 days of service. Adoption leave is 12 weeks for the primary caregiver. Bereavement leave is 5 working days for the loss of an immediate family member. Marriage leave is 3 working days, once during employment.\n\nLeave requests must be raised in the HR portal at least 5 working days in advance, except for sick leave and emergencies. The reporting manager approves leave; HR only steps in for disputes. Interns get 1 day of paid leave per month of …"
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Leave policy",
+     "key": "**Yes, you can carry forward up to 10 unused annual leave days to the next year** [1]",
+     "points": [
+      "Unused sick leave does not carry forward [1][2]",
+      "Any annual leave beyond 10 days lapses on 31 December [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Leave policy"
+      },
+      {
+       "n": 2,
+       "label": "Northwind Labs Employee Handbook · Leave policy"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "What are the public holidays?",
+    "What is the notice period?",
+    "When are appraisals?"
+   ],
+   "fallback": "**Yes, you can carry forward up to 10 unused annual leave days to the next year** [1]  \n- Unused sick leave does not carry forward [1][2]  \n- Any annual leave beyond 10 days lapses on 31 December [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Leave policy",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 1137,
+    "completion_tokens": 231,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 1137,
+      "completion_tokens": 231
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "leave-sick",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.4,
+  "q": "How many sick leaves do I get?",
+  "role": "Candidate",
+  "answer": "**8 days of sick leave per year** [1]  \n- Unused sick leave does not carry forward [2]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Leave policy",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Leave policy",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 2,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.7921,
+     "label": "Northwind Labs Employee Handbook · Leave policy",
+     "snippet": "Full-time employees receive 18 days of paid annual leave per calendar year, credited at 1.5 days per month. Up to 10 unused annual leave days can be carried forward to the next year; anything above that lapses on 31 December. Annual leave is not encashed except at exit, when up to 10 days of balance are paid out in the full and final settlement.\n\nEmployees also get 8 days of sick leave per year. Sick leave of more than 2 consecutive days needs a medical certificate uploaded to the HR portal. Unused sick leave does not carry forward."
+    },
+    {
+     "n": 2,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Leave policy",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 3,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.7598,
+     "label": "Northwind Labs Employee Handbook · Leave policy",
+     "snippet": "Unused sick leave does not carry forward. Maternity leave is 26 weeks of paid leave and paternity leave is 10 working days, both available after 80 days of service. Adoption leave is 12 weeks for the primary caregiver. Bereavement leave is 5 working days for the loss of an immediate family member. Marriage leave is 3 working days, once during employment.\n\nLeave requests must be raised in the HR portal at least 5 working days in advance, except for sick leave and emergencies. The reporting manager approves leave; HR only steps in for disputes. Interns get 1 day of paid leave per month of …"
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Leave policy",
+     "key": "**8 days of sick leave per year** [1]",
+     "points": [
+      "Unused sick leave does not carry forward [2]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Leave policy"
+      },
+      {
+       "n": 2,
+       "label": "Northwind Labs Employee Handbook · Leave policy"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "What are the working hours?",
+    "How does the exit process work?",
+    "What is the notice period?"
+   ],
+   "fallback": "**8 days of sick leave per year** [1]  \n- Unused sick leave does not carry forward [2]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Leave policy",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 1143,
+    "completion_tokens": 164,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 1143,
+      "completion_tokens": 164
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "leave-cert",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.5,
+  "q": "When do I need a medical certificate for sick leave?",
+  "role": "Hiring Manager",
+  "answer": "**Medical certificate is required for sick leave of more than 2 consecutive days** [1]  \n- Must be uploaded to the HR portal [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Leave policy",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 2,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.8147,
+     "label": "Northwind Labs Employee Handbook · Leave policy",
+     "snippet": "Full-time employees receive 18 days of paid annual leave per calendar year, credited at 1.5 days per month. Up to 10 unused annual leave days can be carried forward to the next year; anything above that lapses on 31 December. Annual leave is not encashed except at exit, when up to 10 days of balance are paid out in the full and final settlement.\n\nEmployees also get 8 days of sick leave per year. Sick leave of more than 2 consecutive days needs a medical certificate uploaded to the HR portal. Unused sick leave does not carry forward."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Leave policy",
+     "key": "**Medical certificate is required for sick leave of more than 2 consecutive days** [1]",
+     "points": [
+      "Must be uploaded to the HR portal [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Leave policy"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "What health insurance do we get?",
+    "What is the notice period?"
+   ],
+   "fallback": "**Medical certificate is required for sick leave of more than 2 consecutive days** [1]  \n- Must be uploaded to the HR portal [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 1092,
+    "completion_tokens": 292,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 1092,
+      "completion_tokens": 292
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "holidays",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.1,
+  "q": "How many public holidays are there in a year?",
+  "role": "Candidate",
+  "answer": "**10** [1]  \n- Optional (restricted) holidays are additional and not counted in the 10 public holidays. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Public holidays",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Public holidays",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 4,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.8184,
+     "label": "Northwind Labs Employee Handbook · Public holidays",
+     "snippet": "There are 10 public holidays per year. The 2026 list: New Year's Day (1 January), Republic Day (26 January), Holi (4 March), Good Friday (3 April), Labour Day (1 May), Independence Day (15 August), Gandhi Jayanti (2 October), Dussehra (20 October), Diwali (8 November) and Christmas (25 December). Employees can also take 2 optional (restricted) holidays per year from the regional list published by HR. The list for the next year is published every December.\n\nEmployees who work on a public holiday because of a business need get a compensatory off, to be taken within 30 days."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Public holidays",
+     "key": "**10** [1]",
+     "points": [
+      "Optional (restricted) holidays are additional and not counted in the 10 public holidays. [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Public holidays"
+      }
+     ]
+    }
+   ],
+   "suggestions": [],
+   "fallback": "**10** [1]  \n- Optional (restricted) holidays are additional and not counted in the 10 public holidays. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Public holidays",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 640,
+    "completion_tokens": 136,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 640,
+      "completion_tokens": 136
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "maternity",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 3.2,
+  "q": "What is the maternity leave policy?",
+  "role": "Candidate",
+  "answer": "**26 weeks of paid maternity leave, available after 80 days of service** [1]\n- Applies to eligible employees after completing 80 days of service [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Leave policy",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 3,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.5926,
+     "label": "Northwind Labs Employee Handbook · Leave policy",
+     "snippet": "Unused sick leave does not carry forward. Maternity leave is 26 weeks of paid leave and paternity leave is 10 working days, both available after 80 days of service. Adoption leave is 12 weeks for the primary caregiver. Bereavement leave is 5 working days for the loss of an immediate family member. Marriage leave is 3 working days, once during employment.\n\nLeave requests must be raised in the HR portal at least 5 working days in advance, except for sick leave and emergencies. The reporting manager approves leave; HR only steps in for disputes. Interns get 1 day of paid leave per month of …"
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Leave policy",
+     "key": "**26 weeks of paid maternity leave, available after 80 days of service** [1]",
+     "points": [
+      "Applies to eligible employees after completing 80 days of service [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Leave policy"
+      }
+     ]
+    }
+   ],
+   "suggestions": [],
+   "fallback": "**26 weeks of paid maternity leave, available after 80 days of service** [1]\n- Applies to eligible employees after completing 80 days of service [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 850,
+    "completion_tokens": 194,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 850,
+      "completion_tokens": 194
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "paternity",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 3.7,
+  "q": "How long is paternity leave?",
+  "role": "Hiring Manager",
+  "answer": "**10 working days** [1]  \n- Available after 80 days of service. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Leave policy",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 3,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.5082,
+     "label": "Northwind Labs Employee Handbook · Leave policy",
+     "snippet": "Unused sick leave does not carry forward. Maternity leave is 26 weeks of paid leave and paternity leave is 10 working days, both available after 80 days of service. Adoption leave is 12 weeks for the primary caregiver. Bereavement leave is 5 working days for the loss of an immediate family member. Marriage leave is 3 working days, once during employment.\n\nLeave requests must be raised in the HR portal at least 5 working days in advance, except for sick leave and emergencies. The reporting manager approves leave; HR only steps in for disputes. Interns get 1 day of paid leave per month of …"
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Leave policy",
+     "key": "**10 working days** [1]",
+     "points": [
+      "Available after 80 days of service. [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Leave policy"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "What are the working hours?",
+    "How does the exit process work?",
+    "What is the notice period?"
+   ],
+   "fallback": "**10 working days** [1]  \n- Available after 80 days of service. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 1155,
+    "completion_tokens": 165,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 1155,
+      "completion_tokens": 165
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "leave-advance",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.3,
+  "q": "How early should I apply for leave?",
+  "role": "Hiring Manager",
+  "answer": "**Leave requests must be raised in the HR portal at least 5 working days in advance** [1]  \n- Exception: sick leave and emergencies may be submitted later [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Leave policy",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 3,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.3619,
+     "label": "Northwind Labs Employee Handbook · Leave policy",
+     "snippet": "Unused sick leave does not carry forward. Maternity leave is 26 weeks of paid leave and paternity leave is 10 working days, both available after 80 days of service. Adoption leave is 12 weeks for the primary caregiver. Bereavement leave is 5 working days for the loss of an immediate family member. Marriage leave is 3 working days, once during employment.\n\nLeave requests must be raised in the HR portal at least 5 working days in advance, except for sick leave and emergencies. The reporting manager approves leave; HR only steps in for disputes. Interns get 1 day of paid leave per month of …"
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Leave policy",
+     "key": "**Leave requests must be raised in the HR portal at least 5 working days in advance** [1]",
+     "points": [
+      "Exception: sick leave and emergencies may be submitted later [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Leave policy"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "Can I apply for an internal job posting?",
+    "What is the interview process?"
+   ],
+   "fallback": "**Leave requests must be raised in the HR portal at least 5 working days in advance** [1]  \n- Exception: sick leave and emergencies may be submitted later [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 1058,
+    "completion_tokens": 183,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 1058,
+      "completion_tokens": 183
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "leave-approver",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.5,
+  "q": "Who approves my leave requests?",
+  "role": "Hiring Manager",
+  "answer": "**The reporting manager approves leave requests.** [1]  \n- Leave requests must be raised in the HR portal at least 5 working days in advance, except for sick leave and emergencies. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Leave policy",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 3,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.5999,
+     "label": "Northwind Labs Employee Handbook · Leave policy",
+     "snippet": "Unused sick leave does not carry forward. Maternity leave is 26 weeks of paid leave and paternity leave is 10 working days, both available after 80 days of service. Adoption leave is 12 weeks for the primary caregiver. Bereavement leave is 5 working days for the loss of an immediate family member. Marriage leave is 3 working days, once during employment.\n\nLeave requests must be raised in the HR portal at least 5 working days in advance, except for sick leave and emergencies. The reporting manager approves leave; HR only steps in for disputes. Interns get 1 day of paid leave per month of …"
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Leave policy",
+     "key": "**The reporting manager approves leave requests.** [1]",
+     "points": [
+      "Leave requests must be raised in the HR portal at least 5 working days in advance, except for sick leave and emergencies. [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Leave policy"
+      }
+     ]
+    }
+   ],
+   "suggestions": [],
+   "fallback": "**The reporting manager approves leave requests.** [1]  \n- Leave requests must be raised in the HR portal at least 5 working days in advance, except for sick leave and emergencies. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 780,
+    "completion_tokens": 204,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 780,
+      "completion_tokens": 204
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "wfh",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.7,
+  "q": "Is work from home allowed?",
+  "role": "Candidate",
+  "answer": "**Yes, employees may work from home up to 2 days per week after completing probation** [1]  \n- Interns may work from home 1 day per week with mentor approval; roles advertised as “Remote” are fully remote and follow standard working hours [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Work from home",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Work from home",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 5,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.6366,
+     "label": "Northwind Labs Employee Handbook · Work from home",
+     "snippet": "Employees can work from home up to 2 days per week after completing probation. Remote work beyond 2 days a week needs written approval from the department head. Interns can work from home 1 day per week with their mentor's approval. Roles advertised as \"Remote\" are fully remote and follow the same working hours.\n\nA one-time home office allowance of INR 10,000 is reimbursed against bills for employees who have completed probation. Remote employees also receive an internet allowance of INR 1,000 per month."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Work from home",
+     "key": "**Yes, employees may work from home up to 2 days per week after completing probation** [1]",
+     "points": [
+      "Interns may work from home 1 day per week with mentor approval; roles advertised as “Remote” are fully remote and follow standard working hours [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Work from home"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "What is the notice period?"
+   ],
+   "fallback": "**Yes, employees may work from home up to 2 days per week after completing probation** [1]  \n- Interns may work from home 1 day per week with mentor approval; roles advertised as “Remote” are fully remote and follow standard working hours [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Work from home",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 701,
+    "completion_tokens": 251,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 701,
+      "completion_tokens": 251
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "wfh-intern",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 3.3,
+  "q": "Can interns work from home?",
+  "role": "Candidate",
+  "answer": "**Yes, interns can work from home 1 day per week with their mentor's approval.** [1]  \n- Requires mentor's approval [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Work from home",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Work from home",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 5,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.6734,
+     "label": "Northwind Labs Employee Handbook · Work from home",
+     "snippet": "Employees can work from home up to 2 days per week after completing probation. Remote work beyond 2 days a week needs written approval from the department head. Interns can work from home 1 day per week with their mentor's approval. Roles advertised as \"Remote\" are fully remote and follow the same working hours.\n\nA one-time home office allowance of INR 10,000 is reimbursed against bills for employees who have completed probation. Remote employees also receive an internet allowance of INR 1,000 per month."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Work from home",
+     "key": "**Yes, interns can work from home 1 day per week with their mentor's approval.** [1]",
+     "points": [
+      "Requires mentor's approval [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Work from home"
+      }
+     ]
+    }
+   ],
+   "suggestions": [],
+   "fallback": "**Yes, interns can work from home 1 day per week with their mentor's approval.** [1]  \n- Requires mentor's approval [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Work from home",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 688,
+    "completion_tokens": 223,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 688,
+      "completion_tokens": 223
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "home-office",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.3,
+  "q": "Is there any allowance for setting up a home office?",
+  "role": "Hiring Manager",
+  "answer": "**A one-time home office allowance of INR 10,000 is reimbursed against bills for employees who have completed probation.** [1]  \n- Applies only to employees who have completed probation. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Work from home",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Work from home",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 5,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.6977,
+     "label": "Northwind Labs Employee Handbook · Work from home",
+     "snippet": "Employees can work from home up to 2 days per week after completing probation. Remote work beyond 2 days a week needs written approval from the department head. Interns can work from home 1 day per week with their mentor's approval. Roles advertised as \"Remote\" are fully remote and follow the same working hours.\n\nA one-time home office allowance of INR 10,000 is reimbursed against bills for employees who have completed probation. Remote employees also receive an internet allowance of INR 1,000 per month."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Work from home",
+     "key": "**A one-time home office allowance of INR 10,000 is reimbursed against bills for employees who have completed probation.** [1]",
+     "points": [
+      "Applies only to employees who have completed probation. [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Work from home"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "What are the working hours?",
+    "How do I claim expenses?",
+    "What is the dress code?"
+   ],
+   "fallback": "**A one-time home office allowance of INR 10,000 is reimbursed against bills for employees who have completed probation.** [1]  \n- Applies only to employees who have completed probation. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Work from home",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 1145,
+    "completion_tokens": 185,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 1145,
+      "completion_tokens": 185
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "probation",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.5,
+  "q": "How long is probation?",
+  "role": "Hiring Manager",
+  "answer": "**6 months** [1]  \n- Probation may be extended once by up to 3 months if the 5th-month review is unsatisfactory. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Probation",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Probation",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 6,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.623,
+     "label": "Northwind Labs Employee Handbook · Probation",
+     "snippet": "New full-time employees serve a probation period of 6 months. The reporting manager completes a probation review in the 5th month. Probation can be extended once, by up to 3 months, if the review is not satisfactory. During probation the notice period is 15 days."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Probation",
+     "key": "**6 months** [1]",
+     "points": [
+      "Probation may be extended once by up to 3 months if the 5th-month review is unsatisfactory. [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Probation"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "Is work from home allowed?",
+    "What is the referral bonus?",
+    "What are the working hours?"
+   ],
+   "fallback": "**6 months** [1]  \n- Probation may be extended once by up to 3 months if the 5th-month review is unsatisfactory. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Probation",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 999,
+    "completion_tokens": 174,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 999,
+      "completion_tokens": 174
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "probation-extend",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.3,
+  "q": "Can probation be extended?",
+  "role": "Hiring Manager",
+  "answer": "**Yes, probation can be extended once, by up to 3 months, if the review is not satisfactory** [1]\n- The extension is limited to a single occurrence [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Probation",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Probation",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 6,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.7014,
+     "label": "Northwind Labs Employee Handbook · Probation",
+     "snippet": "New full-time employees serve a probation period of 6 months. The reporting manager completes a probation review in the 5th month. Probation can be extended once, by up to 3 months, if the review is not satisfactory. During probation the notice period is 15 days."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Probation",
+     "key": "**Yes, probation can be extended once, by up to 3 months, if the review is not satisfactory** [1]",
+     "points": [
+      "The extension is limited to a single occurrence [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Probation"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "Is work from home allowed?",
+    "What is the referral bonus?"
+   ],
+   "fallback": "**Yes, probation can be extended once, by up to 3 months, if the review is not satisfactory** [1]\n- The extension is limited to a single occurrence [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Probation",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 821,
+    "completion_tokens": 162,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 821,
+      "completion_tokens": 162
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "notice-probation",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.5,
+  "q": "What is the notice period during probation?",
+  "role": "Candidate",
+  "answer": "**15 days** [1]\n- Applies only while the employee is on probation [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Probation",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Probation",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 6,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.77,
+     "label": "Northwind Labs Employee Handbook · Probation",
+     "snippet": "New full-time employees serve a probation period of 6 months. The reporting manager completes a probation review in the 5th month. Probation can be extended once, by up to 3 months, if the review is not satisfactory. During probation the notice period is 15 days."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Probation",
+     "key": "**15 days** [1]",
+     "points": [
+      "Applies only while the employee is on probation [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Probation"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "What is the notice period?",
+    "Is work from home allowed?",
+    "How long is an offer valid?"
+   ],
+   "fallback": "**15 days** [1]\n- Applies only while the employee is on probation [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Probation",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 971,
+    "completion_tokens": 106,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 971,
+      "completion_tokens": 106
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "notice-senior",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.2,
+  "q": "What is the notice period for senior employees?",
+  "role": "HR Admin",
+  "answer": "**60 days** [1]  \n- After confirmation, applies to Senior level and above (roles needing 5 or more years of experience) [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Notice period",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Notice period",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 7,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.8427,
+     "label": "Northwind Labs Employee Handbook · Notice period",
+     "snippet": "After confirmation, the notice period is 60 days for all roles at Senior level and above and 30 days for everyone else. Senior level and above means roles that need 5 or more years of experience (for example Senior, Lead, Manager and Director roles). Unused annual leave cannot be adjusted against the notice period. Buy-out of the notice period is allowed with approval from the department head and HR."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Notice period",
+     "key": "**60 days** [1]",
+     "points": [
+      "After confirmation, applies to Senior level and above (roles needing 5 or more years of experience) [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Notice period"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "How long is probation?",
+    "What is the referral bonus?",
+    "How long is an offer valid?"
+   ],
+   "fallback": "**60 days** [1]  \n- After confirmation, applies to Senior level and above (roles needing 5 or more years of experience) [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Notice period",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 857,
+    "completion_tokens": 157,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 857,
+      "completion_tokens": 157
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "notice-others",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 3.7,
+  "q": "What is the notice period policy?",
+  "role": "HR Admin",
+  "answer": "**After confirmation, notice period is 60 days for Senior level and above (roles requiring ≥5 years experience) and 30 days for all other employees; during probation the notice period is 15 days.** [1][2]  \n- Buy-out of the notice period is allowed only with approval from the department head and HR. [1]  \n- Unused annual leave cannot be adjusted against the notice period. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Notice period\n[2] Northwind Labs Employee Handbook · Probation",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Notice period",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 7,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.6016,
+     "label": "Northwind Labs Employee Handbook · Notice period",
+     "snippet": "After confirmation, the notice period is 60 days for all roles at Senior level and above and 30 days for everyone else. Senior level and above means roles that need 5 or more years of experience (for example Senior, Lead, Manager and Director roles). Unused annual leave cannot be adjusted against the notice period. Buy-out of the notice period is allowed with approval from the department head and HR."
+    },
+    {
+     "n": 2,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Probation",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 6,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.5299,
+     "label": "Northwind Labs Employee Handbook · Probation",
+     "snippet": "New full-time employees serve a probation period of 6 months. The reporting manager completes a probation review in the 5th month. Probation can be extended once, by up to 3 months, if the review is not satisfactory. During probation the notice period is 15 days."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Notice period",
+     "key": "**After confirmation, notice period is 60 days for Senior level and above (roles requiring ≥5 years experience) and 30 days for all other employees; during probation the notice period is 15 days.** [1][2]",
+     "points": [
+      "Buy-out of the notice period is allowed only with approval from the department head and HR. [1]",
+      "Unused annual leave cannot be adjusted against the notice period. [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Notice period"
+      },
+      {
+       "n": 2,
+       "label": "Northwind Labs Employee Handbook · Probation"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "How long is probation?",
+    "How long is an offer valid?",
+    "How many leaves do I get?"
+   ],
+   "fallback": "**After confirmation, notice period is 60 days for Senior level and above (roles requiring ≥5 years experience) and 30 days for all other employees; during probation the notice period is 15 days.** [1][2]  \n- Buy-out of the notice period is allowed only with approval from the department head and HR. [1]  \n- Unused annual leave cannot be adjusted against the notice period. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Notice period\n[2] Northwind Labs Employee Handbook · Probation",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 1003,
+    "completion_tokens": 350,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 1003,
+      "completion_tokens": 350
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "notice-leave",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 3.1,
+  "q": "If I resign, can I use my leave balance to shorten the notice period?",
+  "role": "Hiring Manager",
+  "answer": "I can't see your personal records: your leave balance is in the **HR portal**. The policy:\n\n**18 days of annual leave and 8 days of sick leave; up to 10 unused annual leave days can be carried forward, while sick leave does not carry forward** [1][2]\n- Annual leave is credited at 1.5 days per month [1]\n- Unused sick leave cannot be carried forward [1][2]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Leave policy",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Leave policy",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 2,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.8366,
+     "label": "Northwind Labs Employee Handbook · Leave policy",
+     "snippet": "Full-time employees receive 18 days of paid annual leave per calendar year, credited at 1.5 days per month. Up to 10 unused annual leave days can be carried forward to the next year; anything above that lapses on 31 December. Annual leave is not encashed except at exit, when up to 10 days of balance are paid out in the full and final settlement.\n\nEmployees also get 8 days of sick leave per year. Sick leave of more than 2 consecutive days needs a medical certificate uploaded to the HR portal. Unused sick leave does not carry forward."
+    },
+    {
+     "n": 2,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Leave policy",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 3,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.7687,
+     "label": "Northwind Labs Employee Handbook · Leave policy",
+     "snippet": "Unused sick leave does not carry forward. Maternity leave is 26 weeks of paid leave and paternity leave is 10 working days, both available after 80 days of service. Adoption leave is 12 weeks for the primary caregiver. Bereavement leave is 5 working days for the loss of an immediate family member. Marriage leave is 3 working days, once during employment.\n\nLeave requests must be raised in the HR portal at least 5 working days in advance, except for sick leave and emergencies. The reporting manager approves leave; HR only steps in for disputes. Interns get 1 day of paid leave per month of …"
+    }
+   ],
+   "type": "policy",
+   "intro": "I can't see your personal records: your leave balance is in the **HR portal**. The policy:",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Leave policy",
+     "key": "**18 days of annual leave and 8 days of sick leave; up to 10 unused annual leave days can be carried forward, while sick leave does not carry forward** [1][2]",
+     "points": [
+      "Annual leave is credited at 1.5 days per month [1]",
+      "Unused sick leave cannot be carried forward [1][2]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Leave policy"
+      },
+      {
+       "n": 2,
+       "label": "Northwind Labs Employee Handbook · Leave policy"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "What are the working hours?",
+    "What is the notice period?",
+    "What are the public holidays?"
+   ],
+   "fallback": "I can't see your personal records: your leave balance is in the **HR portal**. The policy:\n\n**18 days of annual leave and 8 days of sick leave; up to 10 unused annual leave days can be carried forward, while sick leave does not carry forward** [1][2]\n- Annual leave is credited at 1.5 days per month [1]\n- Unused sick leave cannot be carried forward [1][2]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Leave policy\n[2] Northwind Labs Employee Handbook · Leave policy",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 1213,
+    "completion_tokens": 487,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 1213,
+      "completion_tokens": 487
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "notice-buyout",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.6,
+  "q": "Can I buy out my notice period?",
+  "role": "Hiring Manager",
+  "answer": "**Yes, you can buy out your notice period with approval from the department head and HR.** [1]\n- Requires approval from the department head and HR. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Notice period",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Notice period",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 7,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.7141,
+     "label": "Northwind Labs Employee Handbook · Notice period",
+     "snippet": "After confirmation, the notice period is 60 days for all roles at Senior level and above and 30 days for everyone else. Senior level and above means roles that need 5 or more years of experience (for example Senior, Lead, Manager and Director roles). Unused annual leave cannot be adjusted against the notice period. Buy-out of the notice period is allowed with approval from the department head and HR."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Notice period",
+     "key": "**Yes, you can buy out your notice period with approval from the department head and HR.** [1]",
+     "points": [
+      "Requires approval from the department head and HR. [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Notice period"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "How long is probation?",
+    "How long is an offer valid?"
+   ],
+   "fallback": "**Yes, you can buy out your notice period with approval from the department head and HR.** [1]\n- Requires approval from the department head and HR. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Notice period",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 733,
+    "completion_tokens": 226,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 733,
+      "completion_tokens": 226
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "referral-junior",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 3.2,
+  "q": "What is the referral bonus for a role needing 2 years of experience?",
+  "role": "Hiring Manager",
+  "answer": "**INR 25,000** [1]  \n- Paid in two equal parts: 50 % after the new hire joins and 50 % after they complete probation. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Employee referral bonus",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Employee referral bonus",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 15,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.8338,
+     "label": "Northwind Labs Employee Handbook · Employee referral bonus",
+     "snippet": "Employees who refer a candidate who is hired receive a referral bonus: INR 25,000 for roles needing up to 3 years of experience and INR 50,000 for roles needing more than 3 years. The bonus is paid in two equal parts: 50% after the new hire joins and 50% after they complete probation. Interns, HR team members and the hiring manager of the role are not eligible for a referral bonus for that role.\n\nReferrals are submitted in the HR portal with the candidate's resume. A referral is valid for 6 months from submission."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Employee referral bonus",
+     "key": "**INR 25,000** [1]",
+     "points": [
+      "Paid in two equal parts: 50 % after the new hire joins and 50 % after they complete probation. [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Employee referral bonus"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "When are appraisals?",
+    "What is the notice period?",
+    "How does the exit process work?"
+   ],
+   "fallback": "**INR 25,000** [1]  \n- Paid in two equal parts: 50 % after the new hire joins and 50 % after they complete probation. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Employee referral bonus",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 945,
+    "completion_tokens": 231,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 945,
+      "completion_tokens": 231
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "referral-senior",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.7,
+  "q": "How much is the referral bonus for senior roles?",
+  "role": "Hiring Manager",
+  "answer": "**INR 50,000** [2]  \n- Only if the referrer is not the hiring manager, an intern, or an HR team member for that role [2]\n\n**Sources**\n[2] Northwind Labs Employee Handbook · Employee referral bonus",
+  "extra": {
+   "citations": [
+    {
+     "n": 2,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Employee referral bonus",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 15,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.8052,
+     "label": "Northwind Labs Employee Handbook · Employee referral bonus",
+     "snippet": "Employees who refer a candidate who is hired receive a referral bonus: INR 25,000 for roles needing up to 3 years of experience and INR 50,000 for roles needing more than 3 years. The bonus is paid in two equal parts: 50% after the new hire joins and 50% after they complete probation. Interns, HR team members and the hiring manager of the role are not eligible for a referral bonus for that role.\n\nReferrals are submitted in the HR portal with the candidate's resume. A referral is valid for 6 months from submission."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Employee referral bonus",
+     "key": "**INR 50,000** [2]",
+     "points": [
+      "Only if the referrer is not the hiring manager, an intern, or an HR team member for that role [2]"
+     ],
+     "sources": [
+      {
+       "n": 2,
+       "label": "Northwind Labs Employee Handbook · Employee referral bonus"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "What is the notice period?",
+    "When are appraisals?",
+    "What is the interview process?"
+   ],
+   "fallback": "**INR 50,000** [2]  \n- Only if the referrer is not the hiring manager, an intern, or an HR team member for that role [2]\n\n**Sources**\n[2] Northwind Labs Employee Handbook · Employee referral bonus",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 971,
+    "completion_tokens": 224,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 971,
+      "completion_tokens": 224
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "referral-paid",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.7,
+  "q": "When is the referral bonus paid out?",
+  "role": "Hiring Manager",
+  "answer": "**The referral bonus is paid in two equal parts: 50% after the new hire joins and 50% after they complete probation.** [1]\n- Interns, HR team members and the hiring manager of the role are not eligible for a referral bonus for that role. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Employee referral bonus",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Employee referral bonus",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 15,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.7462,
+     "label": "Northwind Labs Employee Handbook · Employee referral bonus",
+     "snippet": "Employees who refer a candidate who is hired receive a referral bonus: INR 25,000 for roles needing up to 3 years of experience and INR 50,000 for roles needing more than 3 years. The bonus is paid in two equal parts: 50% after the new hire joins and 50% after they complete probation. Interns, HR team members and the hiring manager of the role are not eligible for a referral bonus for that role.\n\nReferrals are submitted in the HR portal with the candidate's resume. A referral is valid for 6 months from submission."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Employee referral bonus",
+     "key": "**The referral bonus is paid in two equal parts: 50% after the new hire joins and 50% after they complete probation.** [1]",
+     "points": [
+      "Interns, HR team members and the hiring manager of the role are not eligible for a referral bonus for that role. [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Employee referral bonus"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "When is salary credited?",
+    "When are appraisals?",
+    "How many leaves do I get?"
+   ],
+   "fallback": "**The referral bonus is paid in two equal parts: 50% after the new hire joins and 50% after they complete probation.** [1]\n- Interns, HR team members and the hiring manager of the role are not eligible for a referral bonus for that role. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Employee referral bonus",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 1052,
+    "completion_tokens": 303,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 1052,
+      "completion_tokens": 303
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "referral-intern",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.3,
+  "q": "Are interns eligible for the referral bonus?",
+  "role": "Candidate",
+  "answer": "**No, interns are not eligible for the referral bonus.** [1]\n- Interns are explicitly excluded from eligibility. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Employee referral bonus",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Employee referral bonus",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 15,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.7772,
+     "label": "Northwind Labs Employee Handbook · Employee referral bonus",
+     "snippet": "Employees who refer a candidate who is hired receive a referral bonus: INR 25,000 for roles needing up to 3 years of experience and INR 50,000 for roles needing more than 3 years. The bonus is paid in two equal parts: 50% after the new hire joins and 50% after they complete probation. Interns, HR team members and the hiring manager of the role are not eligible for a referral bonus for that role.\n\nReferrals are submitted in the HR portal with the candidate's resume. A referral is valid for 6 months from submission."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Employee referral bonus",
+     "key": "**No, interns are not eligible for the referral bonus.** [1]",
+     "points": [
+      "Interns are explicitly excluded from eligibility. [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Employee referral bonus"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "When are appraisals?"
+   ],
+   "fallback": "**No, interns are not eligible for the referral bonus.** [1]\n- Interns are explicitly excluded from eligibility. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Employee referral bonus",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 729,
+    "completion_tokens": 123,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 729,
+      "completion_tokens": 123
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "interview-stages",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.5,
+  "q": "What is the interview process?",
+  "role": "Candidate",
+  "answer": "**Most roles have four interview stages: an application screening by the HR assistant, a 30-minute HR call, one or two technical or functional interviews with the hiring team, and a final interview with the department head; candidates typically hear back within 5 working days after each stage and offers are made within 3 working days of the final interview** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Interview process",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Interview process",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 16,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.7944,
+     "label": "Northwind Labs Employee Handbook · Interview process",
+     "snippet": "Most roles follow four stages: an application screening by the HR assistant, a 30-minute HR call, one or two technical or functional interviews with the hiring team, and a final interview with the department head. Candidates usually hear back within 5 working days after each stage. Offers are rolled out within 3 working days of the final interview.\n\nFor internships the process is shorter: screening, one technical interview and an HR call. Customer-support roles have a voice and communication assessment in place of the technical interview.\n\nCandidates who are not selected can apply again for …"
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Interview process",
+     "key": "**Most roles have four interview stages: an application screening by the HR assistant, a 30-minute HR call, one or two technical or functional interviews with the hiring team, and a final interview with the department head; candidates typically hear back within 5 working days after each stage and offers are made within 3 working days of the final interview** [1]",
+     "points": [],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Interview process"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "Can I apply for an internal job posting?"
+   ],
+   "fallback": "**Most roles have four interview stages: an application screening by the HR assistant, a 30-minute HR call, one or two technical or functional interviews with the hiring team, and a final interview with the department head; candidates typically hear back within 5 working days after each stage and offers are made within 3 working days of the final interview** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Interview process",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 681,
+    "completion_tokens": 220,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 681,
+      "completion_tokens": 220
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "interview-wait",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.2,
+  "q": "How soon will I hear back after an interview?",
+  "role": "Candidate",
+  "answer": "**You will hear back within 5 working days after an interview.** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Interview process",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Interview process",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 16,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.8068,
+     "label": "Northwind Labs Employee Handbook · Interview process",
+     "snippet": "Most roles follow four stages: an application screening by the HR assistant, a 30-minute HR call, one or two technical or functional interviews with the hiring team, and a final interview with the department head. Candidates usually hear back within 5 working days after each stage. Offers are rolled out within 3 working days of the final interview.\n\nFor internships the process is shorter: screening, one technical interview and an HR call. Customer-support roles have a voice and communication assessment in place of the technical interview.\n\nCandidates who are not selected can apply again for …"
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Interview process",
+     "key": "**You will hear back within 5 working days after an interview.** [1]",
+     "points": [],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Interview process"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "Can I apply for an internal job posting?"
+   ],
+   "fallback": "**You will hear back within 5 working days after an interview.** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Interview process",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 685,
+    "completion_tokens": 90,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 685,
+      "completion_tokens": 90
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "offer-time",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.8,
+  "q": "How quickly are offers released after the final interview?",
+  "role": "Candidate",
+  "answer": "**Offers are rolled out within 3 working days of the final interview.** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Interview process",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Interview process",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 16,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.7997,
+     "label": "Northwind Labs Employee Handbook · Interview process",
+     "snippet": "Most roles follow four stages: an application screening by the HR assistant, a 30-minute HR call, one or two technical or functional interviews with the hiring team, and a final interview with the department head. Candidates usually hear back within 5 working days after each stage. Offers are rolled out within 3 working days of the final interview.\n\nFor internships the process is shorter: screening, one technical interview and an HR call. Customer-support roles have a voice and communication assessment in place of the technical interview.\n\nCandidates who are not selected can apply again for …"
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Interview process",
+     "key": "**Offers are rolled out within 3 working days of the final interview.** [1]",
+     "points": [],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Interview process"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "Can I apply for an internal job posting?",
+    "How long is an offer valid?",
+    "What health insurance do we get?"
+   ],
+   "fallback": "**Offers are rolled out within 3 working days of the final interview.** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Interview process",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 813,
+    "completion_tokens": 134,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 813,
+      "completion_tokens": 134
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "intern-process",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.6,
+  "q": "What does the internship hiring process look like?",
+  "role": "Candidate",
+  "answer": "**The internship hiring process consists of a screening, one technical interview, and an HR call.** [1]\n- It is shorter than the standard four-stage process for most roles. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Interview process",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Interview process",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 16,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.7497,
+     "label": "Northwind Labs Employee Handbook · Interview process",
+     "snippet": "Most roles follow four stages: an application screening by the HR assistant, a 30-minute HR call, one or two technical or functional interviews with the hiring team, and a final interview with the department head. Candidates usually hear back within 5 working days after each stage. Offers are rolled out within 3 working days of the final interview.\n\nFor internships the process is shorter: screening, one technical interview and an HR call. Customer-support roles have a voice and communication assessment in place of the technical interview.\n\nCandidates who are not selected can apply again for …"
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Interview process",
+     "key": "**The internship hiring process consists of a screening, one technical interview, and an HR call.** [1]",
+     "points": [
+      "It is shorter than the standard four-stage process for most roles. [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Interview process"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "Can I apply for an internal job posting?",
+    "How many leaves do I get?"
+   ],
+   "fallback": "**The internship hiring process consists of a screening, one technical interview, and an HR call.** [1]\n- It is shorter than the standard four-stage process for most roles. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Interview process",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 831,
+    "completion_tokens": 220,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 831,
+      "completion_tokens": 220
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "joining-docs",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 3.2,
+  "q": "What documents do I need for joining?",
+  "role": "Candidate",
+  "answer": "**New joiners must submit a government photo ID, PAN card, address proof, educational certificates and mark sheets, relieving letters from previous employers, the last three salary slips, and two passport-size photographs.** [1]  \n- Documents must be uploaded to the HR portal before the joining date. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Documents required for joining",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Documents required for joining",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 18,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.8361,
+     "label": "Northwind Labs Employee Handbook · Documents required for joining",
+     "snippet": "New joiners must submit: a government photo ID, PAN card, address proof, educational certificates and mark sheets, relieving letters from previous employers, the last three salary slips, and two passport-size photographs. Documents are uploaded to the HR portal before the joining date."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Documents required for joining",
+     "key": "**New joiners must submit a government photo ID, PAN card, address proof, educational certificates and mark sheets, relieving letters from previous employers, the last three salary slips, and two passport-size photographs.** [1]",
+     "points": [
+      "Documents must be uploaded to the HR portal before the joining date. [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Documents required for joining"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "How long is an offer valid?",
+    "What health insurance do we get?"
+   ],
+   "fallback": "**New joiners must submit a government photo ID, PAN card, address proof, educational certificates and mark sheets, relieving letters from previous employers, the last three salary slips, and two passport-size photographs.** [1]  \n- Documents must be uploaded to the HR portal before the joining date. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Documents required for joining",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 771,
+    "completion_tokens": 244,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 771,
+      "completion_tokens": 244
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "internal-move",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 3.1,
+  "q": "Can I apply for an internal job posting?",
+  "role": "Hiring Manager",
+  "answer": "**Yes, you can apply for an internal job posting if you have been in your current role for at least 12 months and you inform your reporting manager before applying.** [1]  \n- Must have 12 months tenure in current role and notify manager prior to applying. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Internal job postings",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Internal job postings",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 19,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.8543,
+     "label": "Northwind Labs Employee Handbook · Internal job postings",
+     "snippet": "Employees who have spent at least 12 months in their current role can apply for internal openings. Inform your reporting manager before applying. Internal candidates go through the same interview stages, and the transfer usually takes effect within 30 days of selection."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Internal job postings",
+     "key": "**Yes, you can apply for an internal job posting if you have been in your current role for at least 12 months and you inform your reporting manager before applying.** [1]",
+     "points": [
+      "Must have 12 months tenure in current role and notify manager prior to applying. [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Internal job postings"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "What is the dress code?"
+   ],
+   "fallback": "**Yes, you can apply for an internal job posting if you have been in your current role for at least 12 months and you inform your reporting manager before applying.** [1]  \n- Must have 12 months tenure in current role and notify manager prior to applying. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Internal job postings",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 677,
+    "completion_tokens": 286,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 677,
+      "completion_tokens": 286
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "hours",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.4,
+  "q": "What are the working hours?",
+  "role": "Candidate",
+  "answer": "**Standard working hours are 9:30 AM to 6:30 PM, Monday to Friday, with a one-hour lunch break; teams may start flexibly between 8:00 AM and 11:00 AM as long as core collaboration hours of 11:00 AM to 4:00 PM are covered** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Working hours",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Working hours",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 1,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.4721,
+     "label": "Northwind Labs Employee Handbook · Working hours",
+     "snippet": "Standard working hours are 9:30 AM to 6:30 PM, Monday to Friday, with a one-hour lunch break. Teams may agree on flexible start times between 8:00 AM and 11:00 AM as long as core collaboration hours of 11:00 AM to 4:00 PM are covered.\n\nCustomer-support (BPO) teams work in rotational shifts of 9 hours including breaks, five days a week, with two weekly offs that may fall on weekdays. Night-shift employees (shifts starting after 8:00 PM) receive a night-shift allowance of INR 3,000 per month and company cab drop.\n\nAttendance is marked through the HR portal. Three late check-ins (after the …"
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Working hours",
+     "key": "**Standard working hours are 9:30 AM to 6:30 PM, Monday to Friday, with a one-hour lunch break; teams may start flexibly between 8:00 AM and 11:00 AM as long as core collaboration hours of 11:00 AM to 4:00 PM are covered** [1]",
+     "points": [],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Working hours"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "Is work from home allowed?",
+    "Do I get a laptop?",
+    "How does the exit process work?"
+   ],
+   "fallback": "**Standard working hours are 9:30 AM to 6:30 PM, Monday to Friday, with a one-hour lunch break; teams may start flexibly between 8:00 AM and 11:00 AM as long as core collaboration hours of 11:00 AM to 4:00 PM are covered** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Working hours",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 1015,
+    "completion_tokens": 204,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 1015,
+      "completion_tokens": 204
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "core-hours",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.1,
+  "q": "What are the core collaboration hours?",
+  "role": "Hiring Manager",
+  "answer": "**Core collaboration hours are 11:00 AM to 4:00 PM** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Working hours",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Working hours",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 1,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.5824,
+     "label": "Northwind Labs Employee Handbook · Working hours",
+     "snippet": "Standard working hours are 9:30 AM to 6:30 PM, Monday to Friday, with a one-hour lunch break. Teams may agree on flexible start times between 8:00 AM and 11:00 AM as long as core collaboration hours of 11:00 AM to 4:00 PM are covered.\n\nCustomer-support (BPO) teams work in rotational shifts of 9 hours including breaks, five days a week, with two weekly offs that may fall on weekdays. Night-shift employees (shifts starting after 8:00 PM) receive a night-shift allowance of INR 3,000 per month and company cab drop.\n\nAttendance is marked through the HR portal. Three late check-ins (after the …"
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Working hours",
+     "key": "**Core collaboration hours are 11:00 AM to 4:00 PM** [1]",
+     "points": [],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Working hours"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "Do I get a laptop?",
+    "Is work from home allowed?"
+   ],
+   "fallback": "**Core collaboration hours are 11:00 AM to 4:00 PM** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Working hours",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 869,
+    "completion_tokens": 105,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 869,
+      "completion_tokens": 105
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "ticket-time",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.2,
+  "q": "How long does HR take to answer a ticket?",
+  "role": "Hiring Manager",
+  "answer": "**HR tickets are answered within 2 working days** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Contact",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Contact",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 22,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.8217,
+     "label": "Northwind Labs Employee Handbook · Contact",
+     "snippet": "For anything not covered here, contact the HR team through the HR portal ticketing system. Tickets are answered within 2 working days. Urgent payroll issues raised in the last week of the month are answered within 1 working day."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Contact",
+     "key": "**HR tickets are answered within 2 working days** [1]",
+     "points": [],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Contact"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "Is there a learning budget?",
+    "What are the working hours?",
+    "What are the public holidays?"
+   ],
+   "fallback": "**HR tickets are answered within 2 working days** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Contact",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 1127,
+    "completion_tokens": 109,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 1127,
+      "completion_tokens": 109
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "payday",
+  "kind": "policy",
+  "kb": "new",
+  "ok": true,
+  "why": "",
+  "secs": 2.6,
+  "q": "When is salary credited each month?",
+  "role": "Hiring Manager",
+  "answer": "**Salary is credited on the last working day of each month** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Payroll and payslips",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Payroll and payslips",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 9,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.6558,
+     "label": "Northwind Labs Employee Handbook · Payroll and payslips",
+     "snippet": "Salaries are paid monthly and credited to the employee's bank account on the last working day of each month. Payslips are available in the HR portal on the same day. Attendance and leave are counted from the 26th of the previous month to the 25th of the current month for payroll.\n\nIncome tax is deducted at source. Employees declare their tax-saving investments in the HR portal in April and submit proofs by 15 January. Form 16 is issued by 15 June every year."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Payroll and payslips",
+     "key": "**Salary is credited on the last working day of each month** [1]",
+     "points": [],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Payroll and payslips"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "How do I contact HR?",
+    "How do I claim expenses?",
+    "What documents do I need for joining?"
+   ],
+   "fallback": "**Salary is credited on the last working day of each month** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Payroll and payslips",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 977,
+    "completion_tokens": 212,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 977,
+      "completion_tokens": 212
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "insurance",
+  "kind": "policy",
+  "kb": "new",
+  "ok": true,
+  "why": "",
+  "secs": 2.8,
+  "q": "Do employees get health insurance?",
+  "role": "Candidate",
+  "answer": "**Yes, full-time employees receive group health insurance of INR 5,00,000 per year on a family-floater basis** [1]  \n- Coverage applies only to full-time employees from their date of joining [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Health insurance and benefits",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Health insurance and benefits",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 11,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.7592,
+     "label": "Northwind Labs Employee Handbook · Health insurance and benefits",
+     "snippet": "Every full-time employee is covered from the date of joining by a group health insurance policy with a sum insured of INR 5,00,000 per year on a family-floater basis, covering the employee, spouse and up to two children. Parents or parents-in-law can be added at the employee's cost. Pre-existing conditions are covered from day one, and cashless treatment is available at network hospitals.\n\nEmployees also have term life insurance of three times their annual fixed salary and personal accident cover of INR 10,00,000. A free annual health check-up is available to employees over 30. The Employee …"
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Health insurance and benefits",
+     "key": "**Yes, full-time employees receive group health insurance of INR 5,00,000 per year on a family-floater basis** [1]",
+     "points": [
+      "Coverage applies only to full-time employees from their date of joining [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Health insurance and benefits"
+      }
+     ]
+    }
+   ],
+   "suggestions": [
+    "How many leaves do I get?",
+    "What are the public holidays?"
+   ],
+   "fallback": "**Yes, full-time employees receive group health insurance of INR 5,00,000 per year on a family-floater basis** [1]  \n- Coverage applies only to full-time employees from their date of joining [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Health insurance and benefits",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 981,
+    "completion_tokens": 239,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 981,
+      "completion_tokens": 239
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "learning",
+  "kind": "policy",
+  "kb": "new",
+  "ok": true,
+  "why": "",
+  "secs": 2.8,
+  "q": "Is there a learning and certification budget?",
+  "role": "Hiring Manager",
+  "answer": "**Yes, each full-time employee has a learning budget of INR 30,000 per financial year for courses, certifications and conference tickets.** [1]  \n- Certification exam fees are reimbursed after the employee passes the exam. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Learning and development",
+  "extra": {
+   "citations": [
+    {
+     "n": 1,
+     "title": "Northwind Labs Employee Handbook",
+     "section": "Learning and development",
+     "source": "seed:handbook.md",
+     "type": "document",
+     "chunk_index": 13,
+     "doc_id": "6b003c4839b1fed104f31349",
+     "score": 0.8015,
+     "label": "Northwind Labs Employee Handbook · Learning and development",
+     "snippet": "Each full-time employee has a learning budget of INR 30,000 per financial year for courses, certifications and conference tickets, approved by the reporting manager. Certification exam fees are reimbursed after the employee passes the exam. Employees who use more than INR 1,00,000 of sponsored training in a year sign a 12-month service agreement for that training.\n\nEvery employee gets access to the company's online learning library from the first day, and new joiners complete a 5-day induction programme in their first two weeks."
+    }
+   ],
+   "type": "policy",
+   "intro": "",
+   "cards": [
+    {
+     "kind": "policy",
+     "title": "Learning and development",
+     "key": "**Yes, each full-time employee has a learning budget of INR 30,000 per financial year for courses, certifications and conference tickets.** [1]",
+     "points": [
+      "Certification exam fees are reimbursed after the employee passes the exam. [1]"
+     ],
+     "sources": [
+      {
+       "n": 1,
+       "label": "Northwind Labs Employee Handbook · Learning and development"
+      }
+     ]
+    }
+   ],
+   "suggestions": [],
+   "fallback": "**Yes, each full-time employee has a learning budget of INR 30,000 per financial year for courses, certifications and conference tickets.** [1]  \n- Certification exam fees are reimbursed after the employee passes the exam. [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Learning and development",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 621,
+    "completion_tokens": 238,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 621,
+      "completion_tokens": 238
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "jobs-remote",
+  "kind": "jobs",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 1.9,
+  "q": "Show me remote jobs",
+  "role": "Candidate",
+  "answer": "Here are **13 open roles** (**remote**) (showing the first 10; narrow it down by city, team or skill). 😊",
+  "extra": {
+   "citations": [],
+   "type": "jobs",
+   "intro": "Here are **13 open roles** (**remote**) (showing the first 10; narrow it down by city, team or skill). 😊",
+   "cards": [
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0475",
+     "title": "Frontend Intern",
+     "department": "Tech",
+     "location": "Remote",
+     "remote": true,
+     "employment_type": "Internship",
+     "experience": "Freshers welcome",
+     "experience_years": 0.0,
+     "salary": "INR 20,000-25,000 per month (stipend)",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-13",
+     "skills": [
+      "HTML",
+      "CSS",
+      "React"
+     ],
+     "description": "Assist in UI/UX development."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0479",
+     "title": "AI/ML Engineer",
+     "department": "Tech",
+     "location": "Remote",
+     "remote": true,
+     "employment_type": "Full-time",
+     "experience": "2.5+ yrs",
+     "experience_years": 2.5,
+     "salary": "INR 6-9 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-10",
+     "skills": [
+      "Python",
+      "Machine Learning",
+      "LLM",
+      "LangChain"
+     ],
+     "description": "Build intelligent AI features and agents."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a047d",
+     "title": "Cloud Security Specialist",
+     "department": "Tech",
+     "location": "Remote",
+     "remote": true,
+     "employment_type": "Full-time",
+     "experience": "4.5+ yrs",
+     "experience_years": 4.5,
+     "salary": "INR 10-15 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-20",
+     "skills": [
+      "Cybersecurity",
+      "AWS",
+      "Network Security"
+     ],
+     "description": "Ensure secure cloud infrastructure and compliance."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0480",
+     "title": "Lead Frontend Developer",
+     "department": "Tech",
+     "location": "Remote",
+     "remote": true,
+     "employment_type": "Full-time",
+     "experience": "6+ yrs",
+     "experience_years": 6.0,
+     "salary": "INR 18-26 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-10",
+     "skills": [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Redux"
+     ],
+     "description": "Lead UI development and mentor junior devs."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0486",
+     "title": "Chat Support Agent",
+     "department": "BPO",
+     "location": "Remote",
+     "remote": true,
+     "employment_type": "Full-time",
+     "experience": "Freshers welcome",
+     "experience_years": 0.0,
+     "salary": "INR 2.4-3.6 LPA",
+     "openings": 8,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-03",
+     "skills": [
+      "Typing",
+      "Customer Service",
+      "Multitasking"
+     ],
+     "description": "Resolve customer issues via live chat."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0490",
+     "title": "Director of Customer Success",
+     "department": "BPO",
+     "location": "Remote",
+     "remote": true,
+     "employment_type": "Full-time",
+     "experience": "10+ yrs",
+     "experience_years": 10.0,
+     "salary": "INR 12-18 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-06",
+     "skills": [
+      "Strategic Planning",
+      "Client Retention",
+      "Executive Leadership"
+     ],
+     "description": "Head the global customer success and BPO operations."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0491",
+     "title": "HR Intern",
+     "department": "HR",
+     "location": "Remote",
+     "remote": true,
+     "employment_type": "Internship",
+     "experience": "Freshers welcome",
+     "experience_years": 0.0,
+     "salary": "INR 20,000-25,000 per month (stipend)",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-13",
+     "skills": [
+      "Communication",
+      "MS Office",
+      "Organization"
+     ],
+     "description": "Assist the HR team with documentation and sourcing."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0497",
+     "title": "Talent Acquisition Lead",
+     "department": "HR",
+     "location": "Remote",
+     "remote": true,
+     "employment_type": "Full-time",
+     "experience": "5+ yrs",
+     "experience_years": 5.0,
+     "salary": "INR 8-12 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-06",
+     "skills": [
+      "Team Management",
+      "Stakeholder Management",
+      "Recruitment Strategy"
+     ],
+     "description": "Lead a team of recruiters to meet hiring targets."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a049b",
+     "title": "Diversity and Inclusion Lead",
+     "department": "HR",
+     "location": "Remote",
+     "remote": true,
+     "employment_type": "Full-time",
+     "experience": "8.5+ yrs",
+     "experience_years": 8.5,
+     "salary": "INR 15-22 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-03",
+     "skills": [
+      "D&I Strategy",
+      "Cultural Change",
+      "Training"
+     ],
+     "description": "Drive inclusive hiring and workplace culture initiatives."
+    },
+    {
+     "kind": "job",
+     "id": "6b0035bf30239889c71cc73f",
+     "title": "Generative AI Engineer",
+     "department": "Tech",
+     "location": "Remote",
+     "remote": true,
+     "employment_type": "Full-time",
+     "experience": "2+ yrs",
+     "experience_years": 2.0,
+     "salary": "INR 6-9 LPA",
+     "openings": 2,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-10",
+     "skills": [
+      "Python",
+      "LangChain",
+      "RAG",
+      "Vector Databases",
+      "FastAPI"
+     ],
+     "description": "Build retrieval-augmented generation and agent features: document ingestion, embeddings, prompt design, evaluation and deployment behind APIs."
+    }
+   ],
+   "suggestions": [
+    "Apply for Frontend Intern",
+    "Jobs for freshers"
+   ],
+   "fallback": "Here are **13 open roles** (**remote**) (showing the first 10; narrow it down by city, team or skill).\n\n- **Frontend Intern** · Tech · Remote · Freshers welcome · CTC INR 20,000-25,000 per month (stipend) · 1 opening, apply by 2026-12-31\n- **AI/ML Engineer** · Tech · Remote · 2.5+ yrs · CTC INR 6-9 LPA · 1 opening, apply by 2026-12-31\n- **Cloud Security Specialist** · Tech · Remote · 4.5+ yrs · CTC INR 10-15 LPA · 1 opening, apply by 2026-12-31\n- **Lead Frontend Developer** · Tech · Remote · 6+ yrs · CTC INR 18-26 LPA · 1 opening, apply by 2026-12-31\n- **Chat Support Agent** · BPO · Remote · Freshers welcome · CTC INR 2.4-3.6 LPA · 8 openings, apply by 2026-12-31\n- **Director of Customer Success** · BPO · Remote · 10+ yrs · CTC INR 12-18 LPA · 1 opening, apply by 2026-12-31\n- **HR Intern** · HR · Remote · Freshers welcome · CTC INR 20,000-25,000 per month (stipend) · 1 opening, apply by 2026-12-31\n- **Talent Acquisition Lead** · HR · Remote · 5+ yrs · CTC INR 8-12 LPA · 1 opening, apply by 2026-12-31\n- **Diversity and Inclusion Lead** · HR · Remote · 8.5+ yrs · CTC INR 15-22 LPA · 1 opening, apply by 2026-12-31\n- **Generative AI Engineer** · Tech · Remote · 2+ yrs · CTC INR 6-9 LPA · 2 openings, apply by 2026-12-31\n\nTap **Apply** on a role, or reply \"I want to apply for the <role> job\".",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 560,
+    "completion_tokens": 43,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-20b",
+      "purpose": "phrase",
+      "prompt_tokens": 560,
+      "completion_tokens": 43
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "jobs-pune",
+  "kind": "jobs",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 1.9,
+  "q": "Which jobs are open in Pune?",
+  "role": "Candidate",
+  "answer": "Here are **10 open roles** in **Pune**.",
+  "extra": {
+   "citations": [],
+   "type": "jobs",
+   "intro": "Here are **10 open roles** in **Pune**.",
+   "cards": [
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a047a",
+     "title": "DevOps Engineer",
+     "department": "Tech",
+     "location": "Pune",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "3+ yrs",
+     "experience_years": 3.0,
+     "salary": "INR 10-15 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-17",
+     "skills": [
+      "AWS",
+      "Docker",
+      "Kubernetes",
+      "CI/CD"
+     ],
+     "description": "Manage cloud infrastructure and pipelines."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0481",
+     "title": "Data Engineering Lead",
+     "department": "Tech",
+     "location": "Pune",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "6.5+ yrs",
+     "experience_years": 6.5,
+     "salary": "INR 18-26 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-17",
+     "skills": [
+      "Spark",
+      "Hadoop",
+      "Python",
+      "Snowflake"
+     ],
+     "description": "Lead the design of big data pipelines."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0487",
+     "title": "Technical Support L1",
+     "department": "BPO",
+     "location": "Pune",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "1+ yrs",
+     "experience_years": 1.0,
+     "salary": "INR 3-4.5 LPA",
+     "openings": 6,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-10",
+     "skills": [
+      "Troubleshooting",
+      "Windows",
+      "Ticketing System"
+     ],
+     "description": "Basic IT and product troubleshooting for clients."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a048c",
+     "title": "Process Trainer",
+     "department": "BPO",
+     "location": "Pune",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "5.5+ yrs",
+     "experience_years": 5.5,
+     "salary": "INR 7-10 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-27",
+     "skills": [
+      "Training Delivery",
+      "Content Creation",
+      "Communication"
+     ],
+     "description": "Train new batches of agents on process and product."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0493",
+     "title": "HR Executive",
+     "department": "HR",
+     "location": "Pune",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "2+ yrs",
+     "experience_years": 2.0,
+     "salary": "INR 5-7 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-27",
+     "skills": [
+      "Onboarding",
+      "Employee Engagement",
+      "Grievance Handling"
+     ],
+     "description": "Handle day-to-day HR operations and employee queries."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a049a",
+     "title": "HR Business Partner (HRBP)",
+     "department": "HR",
+     "location": "Pune",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "8+ yrs",
+     "experience_years": 8.0,
+     "salary": "INR 15-22 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-27",
+     "skills": [
+      "Strategic HR",
+      "Coaching",
+      "Organizational Design"
+     ],
+     "description": "Align HR strategies with business goals for specific departments."
+    },
+    {
+     "kind": "job",
+     "id": "6b0035c030239889c71cc741",
+     "title": "Python Developer",
+     "department": "Tech",
+     "location": "Pune",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "2+ yrs",
+     "experience_years": 2.0,
+     "salary": "INR 6-9 LPA",
+     "openings": 2,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-03",
+     "skills": [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "Docker",
+      "REST APIs"
+     ],
+     "description": "Develop and maintain backend services for our HR and payroll products using FastAPI and PostgreSQL."
+    },
+    {
+     "kind": "job",
+     "id": "6b0035c430239889c71cc74a",
+     "title": "Email Support Executive",
+     "department": "BPO",
+     "location": "Pune",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "1+ yrs",
+     "experience_years": 1.0,
+     "salary": "INR 3-4.5 LPA",
+     "openings": 6,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-03",
+     "skills": [
+      "Written English",
+      "Email Support",
+      "Zendesk",
+      "Typing 35 WPM"
+     ],
+     "description": "Respond to customer emails within service-level targets, resolve billing and order issues and escalate complex cases."
+    },
+    {
+     "kind": "job",
+     "id": "6b0035c630239889c71cc74f",
+     "title": "HR Operations Executive",
+     "department": "HR",
+     "location": "Pune",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "1+ yrs",
+     "experience_years": 1.0,
+     "salary": "INR 3.5-5 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-17",
+     "skills": [
+      "HRMS",
+      "Onboarding",
+      "Excel",
+      "Employee Records"
+     ],
+     "description": "Manage joining formalities, background verification, employee records and exit formalities in the HRMS."
+    },
+    {
+     "kind": "job",
+     "id": "6b0035c730239889c71cc753",
+     "title": "Inside Sales Executive",
+     "department": "Sales",
+     "location": "Pune",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "1+ yrs",
+     "experience_years": 1.0,
+     "salary": "INR 3.5-5 LPA",
+     "openings": 4,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-03",
+     "skills": [
+      "B2B Sales",
+      "Cold Calling",
+      "CRM",
+      "Communication"
+     ],
+     "description": "Qualify inbound leads for our HR software, run product walkthroughs over video and hand qualified deals to account executives."
+    }
+   ],
+   "suggestions": [
+    "Apply for DevOps Engineer",
+    "Jobs for freshers"
+   ],
+   "fallback": "Here are **10 open roles** in **Pune**.\n\n- **DevOps Engineer** · Tech · Pune · 3+ yrs · CTC INR 10-15 LPA · 1 opening, apply by 2026-12-31\n- **Data Engineering Lead** · Tech · Pune · 6.5+ yrs · CTC INR 18-26 LPA · 1 opening, apply by 2026-12-31\n- **Technical Support L1** · BPO · Pune · 1+ yrs · CTC INR 3-4.5 LPA · 6 openings, apply by 2026-12-31\n- **Process Trainer** · BPO · Pune · 5.5+ yrs · CTC INR 7-10 LPA · 1 opening, apply by 2026-12-31\n- **HR Executive** · HR · Pune · 2+ yrs · CTC INR 5-7 LPA · 1 opening, apply by 2026-12-31\n- **HR Business Partner (HRBP)** · HR · Pune · 8+ yrs · CTC INR 15-22 LPA · 1 opening, apply by 2026-12-31\n- **Python Developer** · Tech · Pune · 2+ yrs · CTC INR 6-9 LPA · 2 openings, apply by 2026-12-31\n- **Email Support Executive** · BPO · Pune · 1+ yrs · CTC INR 3-4.5 LPA · 6 openings, apply by 2026-12-31\n- **HR Operations Executive** · HR · Pune · 1+ yrs · CTC INR 3.5-5 LPA · 1 opening, apply by 2026-12-31\n- **Inside Sales Executive** · Sales · Pune · 1+ yrs · CTC INR 3.5-5 LPA · 4 openings, apply by 2026-12-31\n\nTap **Apply** on a role, or reply \"I want to apply for the <role> job\".",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 541,
+    "completion_tokens": 40,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-20b",
+      "purpose": "phrase",
+      "prompt_tokens": 541,
+      "completion_tokens": 40
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "jobs-python",
+  "kind": "jobs",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.3,
+  "q": "Do you have any Python developer openings?",
+  "role": "Candidate",
+  "answer": "Here are **10 open roles** matching **python**.",
+  "extra": {
+   "citations": [],
+   "type": "jobs",
+   "intro": "Here are **10 open roles** matching **python**.",
+   "cards": [
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0474",
+     "title": "Junior Python Developer",
+     "department": "Tech",
+     "location": "Noida",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "Freshers welcome",
+     "experience_years": 0.0,
+     "salary": "INR 4-6 LPA",
+     "openings": 3,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-06",
+     "skills": [
+      "Python",
+      "SQL",
+      "Git"
+     ],
+     "description": "Entry-level backend development."
+    },
+    {
+     "kind": "job",
+     "id": "6b0035c030239889c71cc741",
+     "title": "Python Developer",
+     "department": "Tech",
+     "location": "Pune",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "2+ yrs",
+     "experience_years": 2.0,
+     "salary": "INR 6-9 LPA",
+     "openings": 2,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-03",
+     "skills": [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "Docker",
+      "REST APIs"
+     ],
+     "description": "Develop and maintain backend services for our HR and payroll products using FastAPI and PostgreSQL."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0478",
+     "title": "Backend Developer",
+     "department": "Tech",
+     "location": "Noida",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "2+ yrs",
+     "experience_years": 2.0,
+     "salary": "INR 6-9 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-03",
+     "skills": [
+      "Python",
+      "Django",
+      "FastAPI"
+     ],
+     "description": "Develop and maintain robust APIs."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0479",
+     "title": "AI/ML Engineer",
+     "department": "Tech",
+     "location": "Remote",
+     "remote": true,
+     "employment_type": "Full-time",
+     "experience": "2.5+ yrs",
+     "experience_years": 2.5,
+     "salary": "INR 6-9 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-10",
+     "skills": [
+      "Python",
+      "Machine Learning",
+      "LLM",
+      "LangChain"
+     ],
+     "description": "Build intelligent AI features and agents."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a047e",
+     "title": "Senior Data Scientist",
+     "department": "Tech",
+     "location": "Gurugram",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "5+ yrs",
+     "experience_years": 5.0,
+     "salary": "INR 18-26 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-27",
+     "skills": [
+      "Python",
+      "Deep Learning",
+      "TensorFlow",
+      "PyTorch"
+     ],
+     "description": "Research and deploy complex predictive models."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0481",
+     "title": "Data Engineering Lead",
+     "department": "Tech",
+     "location": "Pune",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "6.5+ yrs",
+     "experience_years": 6.5,
+     "salary": "INR 18-26 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-17",
+     "skills": [
+      "Spark",
+      "Hadoop",
+      "Python",
+      "Snowflake"
+     ],
+     "description": "Lead the design of big data pipelines."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0482",
+     "title": "Tech Lead - AI",
+     "department": "Tech",
+     "location": "Noida",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "7+ yrs",
+     "experience_years": 7.0,
+     "salary": "INR 28-38 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-06",
+     "skills": [
+      "Python",
+      "System Design",
+      "Generative AI"
+     ],
+     "description": "Drive AI initiatives and technical strategy."
+    },
+    {
+     "kind": "job",
+     "id": "6b0035bf30239889c71cc73e",
+     "title": "Machine Learning Intern",
+     "department": "Tech",
+     "location": "Bengaluru",
+     "remote": false,
+     "employment_type": "Internship",
+     "experience": "Freshers welcome",
+     "experience_years": 0.0,
+     "salary": "INR 20,000-25,000 per month (stipend)",
+     "openings": 2,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-03",
+     "skills": [
+      "Python",
+      "PyTorch",
+      "Pandas",
+      "SQL"
+     ],
+     "description": "Six-month internship with the AI team: prepare datasets, train and evaluate models and help ship ML features. Pre-placement offer for strong performers."
+    },
+    {
+     "kind": "job",
+     "id": "6b0035bf30239889c71cc73f",
+     "title": "Generative AI Engineer",
+     "department": "Tech",
+     "location": "Remote",
+     "remote": true,
+     "employment_type": "Full-time",
+     "experience": "2+ yrs",
+     "experience_years": 2.0,
+     "salary": "INR 6-9 LPA",
+     "openings": 2,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-10",
+     "skills": [
+      "Python",
+      "LangChain",
+      "RAG",
+      "Vector Databases",
+      "FastAPI"
+     ],
+     "description": "Build retrieval-augmented generation and agent features: document ingestion, embeddings, prompt design, evaluation and deployment behind APIs."
+    },
+    {
+     "kind": "job",
+     "id": "6b0035c030239889c71cc740",
+     "title": "Data Scientist",
+     "department": "Tech",
+     "location": "Hyderabad",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "3+ yrs",
+     "experience_years": 3.0,
+     "salary": "INR 10-15 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-17",
+     "skills": [
+      "Python",
+      "Machine Learning",
+      "SQL",
+      "Statistics",
+      "A/B Testing"
+     ],
+     "description": "Build forecasting and churn models, design A/B tests and present results to product and operations teams."
+    }
+   ],
+   "suggestions": [
+    "Apply for Junior Python Developer",
+    "Python jobs in Bengaluru",
+    "Jobs for freshers"
+   ],
+   "fallback": "Here are **10 open roles** matching **python**.\n\n- **Junior Python Developer** · Tech · Noida · Freshers welcome · CTC INR 4-6 LPA · 3 openings, apply by 2026-12-31\n- **Python Developer** · Tech · Pune · 2+ yrs · CTC INR 6-9 LPA · 2 openings, apply by 2026-12-31\n- **Backend Developer** · Tech · Noida · 2+ yrs · CTC INR 6-9 LPA · 1 opening, apply by 2026-12-31\n- **AI/ML Engineer** · Tech · Remote · 2.5+ yrs · CTC INR 6-9 LPA · 1 opening, apply by 2026-12-31\n- **Senior Data Scientist** · Tech · Gurugram · 5+ yrs · CTC INR 18-26 LPA · 1 opening, apply by 2026-12-31\n- **Data Engineering Lead** · Tech · Pune · 6.5+ yrs · CTC INR 18-26 LPA · 1 opening, apply by 2026-12-31\n- **Tech Lead - AI** · Tech · Noida · 7+ yrs · CTC INR 28-38 LPA · 1 opening, apply by 2026-12-31\n- **Machine Learning Intern** · Tech · Bengaluru · Freshers welcome · CTC INR 20,000-25,000 per month (stipend) · 2 openings, apply by 2026-12-31\n- **Generative AI Engineer** · Tech · Remote · 2+ yrs · CTC INR 6-9 LPA · 2 openings, apply by 2026-12-31\n- **Data Scientist** · Tech · Hyderabad · 3+ yrs · CTC INR 10-15 LPA · 1 opening, apply by 2026-12-31\n\nTap **Apply** on a role, or reply \"I want to apply for the <role> job\".",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 539,
+    "completion_tokens": 300,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-20b",
+      "purpose": "phrase",
+      "prompt_tokens": 539,
+      "completion_tokens": 300
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "jobs-python-noida",
+  "kind": "jobs",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.1,
+  "q": "Any job openings for Python in Noida?",
+  "role": "Candidate",
+  "answer": "Here are **3 open roles** in **Noida** matching **python**.",
+  "extra": {
+   "citations": [],
+   "type": "jobs",
+   "intro": "Here are **3 open roles** in **Noida** matching **python**.",
+   "cards": [
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0474",
+     "title": "Junior Python Developer",
+     "department": "Tech",
+     "location": "Noida",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "Freshers welcome",
+     "experience_years": 0.0,
+     "salary": "INR 4-6 LPA",
+     "openings": 3,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-06",
+     "skills": [
+      "Python",
+      "SQL",
+      "Git"
+     ],
+     "description": "Entry-level backend development."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0478",
+     "title": "Backend Developer",
+     "department": "Tech",
+     "location": "Noida",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "2+ yrs",
+     "experience_years": 2.0,
+     "salary": "INR 6-9 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-03",
+     "skills": [
+      "Python",
+      "Django",
+      "FastAPI"
+     ],
+     "description": "Develop and maintain robust APIs."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0482",
+     "title": "Tech Lead - AI",
+     "department": "Tech",
+     "location": "Noida",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "7+ yrs",
+     "experience_years": 7.0,
+     "salary": "INR 28-38 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-06",
+     "skills": [
+      "Python",
+      "System Design",
+      "Generative AI"
+     ],
+     "description": "Drive AI initiatives and technical strategy."
+    }
+   ],
+   "suggestions": [
+    "Apply for Junior Python Developer",
+    "Jobs for freshers"
+   ],
+   "fallback": "Here are **3 open roles** in **Noida** matching **python**.\n\n- **Junior Python Developer** · Tech · Noida · Freshers welcome · CTC INR 4-6 LPA · 3 openings, apply by 2026-12-31\n- **Backend Developer** · Tech · Noida · 2+ yrs · CTC INR 6-9 LPA · 1 opening, apply by 2026-12-31\n- **Tech Lead - AI** · Tech · Noida · 7+ yrs · CTC INR 28-38 LPA · 1 opening, apply by 2026-12-31\n\nTap **Apply** on a role, or reply \"I want to apply for the <role> job\".",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 472,
+    "completion_tokens": 40,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-20b",
+      "purpose": "phrase",
+      "prompt_tokens": 472,
+      "completion_tokens": 40
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "jobs-hr",
+  "kind": "jobs",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.0,
+  "q": "Are there any HR roles open?",
+  "role": "Candidate",
+  "answer": "Here are **16 open roles** matching **HR** (showing the first 10; narrow it down by city, team or skill).",
+  "extra": {
+   "citations": [],
+   "type": "jobs",
+   "intro": "Here are **16 open roles** matching **HR** (showing the first 10; narrow it down by city, team or skill).",
+   "cards": [
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0491",
+     "title": "HR Intern",
+     "department": "HR",
+     "location": "Remote",
+     "remote": true,
+     "employment_type": "Internship",
+     "experience": "Freshers welcome",
+     "experience_years": 0.0,
+     "salary": "INR 20,000-25,000 per month (stipend)",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-13",
+     "skills": [
+      "Communication",
+      "MS Office",
+      "Organization"
+     ],
+     "description": "Assist the HR team with documentation and sourcing."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0492",
+     "title": "Recruitment Coordinator",
+     "department": "HR",
+     "location": "Noida",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "1+ yrs",
+     "experience_years": 1.0,
+     "salary": "INR 3.5-5 LPA",
+     "openings": 2,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-20",
+     "skills": [
+      "Scheduling",
+      "Email Etiquette",
+      "ATS Management"
+     ],
+     "description": "Schedule interviews and manage candidate pipelines."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0493",
+     "title": "HR Executive",
+     "department": "HR",
+     "location": "Pune",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "2+ yrs",
+     "experience_years": 2.0,
+     "salary": "INR 5-7 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-27",
+     "skills": [
+      "Onboarding",
+      "Employee Engagement",
+      "Grievance Handling"
+     ],
+     "description": "Handle day-to-day HR operations and employee queries."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0494",
+     "title": "IT Recruiter",
+     "department": "HR",
+     "location": "Bengaluru",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "2.5+ yrs",
+     "experience_years": 2.5,
+     "salary": "INR 5-7 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-03",
+     "skills": [
+      "Tech Sourcing",
+      "Naukri",
+      "LinkedIn Recruiter",
+      "Screening"
+     ],
+     "description": "Source and hire for technical/engineering roles."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0495",
+     "title": "Payroll Specialist",
+     "department": "HR",
+     "location": "Noida",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "3+ yrs",
+     "experience_years": 3.0,
+     "salary": "INR 5-7 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-10",
+     "skills": [
+      "Payroll Processing",
+      "Taxation",
+      "Excel",
+      "Compliance"
+     ],
+     "description": "Ensure accurate and timely salary disbursements."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0496",
+     "title": "HR Generalist",
+     "department": "HR",
+     "location": "Gurugram",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "4+ yrs",
+     "experience_years": 4.0,
+     "salary": "INR 8-12 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-11-17",
+     "skills": [
+      "Performance Management",
+      "Policy Implementation",
+      "Exit Management"
+     ],
+     "description": "End-to-end HR management for a specific business unit."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0497",
+     "title": "Talent Acquisition Lead",
+     "department": "HR",
+     "location": "Remote",
+     "remote": true,
+     "employment_type": "Full-time",
+     "experience": "5+ yrs",
+     "experience_years": 5.0,
+     "salary": "INR 8-12 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-06",
+     "skills": [
+      "Team Management",
+      "Stakeholder Management",
+      "Recruitment Strategy"
+     ],
+     "description": "Lead a team of recruiters to meet hiring targets."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0498",
+     "title": "Employee Relations Manager",
+     "department": "HR",
+     "location": "Noida",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "6+ yrs",
+     "experience_years": 6.0,
+     "salary": "INR 8-12 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-13",
+     "skills": [
+      "Conflict Resolution",
+      "Labor Laws",
+      "Engagement Strategies"
+     ],
+     "description": "Maintain a positive work environment and handle disputes."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0499",
+     "title": "Compensation & Benefits Manager",
+     "department": "HR",
+     "location": "Bengaluru",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "7+ yrs",
+     "experience_years": 7.0,
+     "salary": "INR 15-22 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-20",
+     "skills": [
+      "Market Benchmarking",
+      "Data Analysis",
+      "Reward Strategy"
+     ],
+     "description": "Design competitive salary and benefits structures."
+    },
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a049a",
+     "title": "HR Business Partner (HRBP)",
+     "department": "HR",
+     "location": "Pune",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "8+ yrs",
+     "experience_years": 8.0,
+     "salary": "INR 15-22 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-27",
+     "skills": [
+      "Strategic HR",
+      "Coaching",
+      "Organizational Design"
+     ],
+     "description": "Align HR strategies with business goals for specific departments."
+    }
+   ],
+   "suggestions": [
+    "Apply for HR Intern",
+    "Hr jobs in Bengaluru",
+    "Jobs for freshers"
+   ],
+   "fallback": "Here are **16 open roles** matching **HR** (showing the first 10; narrow it down by city, team or skill).\n\n- **HR Intern** · HR · Remote · Freshers welcome · CTC INR 20,000-25,000 per month (stipend) · 1 opening, apply by 2026-12-31\n- **Recruitment Coordinator** · HR · Noida · 1+ yrs · CTC INR 3.5-5 LPA · 2 openings, apply by 2026-12-31\n- **HR Executive** · HR · Pune · 2+ yrs · CTC INR 5-7 LPA · 1 opening, apply by 2026-12-31\n- **IT Recruiter** · HR · Bengaluru · 2.5+ yrs · CTC INR 5-7 LPA · 1 opening, apply by 2026-12-31\n- **Payroll Specialist** · HR · Noida · 3+ yrs · CTC INR 5-7 LPA · 1 opening, apply by 2026-12-31\n- **HR Generalist** · HR · Gurugram · 4+ yrs · CTC INR 8-12 LPA · 1 opening, apply by 2026-12-31\n- **Talent Acquisition Lead** · HR · Remote · 5+ yrs · CTC INR 8-12 LPA · 1 opening, apply by 2026-12-31\n- **Employee Relations Manager** · HR · Noida · 6+ yrs · CTC INR 8-12 LPA · 1 opening, apply by 2026-12-31\n- **Compensation & Benefits Manager** · HR · Bengaluru · 7+ yrs · CTC INR 15-22 LPA · 1 opening, apply by 2026-12-31\n- **HR Business Partner (HRBP)** · HR · Pune · 8+ yrs · CTC INR 15-22 LPA · 1 opening, apply by 2026-12-31\n\nTap **Apply** on a role, or reply \"I want to apply for the <role> job\".",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 563,
+    "completion_tokens": 62,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-20b",
+      "purpose": "phrase",
+      "prompt_tokens": 563,
+      "completion_tokens": 62
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "jobs-skill-detail",
+  "kind": "jobs",
+  "kb": "existing",
+  "ok": false,
+  "why": "none of /SQL|Excel|Power BI|Python|Tableau/",
+  "secs": 2.0,
+  "q": "What skills are required for the Data Analyst role?",
+  "role": "Candidate",
+  "answer": "Here is the job card for **Data Analyst** (Bengaluru).",
+  "extra": {
+   "citations": [],
+   "type": "job_detail",
+   "intro": "Here is the job card for **Data Analyst** (Bengaluru).",
+   "cards": [
+    {
+     "kind": "job",
+     "id": "6b001eddd988406da10a0477",
+     "title": "Data Analyst",
+     "department": "Tech",
+     "location": "Bengaluru",
+     "remote": false,
+     "employment_type": "Full-time",
+     "experience": "1.5+ yrs",
+     "experience_years": 1.5,
+     "salary": "INR 6-9 LPA",
+     "openings": 1,
+     "apply_by": "2026-12-31",
+     "posted_on": "2026-10-27",
+     "skills": [
+      "Excel",
+      "SQL",
+      "Tableau"
+     ],
+     "description": "Analyze business data and create dashboards."
+    }
+   ],
+   "suggestions": [
+    "Apply for Data Analyst",
+    "Other jobs in Bengaluru",
+    "Tech jobs"
+   ],
+   "fallback": "Here are the details for **Data Analyst** (Bengaluru):\n\n- **Data Analyst** · Tech · Bengaluru · 1.5+ yrs · CTC INR 6-9 LPA · 1 opening, apply by 2026-12-31\n\nTap **Apply** or reply \"I want to apply for the Data Analyst job\".",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 370,
+    "completion_tokens": 93,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-20b",
+      "purpose": "phrase",
+      "prompt_tokens": 370,
+      "completion_tokens": 93
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "refuse-pets",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.0,
+  "q": "Can I bring my pet dog to the office?",
+  "role": "Candidate",
+  "answer": "I couldn't find that in the HR knowledge base. Please check with the HR team, or ask me about our policies, hiring process or open roles.",
+  "extra": {
+   "citations": [],
+   "type": "not_found",
+   "intro": "",
+   "cards": [],
+   "suggestions": [
+    "Is work from home allowed?"
+   ],
+   "fallback": "I couldn't find that in the HR knowledge base. Please check with the HR team, or ask me about our policies, hiring process or open roles.",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 610,
+    "completion_tokens": 54,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 610,
+      "completion_tokens": 54
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "refuse-ceo-salary",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.4,
+  "q": "What is the CEO's salary?",
+  "role": "Hiring Manager",
+  "answer": "I couldn't find that in the HR knowledge base. Please check with the HR team, or ask me about our policies, hiring process or open roles.",
+  "extra": {
+   "citations": [],
+   "type": "not_found",
+   "intro": "",
+   "cards": [],
+   "suggestions": [
+    "When is salary credited?",
+    "What documents do I need for joining?",
+    "How does the exit process work?"
+   ],
+   "fallback": "I couldn't find that in the HR knowledge base. Please check with the HR team, or ask me about our policies, hiring process or open roles.",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 955,
+    "completion_tokens": 59,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 955,
+      "completion_tokens": 59
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "refuse-general",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.4,
+  "q": "What is the capital of France?",
+  "role": "Candidate",
+  "answer": "I couldn't find that in the HR knowledge base. Please check with the HR team, or ask me about our policies, hiring process or open roles.",
+  "extra": {
+   "citations": [],
+   "type": "not_found",
+   "intro": "",
+   "cards": [],
+   "suggestions": [
+    "Show remote jobs",
+    "Jobs for freshers",
+    "What is the interview process?"
+   ],
+   "fallback": "I couldn't find that in the HR knowledge base. Please check with the HR team, or ask me about our policies, hiring process or open roles.",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 335,
+    "completion_tokens": 89,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-20b",
+      "purpose": "phrase",
+      "prompt_tokens": 335,
+      "completion_tokens": 89
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "refuse-stock",
+  "kind": "policy",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "secs": 2.4,
+  "q": "Do employees get stock options?",
+  "role": "Hiring Manager",
+  "answer": "I couldn't find that in the HR knowledge base. Please check with the HR team, or ask me about our policies, hiring process or open roles.",
+  "extra": {
+   "citations": [],
+   "type": "not_found",
+   "intro": "",
+   "cards": [],
+   "suggestions": [
+    "How many leaves do I get?",
+    "What are the public holidays?"
+   ],
+   "fallback": "I couldn't find that in the HR knowledge base. Please check with the HR team, or ask me about our policies, hiring process or open roles.",
+   "usage": {
+    "calls": 1,
+    "prompt_tokens": 1011,
+    "completion_tokens": 62,
+    "by_model": [
+     {
+      "model": "openai/gpt-oss-120b",
+      "purpose": "answer",
+      "prompt_tokens": 1011,
+      "completion_tokens": 62
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "apply-start",
+  "kind": "flow",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "transcript": [
+   {
+    "say": "I want to apply for a job",
+    "answer": "Sure 😊 Which role are you interested in?",
+    "secs": 1.9,
+    "extra": {
+     "citations": [],
+     "type": "form",
+     "intro": "",
+     "cards": [],
+     "suggestions": [
+      "Data Analyst",
+      "Python Developer",
+      "Customer Support Executive"
+     ],
+     "fallback": "Sure 😊 Which role are you interested in?",
+     "usage": {
+      "calls": 1,
+      "prompt_tokens": 317,
+      "completion_tokens": 29,
+      "by_model": [
+       {
+        "model": "openai/gpt-oss-20b",
+        "purpose": "phrase",
+        "prompt_tokens": 317,
+        "completion_tokens": 29
+       }
+      ]
+     }
+    }
+   },
+   {
+    "say": "cancel",
+    "answer": "🚫 **Process Cancelled.** I have cleared your current progress. What would you like to do instead?",
+    "secs": 2.6,
+    "extra": {
+     "citations": [],
+     "type": "message",
+     "intro": "",
+     "cards": [],
+     "suggestions": [
+      "Show remote jobs",
+      "Jobs for freshers",
+      "What is the interview process?"
+     ],
+     "fallback": "🚫 **Process Cancelled.** I have cleared your current progress. What would you like to do instead?",
+     "usage": {
+      "calls": 1,
+      "prompt_tokens": 325,
+      "completion_tokens": 60,
+      "by_model": [
+       {
+        "model": "openai/gpt-oss-20b",
+        "purpose": "phrase",
+        "prompt_tokens": 325,
+        "completion_tokens": 60
+       }
+      ]
+     }
+    }
+   }
+  ]
+ },
+ {
+  "id": "status-unknown",
+  "kind": "flow",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "transcript": [
+   {
+    "say": "Check my application status",
+    "answer": "Sure, I can help you check your application status! 📋 Please enter your registered **Email ID**.",
+    "secs": 1.8,
+    "extra": {
+     "citations": [],
+     "type": "form",
+     "intro": "",
+     "cards": [],
+     "suggestions": [
+      "cancel"
+     ],
+     "fallback": "Sure, I can help you check your application status! 📋 Please enter your registered **Email ID**.",
+     "usage": {
+      "calls": 1,
+      "prompt_tokens": 324,
+      "completion_tokens": 64,
+      "by_model": [
+       {
+        "model": "openai/gpt-oss-20b",
+        "purpose": "phrase",
+        "prompt_tokens": 324,
+        "completion_tokens": 64
+       }
+      ]
+     }
+    }
+   },
+   {
+    "say": "nobody.here@example.com",
+    "answer": "Got it. Now, please enter your registered **Phone Number** to verify your identity. 😊",
+    "secs": 1.6,
+    "extra": {
+     "citations": [],
+     "type": "form",
+     "intro": "",
+     "cards": [],
+     "suggestions": [],
+     "fallback": "Got it. Now, please enter your registered **Phone Number** to verify your identity. 😊",
+     "usage": {
+      "calls": 1,
+      "prompt_tokens": 329,
+      "completion_tokens": 40,
+      "by_model": [
+       {
+        "model": "openai/gpt-oss-20b",
+        "purpose": "phrase",
+        "prompt_tokens": 329,
+        "completion_tokens": 40
+       }
+      ]
+     }
+    }
+   }
+  ]
+ },
+ {
+  "id": "form-interrupt",
+  "kind": "flow",
+  "kb": "existing",
+  "ok": true,
+  "why": "",
+  "transcript": [
+   {
+    "say": "I want to apply for a job",
+    "answer": "Sure! Which **role** are you interested in? 😊",
+    "secs": 2.0,
+    "extra": {
+     "citations": [],
+     "type": "form",
+     "intro": "",
+     "cards": [],
+     "suggestions": [
+      "Data Analyst",
+      "Python Developer",
+      "Customer Support Executive"
+     ],
+     "fallback": "Sure! Which **role** are you interested in? 😊",
+     "usage": {
+      "calls": 1,
+      "prompt_tokens": 317,
+      "completion_tokens": 46,
+      "by_model": [
+       {
+        "model": "openai/gpt-oss-20b",
+        "purpose": "phrase",
+        "prompt_tokens": 317,
+        "completion_tokens": 46
+       }
+      ]
+     }
+    }
+   },
+   {
+    "say": "Wait, how long is probation?",
+    "answer": "**6 months** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Probation\n\n---\n**Now, back to your form.** Please provide your: **Role**",
+    "secs": 2.4,
+    "extra": {
+     "citations": [
+      {
+       "n": 1,
+       "title": "Northwind Labs Employee Handbook",
+       "section": "Probation",
+       "source": "seed:handbook.md",
+       "type": "document",
+       "chunk_index": 6,
+       "doc_id": "6b003c4839b1fed104f31349",
+       "score": 0.623,
+       "label": "Northwind Labs Employee Handbook · Probation",
+       "snippet": "New full-time employees serve a probation period of 6 months. The reporting manager completes a probation review in the 5th month. Probation can be extended once, by up to 3 months, if the review is not satisfactory. During probation the notice period is 15 days."
+      }
+     ],
+     "type": "policy",
+     "intro": "",
+     "cards": [
+      {
+       "kind": "policy",
+       "title": "Probation",
+       "key": "**6 months** [1]",
+       "points": [],
+       "sources": [
+        {
+         "n": 1,
+         "label": "Northwind Labs Employee Handbook · Probation"
+        }
+       ]
+      }
+     ],
+     "suggestions": [
+      "cancel"
+     ],
+     "fallback": "**6 months** [1]\n\n**Sources**\n[1] Northwind Labs Employee Handbook · Probation\n\n---\n**Now, back to your form.** Please provide your: **Role**",
+     "usage": {
+      "calls": 1,
+      "prompt_tokens": 988,
+      "completion_tokens": 123,
+      "by_model": [
+       {
+        "model": "openai/gpt-oss-120b",
+        "purpose": "answer",
+        "prompt_tokens": 988,
+        "completion_tokens": 123
+       }
+      ]
+     }
+    }
+   },
+   {
+    "say": "cancel",
+    "answer": "🚫 **Process Cancelled.** I have cleared your current progress. What would you like to do instead?",
+    "secs": 1.4,
+    "extra": {
+     "citations": [],
+     "type": "message",
+     "intro": "",
+     "cards": [],
+     "suggestions": [
+      "Show remote jobs",
+      "Jobs for freshers",
+      "What is the interview process?"
+     ],
+     "fallback": "🚫 **Process Cancelled.** I have cleared your current progress. What would you like to do instead?",
+     "usage": {
+      "calls": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "by_model": []
+     }
+    }
+   }
+  ]
+ }
+]

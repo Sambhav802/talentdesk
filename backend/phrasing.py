@@ -34,6 +34,13 @@ deadline policy policies leave leaves job jobs role roles opening openings resum
 _EMOJI = re.compile("[\U0001F300-\U0001FAFF☀-➿⬀-⯿←-⇿⌀-⏿️]")
 
 
+FILLER = set("""sure thing happy glad help helping great thanks thank sorry unfortunately however please could would
+should will shall just let know right away today here there your yours you that this these those with from into about
+also okay alright absolutely certainly definitely gladly quick quickly simply first next then once share tell give
+provide send type enter reply below above shown following like love want need able kindly feel free ahead start
+started what which when where while still only it's i'm i'll can't don't isn't""".split())
+
+
 def limit_emoji(text: str, keep: int = 1) -> str:
     """At most `keep` emoji in a reply's prose (the first ones stay)."""
     seen = 0
@@ -77,7 +84,11 @@ def acceptable(draft: str, out: str, purpose: str = "", must_keep: list[str] | N
         return False                                   # a one-paragraph draft must not become a list
     allowed = _words(draft) | _words(purpose) | _words(user_message)
     added = (_words(out) & RISKY) - allowed
-    return not added
+    if added:
+        return False
+    # a rewrite may add friendly filler, not new subjects ("the notice period during probation isn't available")
+    novel = {w for w in _words(out) - allowed - FILLER if len(w) >= 4}
+    return len(novel) <= 2
 
 
 async def phrase(draft: str, user_role: str, user_message: str = "", facts: dict | None = None,
@@ -90,8 +101,8 @@ async def phrase(draft: str, user_role: str, user_message: str = "", facts: dict
     hit = _cache.get(key) if cache else None
     if hit and time.time() - hit[0] < CACHE_TTL_S:
         return hit[1]
-    recent = "\n".join(f"User: {h}" for h in (history or [])[-2:])
-    user = (f"{recent}\nUser: {user_message}\n\n" if user_message else "") + \
+    # only the current message (to match the user's language): earlier turns leaked old topics into rewrites
+    user = (f"User: {user_message}\n\n" if user_message else "") + \
            (f"PURPOSE: {purpose}\n" if purpose else "") + \
            (f"MUST KEEP: {', '.join(must_keep)}\n" if must_keep else "") + \
            (f"FACTS: {json.dumps(facts, ensure_ascii=False)}\n" if facts else "") + f"DRAFT: {draft}"

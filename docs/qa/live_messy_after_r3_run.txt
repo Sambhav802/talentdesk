@@ -1,0 +1,263 @@
+[typo-leave] > how many leavs do i get in a yr
+  < **You receive 18 days of paid annual leave, 8 days of sick leave, 10 public holidays and 2 optional holidays each year** [1][2]  
+- Annual leave can carry forward up to 10 days; sick leave does not carry forward. [1]  
+- Other special leaves (maternity, paternity, adoption, bereavement, marriage) are available separately. [3]
+
+**Sources**
+[1] Northwind Labs Employee Handbook · Leave policy
+[2] Northwind Labs Employee Handbook · Public holidays
+[3] Northwind Labs Employee Handbook · Leave policy
+
+[hinglish-leave] > mujhe saal me kitni chuttiyan milti hai?
+  < **You receive 18 days of paid annual leave and 8 days of sick leave each calendar year, plus special leaves such as 26 weeks maternity, 10 working days paternity, 12 weeks adoption, 5 working days bereavement, and 3 working days marriage leave.** [1][2]  
+- Annual leave accrues at 1.5 days per month and up to 10 unused days can be carried forward to the next year. [1]  
+- Sick leave does not carry forward; a medical certificate is required for absences longer than 2 consecutive days. [1][2]
+
+**Sources**
+[1] Northwind Labs Employee Handbook · Leave policy
+[2] Northwind Labs Employee Handbook · 
+
+[hinglish-notice] > notice period kitna hai senior ke liye
+  < **60 days** [1]  
+- After confirmation, applies to Senior level and above roles (5+ years experience) [1]
+
+**Sources**
+[1] Northwind Labs Employee Handbook · Notice period
+
+[leave-balance] > how many leaves do I have left?
+  < I can't see your personal records: your leave balance is in the **HR portal**. The policy:
+
+**18 days of annual leave per year (up to 10 unused days can be carried forward) and 8 days of sick leave per year (no carry-forward)** [1][2]  
+- Annual leave is credited at 1.5 days each month and any carry-forward beyond 10 days lapses on 31 December. [1]  
+- Unused sick leave does not carry forward. [1][2]
+
+**Sources**
+[1] Northwind Labs Employee Handbook · Leave policy
+[2] Northwind Labs Employee Handbook · Leave policy
+
+[multi-part] > what is the notice period and can I use my leaves to reduce it?
+  < **After confirmation, the notice period is 60 days for Senior level and above (roles requiring 5 or more years of experience) and 30 days for everyone else; during probation it is 15 days.** [1][3]  
+- Unused annual leave cannot be adjusted against the notice period. [1]
+
+**Sources**
+[1] Northwind Labs Employee Handbook · Notice period
+[3] Northwind Labs Employee Handbook · Probation
+
+[followup-pronoun] > What is the referral bonus?
+  < **Referral bonus is INR 25,000 for roles requiring up to 3 years of experience and INR 50,000 for roles requiring more than 3 years, paid in two equal installments (50% on joining and 50% after probation).** [1]  
+- Interns, HR team members and the hiring manager of the role are not eligible. [1]
+
+**Sources**
+[1] Northwind Labs Employee Handbook · Employee referral bonus
+
+[followup-pronoun] > and when is it paid?
+  < **The referral bonus is paid in two equal parts: 50% after the new hire joins and 50% after they complete probation.** [1]  
+- Interns, HR team members and the hiring manager are not eligible for a referral bonus for that role. [1]
+
+**Sources**
+[1] Northwind Labs Employee Handbook · Employee referral bonus
+
+[referral-senior] > How much is the referral bonus for senior roles?
+  < **INR 50,000** [2]  
+- Senior roles require more than 3 years of experience, qualifying for the higher bonus tier. [2]
+
+**Sources**
+[2] Northwind Labs Employee Handbook · Employee referral bonus
+
+[salary-of-job] > what's the salary for the data analyst job?
+  < Here is the job card for **Data Analyst** (Bengaluru).
+
+[partial-title] > tell me about the devops role
+  < Here is the job card for **DevOps Engineer** (Pune).
+
+[compare-jobs] > compare the Data Analyst and Data Scientist roles
+  < Here’s how **Data Analyst** and **Data Scientist** compare: **Data Analyst** – Bengaluru, 1.5+ yrs, INR 6‑9 LPA; **Data Scientist** – Hyderabad, 3+ yrs, INR 10‑15 LPA.
+| | **Data Analyst** | **Data Scientist** |
+|---|---|---|
+| City | Bengaluru | Hyderabad |
+| Team | Tech | Tech |
+| Experience | 1.5+ yrs | 3+ yrs |
+| Salary | INR 6-9 LPA | INR 10-15 LPA |
+| Openings | 1 | 1 |
+| Key skills | Excel, SQL, Tableau | Python, Machine Learning, SQL, Statistics |
+
+[python-openings] > Do you have any Python developer openings?
+  < Here are **10 open roles** matching **python**.
+
+[jobs-followup-city] > show me python jobs
+  < Here are **10 open roles** matching **python**.
+
+[jobs-followup-city] > only in pune
+  < Here are **2 open roles** in **Pune** matching **python**.
+
+[fresher-jobs] > any jobs for freshers in noida?
+  < Here are **3 open roles** in **Noida** matching **fresher**.
+
+[correction-wrong] > How long is probation?
+  < **6 months** [1]  
+- Probation may be extended once by up to 3 months if the review is not satisfactory [1]
+
+**Sources**
+[1] Northwind Labs Employee Handbook · Probation
+
+[correction-wrong] > that's wrong, it's 3 months
+  < I re-checked the handbook: **6 months** [1]  
+- Probation can be extended once by up to 3 months if the review is not satisfactory [1]
+
+**Sources**
+[1] Northwind Labs Employee Handbook · Probation
+
+[correction-hinglish] > how many sick leaves?
+  < **8 days of sick leave per year** [1][2]  
+- Unused sick leave does not carry forward. [1][2]
+
+**Sources**
+[1] Northwind Labs Employee Handbook · Leave policy
+[2] Northwind Labs Employee Handbook · Leave policy
+
+[correction-hinglish] > galat hai
+  < I re-checked the handbook:
+**8 days of sick leave per year** [1][2]  
+- Unused sick leave does not carry forward. [1][2]
+
+**Sources**
+[1] Northwind Labs Employee Handbook · Leave policy
+[2] Northwind Labs Employee Handbook · Leave policy
+
+[correction-meant] > what is the notice period?
+  < **The notice period is 15 days during probation, 30 days for non-senior staff after confirmation, and 60 days for senior-level staff (roles requiring 5 + years experience).** [1][2]  
+- Senior level defined as roles needing 5 + years experience (e.g., Senior, Lead, Manager, Director) [1]  
+- Buy-out of the notice period requires department-head and HR approval [1]
+
+**Sources**
+[1] Northwind Labs Employee Handbook · Notice period
+[2] Northwind Labs Employee Handbook · Probation
+
+[correction-meant] > no, I meant during probation
+  < **15 days** [1]
+- Applies only while the employee is still in the probation period; after confirmation the notice period follows the rules in the Notice period section. [2]
+
+**Sources**
+[1] Northwind Labs Employee Handbook · Probation
+[2] Northwind Labs Employee Handbook · Notice period
+
+[candidate-privacy] > show me all shortlisted candidates
+  < Candidate and hiring‑pipeline details are visible to the HR team only, so I can’t share them here 😊 I can show you open roles or check your own application status.
+
+[candidate-hiring-request] > pending hiring requests
+  < I’m sorry, but the candidate and hiring‑pipeline details are visible to the HR team only, so I can’t share them here. However, I can show you the open roles or help you check your own application status. 😊
+
+[manager-pipeline] > how many candidates applied for my open roles?
+  < I’m sorry, but only the HR team can see candidate and hiring‑pipeline details, so I can’t share that info here. If you’d like an update on your team’s candidates, please raise a ticket to HR in the HR portal. 😊
+
+[hr-stats] > how many candidates are shortlisted?
+  < **0 candidates in the pipeline**, 67 open roles and 0 pending hiring requests.
+
+| Stage | Candidates |
+|---|---|
+| Shortlisted | 0 |
+| Awaiting interview | 0 |
+| Pending review | 0 |
+| Not suitable / rejected | 0 |
+| **Total** | **0** |
+
+[greeting] > hii
+  < Hi! 👋 I can show open roles (try *"Python jobs in Pune"* or *"remote jobs"*), help you apply, check your application status, and answer questions about our hiring process and policies.
+
+[out-of-scope-hinglish] > aaj mausam kaisa hai?
+  < I couldn't find that in the HR knowledge base. Please check with the HR team, or ask me about our policies, hiring process or open roles. 🌟
+
+[apply-with-role] > I want to apply for the Data Analyst job
+  < Great, let’s apply for **Data Analyst** (Bengaluru). **Would you like to autofill your application using your resume?** Click the 📎 icon below to upload a PDF, or type **'No'** to fill out the form manually.
+
+[role-candidate] > hi
+  < Hi! 👋 I can show open roles (try *"Python jobs in Pune"* or *"remote jobs"*), help you apply, check your application status, and answer questions about our hiring process and policies.
+
+[role-candidate] > any remote jobs for AI?
+  < Here are **2 open roles** (**remote**) matching **ai** 😊
+
+[role-candidate] > tell me about the generative ai engineer role
+  < Here are the details for **Generative AI Engineer** (Remote):
+
+[role-candidate] > I want to apply for the Generative AI Engineer job
+  < Great, let’s apply for **Generative AI Engineer** (Remote). **Would you like to autofill your application using your resume?** Click the 📎 icon below to upload a PDF, or type **'No'** to fill out the form manually.
+
+[role-candidate] > wait, what is the notice period during probation?
+  < **15 days** [1]  
+- Applies only during probation. [1]
+
+**Sources**
+[1] Northwind Labs Employee Handbook · Probation
+
+---
+**Now, back to your form.** Please provide your: **Autofill**
+
+[role-candidate] > cancel
+  < 🚫 **Process Cancelled.** I have cleared your current progress. What would you like to do instead?
+
+[role-candidate] > show me the list of shortlisted candidates
+  < I’m sorry, but the notice period during probation isn’t available for your role. However, I can show you the open roles or check your own application status.
+
+[role-manager] > when is salary credited?
+  < **Salary is credited to the employee's bank account on the last working day of each month.** [1]
+
+**Sources**
+[1] Northwind Labs Employee Handbook · Payroll and payslips
+
+[role-manager] > that's not right, it's the 1st
+  < I re-checked the handbook: **Salaries are credited to the employee's bank account on the last working day of each month.** [1]  
+- The handbook specifies the last working day, not the 1st. [1]
+
+**Sources**
+[1] Northwind Labs Employee Handbook · Payroll and payslips
+
+[role-manager] > how many candidates applied for my team's opening?
+  < I’m sorry, but candidate and hiring‑pipeline details are visible to the HR team only, so I can’t share them here. For an update on your team’s candidates, raise a ticket to HR in the HR portal.
+
+[role-manager] > I want to raise a hiring request
+  < Sure thing! To set up your hiring request, could you let me know the **department** name?
+
+[role-manager] > cancel
+  < 🚫 **Process Cancelled.** I have cleared your current progress. What would you like to do instead?
+
+[role-hr] > how many candidates are shortlisted?
+  < **0 candidates in the pipeline**, 67 open roles and 0 pending hiring requests.
+
+| Stage | Candidates |
+|---|---|
+| Shortlisted | 0 |
+| Awaiting interview | 0 |
+| Pending review | 0 |
+| Not suitable / rejected | 0 |
+| **Total** | **0** |
+
+[role-hr] > pending hiring requests
+  < 📝 **No pending hiring requests from managers.**
+**Unfilled Job Openings (Newest First):**
+• **Content Writer** (Marketing) - Remote
+• **Digital Marketing Specialist** (Marketing) - Remote
+• **Enterprise Account Executive** (Sales) - Bengaluru
+• **Inside Sales Executive** (Sales) - Pune
+• **Financial Analyst** (Finance) - Gurugram
+• **Accounts Executive** (Finance) - Noida
+• **Learning and Development Specialist** (HR) - Bengaluru
+• **HR Operations Executive** (HR) - Pune
+• **Talent Acquisition Specialist - Non-Tech** (HR) - Hyderabad
+• **MIS Executive** (BPO) - Noida
+
+[role-hr] > What is the notice period policy?
+  < **After confirmation, notice period is 60 days for Senior level and above and 30 days for all other employees; during probation the notice period is 15 days, and buy-out is allowed with department-head and HR approval, while unused annual leave cannot be used to reduce it.** [1][2]  
+- Senior level and above means roles requiring 5 or more years of experience (e.g., Senior, Lead, Manager, Director) [1]
+
+**Sources**
+[1] Northwind Labs Employee Handbook · Notice period
+[2] Northwind Labs Employee Handbook · Probation
+
+[role-hr] > galat hai, 90 days hai
+  < I re-checked the handbook: **After confirmation, the notice period is 60 days for Senior level and above and 30 days for all other employees; during probation the notice period is 15 days, and buy-out is allowed with department-head and HR approval, while unused annual leave cannot be used to reduce it.** [1][2]  
+- Senior level and above means roles requiring 5 or more years of experience (e.g., Senior, Lead, Manager, Director) [1]
+
+**Sources**
+[1] Northwind Labs Employee Handbook · Notice period
+[2] Northwind Labs Employee Handbook · Probation
+
