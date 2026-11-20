@@ -122,7 +122,7 @@ Frontend (`frontend/.env`, or Vercel env): `VITE_API_URL` is the backend URL, wi
    - *Root Directory* = `backend`;
    - *Framework Preset* = *Other*.
 
-   Add the environment variables: `GROQ_API_KEY`, `MONGO_URI`, `ALLOWED_ORIGINS` (temporarily `*`, or your planned frontend URL), and optionally `EMBEDDINGS_PROVIDER` + key. Deploy. `vercel.json` routes every path to `api/index.py` (FastAPI, Python 3.12, 60 s max duration). Open `https://<backend>.vercel.app/` and you should see `{"status":"HR Chatbot API is running",…}`.
+   Add the environment variables: `GROQ_API_KEY`, `MONGO_URI`, `ALLOWED_ORIGINS` (temporarily `*`, or your planned frontend URL), and optionally `EMBEDDINGS_PROVIDER` + key. Deploy. Vercel's FastAPI preset detects the `app` object and routes every path to it (Python 3.12 from `.python-version`); no rewrites are needed. Open `https://<backend>.vercel.app/` and you should see `{"status":"HR Chatbot API is running",…}`.
 5. **Frontend project:** import the same repo again, and set:
    - *Root Directory* = `frontend`;
    - *Framework Preset* = *Vite*;
