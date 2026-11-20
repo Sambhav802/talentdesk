@@ -103,7 +103,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-full">
+    <div className="flex h-screen h-[100dvh] overflow-hidden">
       <Sidebar role={role} onRole={switchRole} view={view} onView={setView} dark={dark} onTheme={() => setDark((d) => !d)}
                email={showAuth ? '' : email} open={menuOpen} onClose={() => setMenuOpen(false)} />
 
@@ -117,7 +117,7 @@ export default function App() {
           <Notifications items={notifications} onOpen={(n) => { setView('chat'); setMessages((m) => [...m, { role: 'bot', text: n.details }]); }} />
         </header>
 
-        <main className="min-h-0 flex-1 overflow-y-auto">
+        <main className={`min-h-0 flex-1 ${view === 'chat' ? 'overflow-hidden' : 'overflow-y-auto'}`}>
           {view === 'chat' && (
             <ChatView messages={messages} loading={loading} role={role} quickReplies={roleById(role).quick}
                       onSend={send} onUpload={uploadResume} />

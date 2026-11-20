@@ -142,8 +142,8 @@ export default function ChatView({ messages, loading, quickReplies, onSend, onUp
   };
 
   return (
-    <div className="flex h-full flex-col">
-      <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6" aria-live="polite">
+    <div className="flex h-full min-h-0 flex-col">
+      <div className="min-h-0 flex-1 overflow-y-auto px-4 py-6 sm:px-6" aria-live="polite">
         <div className="mx-auto flex max-w-3xl flex-col gap-5">
           {messages.map((m, i) => (
             <Message key={i} msg={m} onSend={onSend} loading={loading} canApply={role === 'Candidate'}
@@ -154,9 +154,9 @@ export default function ChatView({ messages, loading, quickReplies, onSend, onUp
         </div>
       </div>
 
-      <div className="border-t border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80">
+      <div className="shrink-0 border-t border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80">
         <div className="mx-auto max-w-3xl px-4 pt-3 sm:px-6">
-          <div className="no-scrollbar flex gap-2 overflow-x-auto pb-1">
+          <div className="no-scrollbar flex gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible">
             {quickReplies.map((q) => (
               <button key={q} type="button" disabled={loading} onClick={() => onSend(q)}
                       className="whitespace-nowrap rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-brand-300 hover:text-brand-700 disabled:opacity-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-brand-700 dark:hover:text-brand-300">
@@ -175,7 +175,7 @@ export default function ChatView({ messages, loading, quickReplies, onSend, onUp
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) submit(e); }}
                     placeholder={`Message as ${role}…`}
-                    className="input max-h-40 min-h-[44px] flex-1 resize-none py-3" />
+                    className="input max-h-40 min-h-[44px] min-w-0 flex-1 resize-none py-3" />
           <button type="submit" className="btn-primary h-11 w-11 shrink-0 p-0" disabled={loading || !input.trim()} aria-label="Send">
             <Send size={18} />
           </button>
