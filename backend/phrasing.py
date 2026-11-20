@@ -105,6 +105,11 @@ async def phrase(draft: str, user_role: str, user_message: str = "", facts: dict
         logger.info("phrasing skipped (%s)", type(e).__name__)
         return draft
     out = limit_emoji((out or "").strip().strip('"'))
+    # the cards show the jobs: an intro that names job titles (inline or as a list) repeats them
+    titles = [t.get("title", "") for t in ((facts or {}).get("top") or []) if isinstance(t, dict)]
+    if any(t and t.lower() in out.lower() and t.lower() not in draft.lower() for t in titles):
+        logger.info("phrasing rejected (repeats the cards); using the template")
+        return draft
     if not acceptable(draft, out, purpose, must_keep, user_message):
         logger.info("phrasing rejected (meaning/fields changed); using the template")
         return draft

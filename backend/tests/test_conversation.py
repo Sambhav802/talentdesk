@@ -339,3 +339,11 @@ async def test_leave_balance_goes_straight_to_the_policy(client, fresh_env):
     q = fresh_env.calls[-1]["messages"][-1]["content"]
     assert "How many days of annual and sick leave do employees get" in q and "left" not in q.split("Question:")[-1]
     assert out["text"].count("HR portal") == 1
+
+
+async def test_job_intro_rewrite_that_names_the_jobs_is_rejected(monkeypatch, phrasing_on):
+    inline = "Here are **3 open roles** in **Noida**: Junior Python Developer, Customer Support Executive and more."
+    monkeypatch.setattr(llm, "complete", lambda *a, **k: inline)
+    draft = "Here are **3 open roles** in **Noida**."
+    facts = {"top": [{"title": "Junior Python Developer"}, {"title": "Customer Support Executive"}]}
+    assert await phrasing.phrase(draft, "Candidate", facts=facts, purpose=prompts.REPLY_PURPOSE["jobs"]) == draft
