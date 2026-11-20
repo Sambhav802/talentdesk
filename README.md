@@ -218,5 +218,6 @@ anything not covered gets "I couldn't find that in the HR knowledge base" instea
 `type` (`policy`, `correction`, `jobs`, `job_detail`, `compare`, `stats`, `form`, `greeting`, `refusal`,
 `not_found`, `message`), `intro`, `cards` (`job`: title, department, location, remote, experience, salary,
 openings, apply_by, skills; `policy`: title, key, points, sources; `stats`: rows, totals), `suggestions`
-(quick-reply chips) and `usage` (model calls and tokens for the turn). Role rules and every model prompt live in
+(quick-reply chips), `fallback` (plain-text version for clients that can't render cards; for job replies
+`response` is only the short intro) and `usage` (model calls and tokens for the turn). Role rules and every model prompt live in
 `backend/prompts.py`; see `docs/QA_REVIEW.md` for the review behind them.

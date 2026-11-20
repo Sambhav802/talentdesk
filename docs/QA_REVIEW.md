@@ -32,6 +32,19 @@ python scripts/e2e_eval.py https://talentdesk-two.vercel.app --out ../docs/qa/li
 python scripts/run_conversations.py https://talentdesk-two.vercel.app --out ../docs/qa/live_messy_after.json
 ```
 
+## Round 3 (after reading the live transcripts of round 2, `docs/qa/live_messy_after.json`)
+
+| Issue on the live site | Cause | Fix | Test |
+|---|---|---|---|
+| "I want to raise a hiring request" → "…and I'll pull up the candidate count for your team's opening" | the rewording model was told what to keep, not what the reply is *for* | every reworded form step has a declared PURPOSE and MUST-KEEP words (`prompts.FORM_STEPS`); rewrites that drop the field, add a risky word (candidates, counts, scheduling, …) the draft didn't have, or turn into a list are rejected and the template is used; steps not listed are never reworded | `test_hiring_request_rewrite_that_changes_the_action_is_rejected`, `test_rewrite_must_keep_the_required_field`, `test_unlisted_form_steps_keep_the_template` |
+| "any jobs for freshers in noida?" listed Recruitment Coordinator (1+ yrs) | "fresher" was ≤ 1 year | fresher / intern = 0 years only | `test_freshers_means_zero_experience` |
+| "and when is it paid?" repeated the whole referral answer | follow-up sent as one combined question | follow-ups are sent as *Question* + *Earlier question (context only)* with a prompt that answers only the asked point, bold, + at most one bullet | `test_follow_up_answers_only_the_sub_question` |
+| Job replies carried the full card markdown in the text *and* as cards; the model also listed the jobs in the intro; many emoji | text built for card-less clients | `response` is the short intro when cards are present, `fallback` holds a compact emoji-free list; intro rewrites that become lists are rejected; at most one emoji per prose reply | `test_job_reply_text_is_the_intro_and_cards_carry_the_details`, `test_job_intro_rewrite_that_lists_jobs_is_rejected`, `test_at_most_one_emoji_in_prose` |
+| "how many leaves do I have left?" → "Here's the general policy: Your remaining leave balance can be viewed in the HR portal." | the personal question itself was sent to the model | the question is rewritten to the general rule ("How many days of annual and sick leave…") before retrieval; the HR-portal note appears once | `test_leave_balance_goes_straight_to_the_policy` |
+
+The frontend already rendered job replies from `intro` + `cards` only (no double rendering); the compare table
+stays in the text because it is the comparison itself.
+
 ## Issues found, grouped by root cause
 
 **1. No conversation memory** (the biggest source of wrong answers)

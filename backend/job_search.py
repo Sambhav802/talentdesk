@@ -73,10 +73,11 @@ def _dept(msg: str) -> str | None:
 
 def _level(msg: str):
     m = _norm(msg)
+    # "fresher" means no experience needed: only openings marked 0 years ("Freshers welcome")
     if re.search(r"\b(fresher|freshers|entry[- ]level|graduate|no experience|0 years?|beginner)\b", m):
-        return "fresher", lambda e: e <= 1
+        return "fresher", lambda e: e == 0
     if re.search(r"\b(intern|internship|internships)\b", m):
-        return "intern", lambda e: e <= 1
+        return "intern", lambda e: e == 0
     if re.search(r"\b(senior|lead|leadership|manager|director|head)\b", m):
         return "senior", lambda e: e >= 5
     return None, None
@@ -160,18 +161,19 @@ def to_card(j: dict) -> dict:
 
 
 def card_md(c: dict, admin: bool = False) -> str:
-    lines = [f"💼 **{c['title']}**",
-             f"🏢 *{c['department']}* | 📍 **{c['location']}** | {c['employment_type']}",
-             f"🎓 **Experience:** {c['experience']} | 💰 **{'Budget' if admin else 'CTC'}:** {c['salary']}",
-             f"🛠️ **Skills:** {', '.join(c['skills']) or 'Not specified'}"]
-    extra = [f"**Openings:** {c['openings']}"] if c.get("openings") else []
+    """Plain-text version of a card for clients that can't render cards (no emoji)."""
+    extra = []
+    if c.get("openings"):
+        extra.append(f"{c['openings']} opening{'s' if c['openings'] != 1 else ''}")
     if c.get("apply_by"):
-        extra.append(f"**Apply by:** {c['apply_by']}")
-    if extra:
-        lines.append("📌 " + " | ".join(extra))
-    if c.get("description"):
-        lines.append(f"📝 *{c['description']}*")
-    return "\n".join(lines)
+        extra.append(f"apply by {c['apply_by']}")
+    line = (f"- **{c['title']}** · {c['department']} · {c['location']} · {c['experience']} · "
+            f"{'Budget' if admin else 'CTC'} {c['salary']}")
+    return line + (f" · {', '.join(extra)}" if extra else "")
+
+
+def fallback_text(intro: str, cards: list[dict], admin: bool = False, tail: str = "") -> str:
+    return f"{intro}\n\n" + "\n".join(card_md(c, admin) for c in cards) + (f"\n\n{tail}" if tail else "")
 
 
 def facts_of(cards: list[dict], limit: int = 5) -> list[dict]:
@@ -222,14 +224,13 @@ async def list_jobs(message: str, user_role: str = "Candidate", limit: int = 10)
     cards = [to_card(j) for j in pool]
     shown = cards[:limit]
     n = len(cards)
-    intro = (f"🗂️ **Open requisitions{where}** ({n})" if admin
+    showing = f" (showing the first {limit}; narrow it down by city, team or skill)" if n > limit else ""
+    intro = (f"**Open requisitions{where}**: {n}{showing}." if admin
              else f"Here {'is' if n == 1 else 'are'} **{n} open role{'' if n == 1 else 's'}**{where}"
-                  + (f" matching **{what}**" if what else "") + ":")
-    more = (f"\n\n…and {n - limit} more. Narrow it down by city, team or skill (for example *\"Python jobs in "
-            f"Pune\"*)." if n > limit else "")
-    tail = ("\n\n💡 *You can ask me to generate a job description for any of these roles.*" if admin
-            else "\n\nReady? Tap **Apply** on a role or reply **\"I want to apply for a job\"**.")
-    text = f"{intro}\n\n" + "\n━━━━━━━━━━━━━━━━━━━━━━\n".join(card_md(c, admin) for c in shown) + more + tail
+                  + (f" matching **{what}**" if what else "") + f"{showing}.")
+    tail = ("You can ask me to generate a job description for any of these roles." if admin
+            else "Tap **Apply** on a role, or reply \"I want to apply for the <role> job\".")
+    text = intro
     sugg = [] if admin else [f"Apply for {shown[0]['title']}"]
     if not city:
         sugg.append(f"{(what or 'All').title()} jobs in Bengaluru")
@@ -237,7 +238,7 @@ async def list_jobs(message: str, user_role: str = "Candidate", limit: int = 10)
         sugg.append("Jobs for freshers")
     facts["top"] = facts_of(shown)
     return {"type": "jobs", "text": text, "intro": intro, "cards": shown, "suggestions": sugg[:3], "facts": facts,
-            "total": n}
+            "total": n, "fallback": fallback_text(intro, shown, admin, tail)}
 
 
 async def find_named_jobs(message: str) -> list[dict]:
@@ -283,18 +284,17 @@ async def job_detail(message: str, user_role: str = "Candidate") -> dict | None:
     if len(titles) > 1 and not any(re.search(rf"(?<![a-z0-9]){re.escape(t)}(?![a-z0-9])", _norm(message)) for t in titles):
         cards = [to_card(j) for j in named[:4]]      # a partial title matched several roles: let them pick
         intro = "I found a few roles that match. Which one do you mean?"
-        return {"type": "jobs", "text": intro + "\n\n" + "\n━━━━━━━━━━━━━━━━━━━━━━\n".join(card_md(c) for c in cards),
-                "intro": intro, "cards": cards, "suggestions": [f"Tell me about the {c['title']} role" for c in cards[:3]],
+        return {"type": "jobs", "text": intro, "fallback": fallback_text(intro, cards), "intro": intro, "cards": cards, "suggestions": [f"Tell me about the {c['title']} role" for c in cards[:3]],
                 "facts": {"top": facts_of(cards)}}
     c = to_card(named[0])
     admin = user_role == "HR Admin"
     intro = f"Here are the details for **{c['title']}** ({c['location']}):"
-    text = f"{intro}\n\n{card_md(c, admin)}"
-    if user_role == "Candidate":
-        text += f"\n\nTap **Apply** or reply **\"I want to apply for the {c['title']} job\"**."
+    text = intro
+    tail = f"Tap **Apply** or reply \"I want to apply for the {c['title']} job\"." if user_role == "Candidate" else ""
     sugg = ([f"Apply for {c['title']}"] if user_role == "Candidate" else []) + \
            [f"Other jobs in {c['location']}" if not c["remote"] else "Other remote jobs", f"{c['department']} jobs"]
-    return {"type": "job_detail", "text": text, "intro": intro, "cards": [c], "suggestions": sugg[:3],
+    return {"type": "job_detail", "text": text, "fallback": fallback_text(intro, [c], admin, tail), "intro": intro,
+            "cards": [c], "suggestions": sugg[:3],
             "facts": {"top": facts_of([c])}}
 
 
@@ -325,5 +325,6 @@ async def compare_jobs(message: str) -> dict | None:
     table = f"| | **{a['title']}** | **{b['title']}** |\n|---|---|---|\n" + \
             "\n".join(f"| {k} | {x} | {y} |" for k, x, y in rows)
     intro = f"Here's how **{a['title']}** and **{b['title']}** compare:"
-    return {"type": "compare", "text": f"{intro}\n\n{table}", "intro": intro, "cards": [a, b],
+    return {"type": "compare", "text": f"{intro}\n\n{table}", "fallback": f"{intro}\n\n{table}", "intro": intro,
+            "cards": [a, b],
             "suggestions": [f"Apply for {a['title']}", f"Apply for {b['title']}"], "facts": {"top": facts_of([a, b])}}

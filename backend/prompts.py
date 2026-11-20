@@ -117,14 +117,70 @@ The user says the previous answer was wrong. Re-read the passages carefully:
 Start the first line with "I re-checked the handbook:" (or the same in the user's language)."""
 
 
+def follow_up_system(user_role: str) -> str:
+    """A short follow-up ("and when is it paid?") that refers to the earlier question."""
+    return policy_system(user_role) + """
+
+This is a follow-up to the earlier question. Answer ONLY the specific point the follow-up asks (for example the
+timing, the amount or the condition) in the bold first line. Add at most one bullet of context. Do not repeat the
+earlier answer."""
+
+
 def phrase_system(user_role: str) -> str:
     """Small model: reword a reply whose facts are fixed. It must not add or change facts."""
     return f"""You are {ASSISTANT}, the friendly HR assistant of {COMPANY}, talking to {ROLES[role_of(user_role)]['persona']}.
-Rewrite the DRAFT reply so it sounds natural and warm, in 1-3 short sentences.
-- Keep every fact, number, name, option and instruction from the draft; words in **bold** or quotes stay exactly.
-- Add nothing that is not in the draft or the FACTS: no new roles, numbers, dates, policies or promises.
+Rewrite the DRAFT reply so it sounds natural and warm, in 1-3 short sentences, one paragraph.
+- The reply must do exactly what PURPOSE says and nothing else: ask the same question or give the same
+  information. Never offer, promise or mention any other action, data or feature.
+- Keep every fact, number, name, option and instruction from the draft; words in **bold** or quotes stay exactly,
+  and every MUST KEEP word appears.
+- Add nothing that is not in the draft or the FACTS: no new roles, numbers, dates, policies or promises. FACTS are
+  background only: do not list them.
 - Reply in the user's language (English, Hindi or Hinglish in Roman script), as in their last message.
-- No headings, no lists, at most one emoji. Output only the reply."""
+- No headings, no lists, no line breaks, at most one emoji. Output only the reply."""
+
+
+# Every form step the small model may reword: (flow, step) -> (purpose, words the rewrite must keep).
+# The reply at a step is the question for that step. Steps not listed here keep their template wording.
+FORM_STEPS = {
+    ("apply_job", "ask_role"): ("ask which job role the candidate wants to apply for", ["role"]),
+    ("apply_job", "ask_autofill"): ("ask whether to autofill the application from a resume upload or type 'No'",
+                                    ["resume"]),
+    ("apply_job", "ask_name"): ("ask for the candidate's full name", ["name"]),
+    ("apply_job", "ask_email"): ("ask for the candidate's email address", ["email"]),
+    ("apply_job", "ask_phone"): ("ask for the candidate's phone number", ["phone"]),
+    ("apply_job", "ask_location"): ("ask for the candidate's current location", ["location"]),
+    ("apply_job", "ask_qualification"): ("ask for the candidate's highest qualification", ["qualification"]),
+    ("apply_job", "ask_total_exp"): ("ask for total years of experience", ["experience"]),
+    ("apply_job", "ask_relevant_exp"): ("ask for years of relevant experience", ["experience"]),
+    ("apply_job", "ask_skills"): ("ask for the candidate's key skills", ["skills"]),
+    ("apply_job", "ask_current_ctc"): ("ask for the current CTC", ["ctc"]),
+    ("apply_job", "ask_expected_ctc"): ("ask for the expected CTC", ["ctc"]),
+    ("apply_job", "ask_notice_period"): ("ask for the candidate's notice period", ["notice"]),
+    ("raise_hiring_request", "ask_dept"): ("ask for the department name of the new hiring request", ["department"]),
+    ("raise_hiring_request", "ask_role"): ("ask for the role / job title to hire for", ["role"]),
+    ("raise_hiring_request", "ask_positions"): ("ask how many positions to fill", ["positions"]),
+    ("raise_hiring_request", "ask_exp"): ("ask for the required years of experience", ["experience"]),
+    ("raise_hiring_request", "ask_skills"): ("ask for the required skills", ["skills"]),
+    ("raise_hiring_request", "ask_location"): ("ask for the job location", ["location"]),
+    ("raise_hiring_request", "ask_budget"): ("ask for the budget for the role", ["budget"]),
+    ("raise_hiring_request", "ask_manager"): ("ask for the hiring manager's name", ["manager"]),
+    ("raise_hiring_request", "ask_urgency"): ("ask how urgent the hire is", ["urgen"]),
+    ("raise_hiring_request", "ask_reason"): ("ask for the reason for the hire", ["reason"]),
+    ("check_status", "ask_email"): ("ask for the email address used in the application", ["email"]),
+    ("check_status", "ask_phone"): ("ask for the phone number used in the application", ["phone"]),
+}
+
+# purposes for other reworded reply types (they must not change what the reply does)
+REPLY_PURPOSE = {
+    "jobs": "introduce the job results shown below as cards in one sentence; do not list the jobs",
+    "job_detail": "introduce the job card shown below in one sentence; do not repeat its details",
+    "compare": "introduce the comparison table shown below in one sentence",
+    "greeting": "greet the user and say what the assistant can help with",
+    "refusal": "explain politely that this information is not available for their role and what they can do instead",
+    "not_found": "say the answer is not in the HR knowledge base and suggest asking HR",
+    "message": "say the same thing as the draft",
+}
 
 
 CLASSIFIER = """Classify the HR Admin's message into exactly one intent:

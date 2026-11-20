@@ -98,7 +98,7 @@ GREETINGS = {
 }
 
 
-async def answer_from_kb(question: str, user_role: str = "Candidate") -> dict:
+async def answer_from_kb(question: str, user_role: str = "Candidate", follow_up: tuple | None = None) -> dict:
     """RAG: retrieve from the HR knowledge base and answer with citations (or say it is not covered).
     Policy questions search the handbook and uploaded documents first; job postings only if nothing matches."""
     try:
@@ -106,7 +106,19 @@ async def answer_from_kb(question: str, user_role: str = "Candidate") -> dict:
     except Exception as e:  # noqa: BLE001
         logger.warning("KB search failed: %s", e)
         hits = []
-    return kb_answer.answer(question, hits, user_role=user_role)
+    return kb_answer.answer(question, hits, user_role=user_role, follow_up=follow_up)
+
+
+def _general_rule_question(message: str) -> tuple[str, str]:
+    """Personal-record questions ("how many leaves do I have left") become the general-rule question."""
+    m = message.lower()
+    if re.search(r"salary|ctc|payslip|tankh|vetan|pay\b", m):
+        return "salary and payslips", "When is salary credited and where are payslips available?"
+    if re.search(r"apprais|rating|increment|hike|promotion", m):
+        return "rating", "How do performance reviews, increments and promotions work?"
+    if re.search(r"sick", m):
+        return "sick leave balance", "How many days of sick leave do employees get and do they carry forward?"
+    return "leave balance", "How many days of annual and sick leave do employees get and how much carries forward?"
 
 
 async def _pipeline_counts() -> dict:
@@ -251,33 +263,52 @@ async def process_message(session_id: str, message: str, user_role: str = "Candi
     try:
         prev = await _previous_turn(session_id)
         raw = await _process_message(session_id, message, user_role, prev)
-        in_form = bool((sessions.get(session_id) or {}).get("intent"))
+        state = sessions.get(session_id) or {}
+        in_form = bool(state.get("intent"))
         res = raw if isinstance(raw, dict) else _result(str(raw), "form" if in_form else "message")
         res.setdefault("type", "message")
         for k, v in (("citations", []), ("cards", []), ("suggestions", []), ("intro", "")):
             res.setdefault(k, v)
-        return await _natural_wording(res, message, user_role, prev)
+        step = (state.get("intent"), state.get("step")) if in_form else None
+        return await _natural_wording(res, message, user_role, prev, step)
     finally:
         await _save_session(session_id, sessions.pop(session_id, {"intent": None}))
 
 
-async def _natural_wording(res: dict, message: str, user_role: str, prev: dict | None) -> dict:
-    """Let the small model reword code-written replies (never policy answers, never when a model was already
-    called this turn, never long lists). Facts stay in the cards / the draft; failures keep the draft."""
+async def _natural_wording(res: dict, message: str, user_role: str, prev: dict | None,
+                           step: tuple | None = None) -> dict:
+    """Let the small model reword code-written replies, keeping their purpose (never policy answers, never when a
+    model was already called this turn, never long lists, never a form step without a declared purpose). The
+    rewrite is checked (required words kept, no new actions); on any doubt the template stays."""
     facts = res.pop("facts", None)
+    kind = res["type"]
+    prose = kind not in ("policy", "correction", "stats")
+    if prose:
+        res["text"] = phrasing.limit_emoji(res["text"])
+        res["intro"] = phrasing.limit_emoji(res.get("intro", ""))
     if llm.turn_usage():
         return res
     history = (prev or {}).get("history", [])
-    if res["type"] in ("jobs", "job_detail", "compare") and res.get("intro"):
-        new = await phrasing.phrase(res["intro"], user_role, message, facts=facts, history=history)
+    if kind in ("jobs", "job_detail", "compare") and res.get("intro"):
+        new = await phrasing.phrase(res["intro"], user_role, message, facts=facts, history=history,
+                                    purpose=prompts.REPLY_PURPOSE[kind])
         if new != res["intro"]:
             res["text"] = res["text"].replace(res["intro"], new, 1)
             res["intro"] = new
-    elif res["type"] in ("form", "message", "greeting", "refusal", "not_found") and len(res["text"]) <= 450 \
-            and "\n- " not in res["text"] and "\n• " not in res["text"] and "|" not in res["text"]:
+        return res
+    if kind == "form":
+        spec = prompts.FORM_STEPS.get(step or ())
+        if not spec or "\n- " in res["text"] or "|" in res["text"]:
+            return res                                   # unknown step or a list/summary: keep the template
+        purpose, must_keep = spec
         # form answers can hold personal data (email, phone): never cache those rewrites
+        res["text"] = await phrasing.phrase(res["text"], user_role, message, history=history, cache=False,
+                                            purpose=purpose, must_keep=must_keep)
+        return res
+    if kind in ("message", "greeting", "refusal", "not_found") and len(res["text"]) <= 450 \
+            and "\n- " not in res["text"] and "\n• " not in res["text"] and "|" not in res["text"]:
         res["text"] = await phrasing.phrase(res["text"], user_role, message, history=history,
-                                            cache=res["type"] != "form")
+                                            purpose=prompts.REPLY_PURPOSE[kind])
     return res
 
 
@@ -336,14 +367,14 @@ async def _process_message(session_id: str, message: str, user_role: str = "Cand
             else:
                 inner = (await job_search.job_detail(message, user_role)) or (await answer_from_kb(message, user_role))
             step_friendly_name = session['step'].replace('ask_', '').replace('_', ' ').title()
-            back = (f"\n\n━━━━━━━━━━━━━━━━━━━━\n⏳ **Now, let's get back to what we were doing!**\n"
-                    f"Please provide your: **{step_friendly_name}**")
-            inner["text"] = f"💡 {inner['text']}{back}"
+            back = (f"\n\n---\n**Now, back to your form.** Please provide your: **{step_friendly_name}**")
+            inner["text"] = f"{inner['text']}{back}"
             inner["suggestions"] = ["cancel"]
             return inner
 
     # --- 1. DETERMINE INTENT ---
     query = message
+    follow_up = None
     if not session["intent"]:
         # the user says the previous answer was wrong: re-check it against the sources
         if prev and is_correction(message) and not is_rephrase(message):
@@ -351,6 +382,7 @@ async def _process_message(session_id: str, message: str, user_role: str = "Cand
         # "no, I meant during probation" / "and when is it paid?" / "only in pune": read with the previous turn
         if prev and (is_rephrase(message) or is_follow_up(message)) and prev.get("type") not in ("form", "greeting"):
             query = f"{prev['user']} — {message}"
+            follow_up = (message, prev["user"])
             if prev.get("type") in ("jobs", "job_detail", "compare") and not POLICY_HINT.search(message):
                 return await job_search.list_jobs(query, user_role)
 
@@ -377,9 +409,9 @@ async def _process_message(session_id: str, message: str, user_role: str = "Cand
             return await job_search.list_jobs(query, user_role)
 
         if intent == "personal_data":
-            note = ("I can't see personal records like your leave balance or salary: you'll find them in the "
-                    "**HR portal**. Here's the general policy:")
-            res = await answer_from_kb(query, user_role)
+            general = _general_rule_question(query)
+            note = f"I can't see your personal records: your {general[0]} is in the **HR portal**. The policy:"
+            res = await answer_from_kb(general[1], user_role)
             if res["type"] == "policy":
                 res["text"] = f"{note}\n\n{res['text']}"
                 res["intro"] = note
@@ -398,7 +430,7 @@ async def _process_message(session_id: str, message: str, user_role: str = "Cand
                 title = named[0].get("title")
                 session["data"]["preferred_role"] = title
                 session["step"] = "ask_autofill"
-                return _result(f"Great, let's apply for **{title}** ({named[0].get('location', '')}). 📄 "
+                return _result(f"Great, let's apply for **{title}** ({named[0].get('location', '')}). "
                                "**Would you like to autofill your application using your resume?**\n\n"
                                "Click the 📎 icon below to upload a PDF, or type **'No'** to fill out the form manually.",
                                "form", suggestions=["No", "cancel"])
@@ -530,12 +562,12 @@ async def _process_message(session_id: str, message: str, user_role: str = "Cand
                         return f"❌ I couldn't find an active job opening for '{target_role}'."
 
         elif intent == "hr_knowledge":
-            return await answer_from_kb(query, user_role)
+            return await answer_from_kb(query, user_role, follow_up=follow_up)
 
         # --- FALLBACK: answered only from the knowledge base (handbook + job openings), never from the model's
         #     general knowledge, so it cannot invent policies, numbers or roles ---
         else:
-            return await answer_from_kb(query, user_role)
+            return await answer_from_kb(query, user_role, follow_up=follow_up)
 
     # --- 2. CANDIDATE FLOW ---
     if session["intent"] == "apply_job":

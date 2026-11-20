@@ -54,7 +54,7 @@ async def test_partial_title_and_salary_question(client):
     out = await ask(client, "tell me about the devops role")
     assert out["type"] == "job_detail" and out["cards"][0]["title"] == "DevOps Engineer"
     out = await ask(client, "what's the salary for the data analyst job?", session="c2")
-    assert out["cards"][0]["title"] == "Data Analyst" and out["cards"][0]["salary"] in out["text"]
+    assert out["cards"][0]["title"] == "Data Analyst" and out["cards"][0]["salary"] in out["fallback"]
 
 
 async def test_compare_two_jobs(client):
@@ -262,3 +262,80 @@ async def test_typos_still_find_the_policy(client):
     assert hits and hits[0]["section"] == "Leave policy"
     hits = await store.search("how long is probaton", doc_type="document")
     assert hits and hits[0]["section"] == "Probation"
+
+
+# ---------- round 3: rewording keeps the purpose, fresher filter, follow-ups, reply shape ----------
+
+async def test_hiring_request_rewrite_that_changes_the_action_is_rejected(client, monkeypatch, phrasing_on):
+    bad = "Sure thing! Just let me know the department name, and I'll pull up the candidate count for your team."
+    monkeypatch.setattr(llm, "complete", lambda *a, **k: bad)
+    out = await ask(client, "I want to raise a hiring request", role="Hiring Manager")
+    assert out["text"] == "I can help with that. Please enter the department name."
+
+
+async def test_rewrite_must_keep_the_required_field(monkeypatch, phrasing_on):
+    monkeypatch.setattr(llm, "complete", lambda *a, **k: "Sure, which team are you hiring for today?")
+    draft = "I can help with that. Please enter the department name."
+    assert await phrasing.phrase(draft, "Hiring Manager", purpose="ask for the department",
+                                 must_keep=["department"]) == draft
+
+
+async def test_form_step_rewrite_gets_its_purpose(client, phrasing_on):
+    out = await ask(client, "I want to raise a hiring request", role="Hiring Manager")
+    prompt = phrasing_on[-1]["messages"][-1]["content"]
+    assert "PURPOSE: ask for the department name of the new hiring request" in prompt
+    assert "MUST KEEP: department" in prompt and out["text"].startswith("Good news!")
+
+
+async def test_unlisted_form_steps_keep_the_template(client, phrasing_on):
+    out = await ask(client, "find candidate details for asha@example.com", role="HR Admin")
+    assert out["type"] == "form"                                  # hr_find_candidate / ask_identifier: not listed
+    assert not [c for c in phrasing_on if c["purpose"] == "phrase"]
+
+
+async def test_job_intro_rewrite_that_lists_jobs_is_rejected(monkeypatch, phrasing_on):
+    listy = "Here are 3 roles in Pune:\n- **Python Developer**\n- **DevOps Engineer**"
+    monkeypatch.setattr(llm, "complete", lambda *a, **k: listy)
+    draft = "Here are **3 open roles** in **Pune**."
+    assert await phrasing.phrase(draft, "Candidate", purpose=prompts.REPLY_PURPOSE["jobs"]) == draft
+
+
+async def test_freshers_means_zero_experience(client):
+    out = await ask(client, "any jobs for freshers in noida?")
+    assert out["cards"] and all(c["experience_years"] == 0 for c in out["cards"])
+    assert all(c["location"] == "Noida" for c in out["cards"])
+    assert "Recruitment Coordinator" not in [c["title"] for c in out["cards"]]
+
+
+async def test_follow_up_answers_only_the_sub_question(client, fresh_env):
+    await ask(client, "What is the referral bonus?", role="Hiring Manager", session="fu")
+    await ask(client, "and when is it paid?", role="Hiring Manager", session="fu")
+    system = systems(fresh_env)[-1]
+    user = fresh_env.calls[-1]["messages"][-1]["content"]
+    assert "Answer ONLY the specific point the follow-up asks" in system
+    assert "Earlier question (context only): What is the referral bonus?" in user
+    assert user.rstrip().endswith("Question: and when is it paid?")
+
+
+async def test_job_reply_text_is_the_intro_and_cards_carry_the_details(client):
+    out = await ask(client, "Which jobs are open in Pune?")
+    assert out["text"] == out["intro"] and "💼" not in out["text"] and "━" not in out["text"]
+    assert out["fallback"].count("\n- **") == len(out["cards"])
+
+
+async def test_at_most_one_emoji_in_prose(client):
+    import re as _re
+    emoji = _re.compile("[\U0001F300-\U0001FAFF☀-➿⬀-⯿←-⇿⌀-⏿]")
+    for msg in ("I want to apply for a job", "cancel", "hello", "I want to apply for the Data Analyst job"):
+        out = await ask(client, msg, session="e")
+        assert len(emoji.findall(out["text"])) <= 1, out["text"]
+    await ask(client, "I want to apply for a job", session="e2")
+    out = await ask(client, "wait, how long is probation?", session="e2")
+    assert len(emoji.findall(out["text"])) <= 1 and "back to your form" in out["text"]
+
+
+async def test_leave_balance_goes_straight_to_the_policy(client, fresh_env):
+    out = await ask(client, "how many leaves do I have left?", role="Hiring Manager")
+    q = fresh_env.calls[-1]["messages"][-1]["content"]
+    assert "How many days of annual and sick leave do employees get" in q and "left" not in q.split("Question:")[-1]
+    assert out["text"].count("HR portal") == 1

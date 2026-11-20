@@ -235,7 +235,9 @@ async def chat_endpoint(request: ChatRequest):
         text, citations = result.get("text", ""), result.get("citations", [])
         usage = llm.turn_usage()
         extra = {"type": result.get("type", "message"), "intro": result.get("intro", ""),
-                 "cards": result.get("cards", []), "suggestions": result.get("suggestions", [])}
+                 "cards": result.get("cards", []), "suggestions": result.get("suggestions", []),
+                 # plain-text version of card replies for clients that can't render cards
+                 "fallback": result.get("fallback") or text}
         tokens = {"calls": len(usage), "prompt_tokens": sum(u["prompt_tokens"] for u in usage),
                   "completion_tokens": sum(u["completion_tokens"] for u in usage),
                   "by_model": usage}

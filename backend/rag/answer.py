@@ -87,7 +87,7 @@ def not_found(hits: list[dict], user_role: str) -> dict:
 
 
 def answer(question: str, hits: list[dict], complete=None, user_role: str = "Candidate",
-           correction: str | None = None, previous: str | None = None) -> dict:
+           correction: str | None = None, previous: str | None = None, follow_up: tuple | None = None) -> dict:
     """Returns {"text", "citations", "type", "cards", "suggestions"}. `complete` is injectable for tests.
     With `correction` (the user's objection) and `previous` (the answer they object to), the model re-checks."""
     if not hits:
@@ -97,6 +97,10 @@ def answer(question: str, hits: list[dict], complete=None, user_role: str = "Can
         system = prompts.correction_system(user_role)
         user = (f"Context passages:\n\n{build_context(hits)}\n\nOriginal question: {question}\n"
                 f"Previous answer: {previous or '(not available)'}\nUser's objection: {correction}")
+    elif follow_up:
+        system = prompts.follow_up_system(user_role)
+        user = (f"Context passages:\n\n{build_context(hits)}\n\nEarlier question (context only): {follow_up[1]}\n"
+                f"Question: {follow_up[0]}")
     else:
         system = prompts.policy_system(user_role)
         user = f"Context passages:\n\n{build_context(hits)}\n\nQuestion: {question}"

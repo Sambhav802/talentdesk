@@ -52,16 +52,17 @@ async def _seed():
 
 async def test_job_search_filters_city_and_skill():
     await _seed()
-    out = (await job_search.list_jobs("Any job openings for Python in Noida?"))["text"]
+    res = await job_search.list_jobs("Any job openings for Python in Noida?")
+    out = res["fallback"]
     assert "Python" in out and "Customer Support" not in out and "Recruiter" not in out
-    assert "📍 **Pune**" not in out and "📍 **Remote**" not in out and "📍 **Noida**" in out
+    assert {c["location"] for c in res["cards"]} == {"Noida"}
 
 
 async def test_job_search_remote_and_department():
     await _seed()
-    remote = (await job_search.list_jobs("Show me remote jobs"))["text"]
-    assert "📍 **Remote**" in remote and "📍 **Noida**" not in remote
-    hr = (await job_search.list_jobs("Are there any HR roles open?"))["text"]
+    remote = await job_search.list_jobs("Show me remote jobs")
+    assert {c["location"] for c in remote["cards"]} == {"Remote"}
+    hr = (await job_search.list_jobs("Are there any HR roles open?"))["fallback"]
     assert "Recruit" in hr and "Python Developer" not in hr
 
 
@@ -73,8 +74,9 @@ async def test_job_search_no_match_says_so():
 
 async def test_job_detail_uses_the_record():
     await _seed()
-    out = (await job_search.job_detail("What skills are required for the Data Analyst role?"))["text"]
-    assert "Data Analyst" in out and "SQL" in out and "CTC" in out
+    res = await job_search.job_detail("What skills are required for the Data Analyst role?")
+    assert res["text"] == res["intro"] and "Data Analyst" in res["intro"]
+    assert "SQL" in res["cards"][0]["skills"] and "CTC" in res["fallback"]
     assert await job_search.job_detail("What is the leave policy?") is None
 
 
@@ -96,14 +98,15 @@ async def test_internal_posting_question_does_not_open_the_form(client):
 async def test_question_inside_the_form_is_answered_from_the_kb(client, fresh_env):
     assert "role" in (await chat(client, "I want to apply for a job", session="f1")).lower()
     out = await chat(client, "Wait, how long is probation?", session="f1")
-    assert "get back to what we were doing" in out and "Sources" in out
+    assert "back to your form" in out and "Sources" in out
     assert any("numbered context passages" in next((m["content"] for m in c["messages"] if m["role"] == "system"), "")
                for c in fresh_env.calls)
 
 
 async def test_job_list_from_chat_matches_the_question(client):
-    out = await chat(client, "Which jobs are open in Pune?")
-    assert "📍 **Pune**" in out and "📍 **Noida**" not in out
+    r = await client.post("/chat", json={"session_id": "s1", "message": "Which jobs are open in Pune?", "user_role": "Candidate"})
+    cards = r.json()["cards"]
+    assert cards and {c["location"] for c in cards} == {"Pune"}
 
 
 async def test_seeding_is_idempotent_and_fills_missing_fields():

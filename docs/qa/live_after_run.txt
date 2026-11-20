@@ -1,0 +1,54 @@
+PASS  leave-annual         
+PASS  leave-paraphrase     
+PASS  leave-carry          
+PASS  leave-sick           
+PASS  leave-cert           
+PASS  holidays             
+PASS  maternity            
+PASS  paternity            
+PASS  leave-advance        
+PASS  leave-approver       
+PASS  wfh                  
+PASS  wfh-intern           
+PASS  home-office          
+PASS  probation            
+PASS  probation-extend     
+PASS  notice-probation     
+PASS  notice-senior        
+PASS  notice-others        
+PASS  notice-leave         
+PASS  notice-buyout        
+PASS  referral-junior      
+PASS  referral-senior      
+PASS  referral-paid        
+PASS  referral-intern      
+PASS  interview-stages     
+PASS  interview-wait       
+PASS  offer-time           
+PASS  intern-process       
+PASS  joining-docs         
+PASS  internal-move        
+PASS  hours                
+PASS  core-hours           
+PASS  ticket-time          
+PASS  payday               
+PASS  insurance            
+PASS  learning             
+PASS  jobs-remote          
+PASS  jobs-pune            
+PASS  jobs-python          
+PASS  jobs-python-noida    
+PASS  jobs-hr              
+PASS  jobs-skill-detail    
+PASS  refuse-pets          
+PASS  refuse-ceo-salary    
+PASS  refuse-general       
+PASS  refuse-stock         
+PASS  apply-start          
+PASS  status-unknown       
+PASS  form-interrupt       
+
+49/49 passed
+  policy  40/40
+  jobs    6/6
+  flow    3/3
